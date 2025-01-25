@@ -1,0 +1,1227 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mycompany.voguetnc"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+9        android:targetSdkVersion="34" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:4:5-66
+14-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:4:22-64
+15    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+15-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:5:5-78
+15-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:5:22-76
+16    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+16-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:6:5-80
+16-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:6:22-78
+17    <uses-permission android:name="android.permission.CAMERA" />
+17-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:7:5-64
+17-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:7:22-62
+18    <uses-permission
+18-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:8:5-106
+19        android:name="android.permission.READ_EXTERNAL_STORAGE"
+19-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:8:22-77
+20        android:maxSdkVersion="32" />
+20-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:8:78-104
+21    <uses-permission
+21-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:9:5-107
+22        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+22-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:9:22-78
+23        android:maxSdkVersion="32" />
+23-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:9:79-105
+24
+25    <queries>
+25-->[:file_picker] /Users/yuta/Downloads/furugi_with_template 2/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-19:15
+26        <intent>
+26-->[:file_picker] /Users/yuta/Downloads/furugi_with_template 2/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:14:9-18:18
+27            <action android:name="android.intent.action.GET_CONTENT" />
+27-->[:file_picker] /Users/yuta/Downloads/furugi_with_template 2/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-72
+27-->[:file_picker] /Users/yuta/Downloads/furugi_with_template 2/build/file_picker/intermediates/merged_manifest/debug/AndroidManifest.xml:15:21-69
+28
+29            <data android:mimeType="*/*" />
+29-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+30        </intent>
+31        <!-- Added to check the default browser that will host the AuthFlow. -->
+32        <intent>
+32-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:13:9-17:18
+33            <action android:name="android.intent.action.VIEW" />
+33-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+33-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+34
+35            <data android:scheme="http" />
+35-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+35-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+36        </intent> <!-- Added to check if Chrome is installed for browser-based payment authentication (e.g. 3DS1). -->
+37        <package android:name="com.android.chrome" /> <!-- Needs to be explicitly declared on Android R+ -->
+37-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:11:9-54
+37-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:11:18-51
+38        <package android:name="com.google.android.apps.maps" />
+38-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:33:9-64
+38-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:33:18-61
+39    </queries>
+40
+41    <uses-permission android:name="android.permission.WAKE_LOCK" />
+41-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-68
+41-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:10:22-65
+42    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permissions options for the `notification` group -->
+42-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:11:5-79
+42-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:11:22-76
+43    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+43-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:13:5-77
+43-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:13:22-74
+44
+45    <uses-feature
+45-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:26:5-28:35
+46        android:glEsVersion="0x00020000"
+46-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:27:9-41
+47        android:required="true" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+47-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:28:9-32
+48    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+48-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:26:5-82
+48-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:26:22-79
+49    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+49-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/yuta/.gradle/caches/transforms-3/09e3b77cea3472f242e180e686141e4a/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:5-98
+49-->[com.google.android.recaptcha:recaptcha:18.4.0] /Users/yuta/.gradle/caches/transforms-3/09e3b77cea3472f242e180e686141e4a/transformed/jetified-recaptcha-18.4.0/AndroidManifest.xml:9:22-95
+50
+51    <permission
+51-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+52        android:name="com.mycompany.voguetnc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+52-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+53        android:protectionLevel="signature" />
+53-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+54
+55    <uses-permission android:name="com.mycompany.voguetnc.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+55-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+55-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+56
+57    <application
+57-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:11:5-67:19
+58        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+58-->[androidx.core:core:1.13.1] /Users/yuta/.gradle/caches/transforms-3/5af03f1e3bf82b901dd5e3b167881695/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+59        android:debuggable="true"
+60        android:enableOnBackInvokedCallback="true"
+60-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:17:9-51
+61        android:extractNativeLibs="false"
+62        android:icon="@mipmap/ic_launcher"
+62-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:14:9-43
+63        android:label="furugi with template"
+63-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:12:9-45
+64        android:requestLegacyExternalStorage="true"
+64-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:16:9-52
+65        android:theme="@style/LaunchTheme" >
+65-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:15:9-43
+66        <activity
+66-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:19:9-57:20
+67            android:name="com.mycompany.voguetnc.MainActivity"
+67-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:20:13-41
+68            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+68-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:24:13-163
+69            android:exported="true"
+69-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:21:13-36
+70            android:hardwareAccelerated="true"
+70-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:25:13-47
+71            android:launchMode="singleTop"
+71-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:22:13-43
+72            android:theme="@style/LaunchTheme"
+72-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:23:13-47
+73            android:windowSoftInputMode="adjustResize" >
+73-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:26:13-55
+74
+75            <!--
+76                 Specifies an Android theme to apply to this Activity as soon as
+77                 the Android process has started. This theme is visible to the user
+78                 while the Flutter UI initializes. After that, this theme continues
+79                 to determine the Window background behind the Flutter UI.
+80            -->
+81            <meta-data
+81-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:31:13-34:17
+82                android:name="io.flutter.embedding.android.NormalTheme"
+82-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:32:15-70
+83                android:resource="@style/NormalTheme" />
+83-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:33:15-52
+84            <!--
+85                 Displays an Android View that continues showing the launch screen
+86                 Drawable until Flutter paints its first frame, then this splash
+87                 screen fades out. A splash screen is useful to avoid any visual
+88                 gap between the end of Android's launch screen and the painting of
+89                 Flutter's first frame.
+90            -->
+91            <meta-data
+91-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:40:13-43:17
+92                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+92-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:41:15-79
+93                android:resource="@drawable/launch_background" />
+93-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:42:15-61
+94
+95            <intent-filter>
+95-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:44:13-47:29
+96                <action android:name="android.intent.action.MAIN" />
+96-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:45:17-68
+96-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:45:25-66
+97
+98                <category android:name="android.intent.category.LAUNCHER" />
+98-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:46:17-76
+98-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:46:27-74
+99            </intent-filter>
+100            <!-- Deep linking -->
+101            <meta-data
+101-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:49:13-90
+102                android:name="flutter_deeplinking_enabled"
+102-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:49:24-66
+103                android:value="true" />
+103-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:49:67-87
+104
+105            <intent-filter android:autoVerify="true" >
+105-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:50:13-55:29
+105-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:50:28-53
+106                <action android:name="android.intent.action.VIEW" />
+106-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+106-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+107
+108                <category android:name="android.intent.category.DEFAULT" />
+108-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+108-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+109                <category android:name="android.intent.category.BROWSABLE" />
+109-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+109-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+110
+111                <data
+111-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+112                    android:host="furugiwithtemplate.com"
+112-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+113                    android:scheme="furugiwithtemplate" />
+113-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+114            </intent-filter>
+115        </activity>
+116
+117        <!--
+118             Don't delete the meta-data below.
+119             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+120        -->
+121        <meta-data
+121-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:61:9-63:33
+122            android:name="flutterEmbedding"
+122-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:62:13-44
+123            android:value="2" />
+123-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:63:13-30
+124        <meta-data
+124-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:64:9-123
+125            android:name="com.google.android.geo.API_KEY"
+125-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:64:20-65
+126            android:value="AIzaSyDB1Ydff8UDCxAXJoaeVpfzJ5HGf69GVhg" />
+126-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:64:66-121
+127
+128        <service
+128-->[:cloud_firestore] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:19
+129            android:name="com.google.firebase.components.ComponentDiscoveryService"
+129-->[:cloud_firestore] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:10:18-89
+130            android:directBootAware="true"
+130-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:32:13-43
+131            android:exported="false" >
+131-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:68:13-37
+132            <meta-data
+132-->[:cloud_firestore] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+133                android:name="com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar"
+133-->[:cloud_firestore] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-134
+134                android:value="com.google.firebase.components.ComponentRegistrar" />
+134-->[:cloud_firestore] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_firestore/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+135            <meta-data
+135-->[:cloud_functions] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_functions/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+136                android:name="com.google.firebase.components:io.flutter.plugins.firebase.functions.FlutterFirebaseAppRegistrar"
+136-->[:cloud_functions] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_functions/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-128
+137                android:value="com.google.firebase.components.ComponentRegistrar" />
+137-->[:cloud_functions] /Users/yuta/Downloads/furugi_with_template 2/build/cloud_functions/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+138            <meta-data
+138-->[:firebase_app_check] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_app_check/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+139                android:name="com.google.firebase.components:io.flutter.plugins.firebase.appcheck.FlutterFirebaseAppRegistrar"
+139-->[:firebase_app_check] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_app_check/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-127
+140                android:value="com.google.firebase.components.ComponentRegistrar" />
+140-->[:firebase_app_check] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_app_check/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+141            <meta-data
+141-->[:firebase_auth] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+142                android:name="com.google.firebase.components:io.flutter.plugins.firebase.auth.FlutterFirebaseAuthRegistrar"
+142-->[:firebase_auth] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+143                android:value="com.google.firebase.components.ComponentRegistrar" />
+143-->[:firebase_auth] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_auth/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+144            <meta-data
+144-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:38:13-40:85
+145                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+145-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:39:17-128
+146                android:value="com.google.firebase.components.ComponentRegistrar" />
+146-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:40:17-82
+147            <meta-data
+147-->[:firebase_performance] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_performance/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-15:85
+148                android:name="com.google.firebase.components:io.flutter.plugins.firebase.performance.FlutterFirebaseAppRegistrar"
+148-->[:firebase_performance] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_performance/intermediates/merged_manifest/debug/AndroidManifest.xml:14:17-130
+149                android:value="com.google.firebase.components.ComponentRegistrar" />
+149-->[:firebase_performance] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_performance/intermediates/merged_manifest/debug/AndroidManifest.xml:15:17-82
+150            <meta-data
+150-->[:firebase_storage] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+151                android:name="com.google.firebase.components:io.flutter.plugins.firebase.storage.FlutterFirebaseAppRegistrar"
+151-->[:firebase_storage] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-126
+152                android:value="com.google.firebase.components.ComponentRegistrar" />
+152-->[:firebase_storage] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_storage/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+153            <meta-data
+153-->[:firebase_core] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-13:85
+154                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+154-->[:firebase_core] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:12:17-124
+155                android:value="com.google.firebase.components.ComponentRegistrar" />
+155-->[:firebase_core] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_core/intermediates/merged_manifest/debug/AndroidManifest.xml:13:17-82
+156            <meta-data
+156-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:69:13-71:85
+157                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+157-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:70:17-109
+158                android:value="com.google.firebase.components.ComponentRegistrar" />
+158-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:71:17-82
+159            <meta-data
+159-->[com.google.firebase:firebase-appcheck-safetynet:16.1.2] /Users/yuta/.gradle/caches/transforms-3/65552d0a171d12297cca389ff1f308b0/transformed/jetified-firebase-appcheck-safetynet-16.1.2/AndroidManifest.xml:27:13-29:85
+160                android:name="com.google.firebase.components:com.google.firebase.appcheck.safetynet.FirebaseAppCheckSafetyNetRegistrar"
+160-->[com.google.firebase:firebase-appcheck-safetynet:16.1.2] /Users/yuta/.gradle/caches/transforms-3/65552d0a171d12297cca389ff1f308b0/transformed/jetified-firebase-appcheck-safetynet-16.1.2/AndroidManifest.xml:28:17-136
+161                android:value="com.google.firebase.components.ComponentRegistrar" />
+161-->[com.google.firebase:firebase-appcheck-safetynet:16.1.2] /Users/yuta/.gradle/caches/transforms-3/65552d0a171d12297cca389ff1f308b0/transformed/jetified-firebase-appcheck-safetynet-16.1.2/AndroidManifest.xml:29:17-82
+162            <meta-data
+162-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:15:13-17:85
+163                android:name="com.google.firebase.components:com.google.firebase.functions.FirebaseFunctionsKtxRegistrar"
+163-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:16:17-122
+164                android:value="com.google.firebase.components.ComponentRegistrar" />
+164-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:17:17-82
+165            <meta-data
+165-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:18:13-20:85
+166                android:name="com.google.firebase.components:com.google.firebase.functions.FunctionsRegistrar"
+166-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:19:17-111
+167                android:value="com.google.firebase.components.ComponentRegistrar" />
+167-->[com.google.firebase:firebase-functions:21.0.0] /Users/yuta/.gradle/caches/transforms-3/b3e4495bb1572b96e2cb27784025c1f8/transformed/jetified-firebase-functions-21.0.0/AndroidManifest.xml:20:17-82
+168            <meta-data
+168-->[com.google.firebase:firebase-appcheck-debug:18.0.0] /Users/yuta/.gradle/caches/transforms-3/cc1fa3e449df9f7f9cdea4eafb2fff48/transformed/jetified-firebase-appcheck-debug-18.0.0/AndroidManifest.xml:25:13-27:85
+169                android:name="com.google.firebase.components:com.google.firebase.appcheck.debug.FirebaseAppCheckDebugRegistrar"
+169-->[com.google.firebase:firebase-appcheck-debug:18.0.0] /Users/yuta/.gradle/caches/transforms-3/cc1fa3e449df9f7f9cdea4eafb2fff48/transformed/jetified-firebase-appcheck-debug-18.0.0/AndroidManifest.xml:26:17-128
+170                android:value="com.google.firebase.components.ComponentRegistrar" />
+170-->[com.google.firebase:firebase-appcheck-debug:18.0.0] /Users/yuta/.gradle/caches/transforms-3/cc1fa3e449df9f7f9cdea4eafb2fff48/transformed/jetified-firebase-appcheck-debug-18.0.0/AndroidManifest.xml:27:17-82
+171            <meta-data
+171-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:17:13-19:85
+172                android:name="com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar"
+172-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:18:17-122
+173                android:value="com.google.firebase.components.ComponentRegistrar" />
+173-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:19:17-82
+174            <meta-data
+174-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:20:13-22:85
+175                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
+175-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:21:17-111
+176                android:value="com.google.firebase.components.ComponentRegistrar" />
+176-->[com.google.firebase:firebase-firestore:25.1.0] /Users/yuta/.gradle/caches/transforms-3/fd3103fee5b4ce9a836b7b9a0ae79302/transformed/jetified-firebase-firestore-25.1.0/AndroidManifest.xml:22:17-82
+177            <meta-data
+177-->[com.google.firebase:firebase-appcheck-playintegrity:18.0.0] /Users/yuta/.gradle/caches/transforms-3/27e1f748a6d258978325151d6ce66611/transformed/jetified-firebase-appcheck-playintegrity-18.0.0/AndroidManifest.xml:25:13-27:85
+178                android:name="com.google.firebase.components:com.google.firebase.appcheck.playintegrity.FirebaseAppCheckPlayIntegrityRegistrar"
+178-->[com.google.firebase:firebase-appcheck-playintegrity:18.0.0] /Users/yuta/.gradle/caches/transforms-3/27e1f748a6d258978325151d6ce66611/transformed/jetified-firebase-appcheck-playintegrity-18.0.0/AndroidManifest.xml:26:17-144
+179                android:value="com.google.firebase.components.ComponentRegistrar" />
+179-->[com.google.firebase:firebase-appcheck-playintegrity:18.0.0] /Users/yuta/.gradle/caches/transforms-3/27e1f748a6d258978325151d6ce66611/transformed/jetified-firebase-appcheck-playintegrity-18.0.0/AndroidManifest.xml:27:17-82
+180            <meta-data
+180-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:57:13-59:85
+181                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingKtxRegistrar"
+181-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:58:17-122
+182                android:value="com.google.firebase.components.ComponentRegistrar" />
+182-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:59:17-82
+183            <meta-data
+183-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:60:13-62:85
+184                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+184-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:61:17-119
+185                android:value="com.google.firebase.components.ComponentRegistrar" />
+185-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:62:17-82
+186            <meta-data
+186-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:30:13-32:85
+187                android:name="com.google.firebase.components:com.google.firebase.storage.FirebaseStorageKtxRegistrar"
+187-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:31:17-118
+188                android:value="com.google.firebase.components.ComponentRegistrar" />
+188-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:32:17-82
+189            <meta-data
+189-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:33:13-35:85
+190                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+190-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:34:17-107
+191                android:value="com.google.firebase.components.ComponentRegistrar" />
+191-->[com.google.firebase:firebase-storage:21.0.0] /Users/yuta/.gradle/caches/transforms-3/96f5425a9cfb62a58fe990c2547ab217/transformed/jetified-firebase-storage-21.0.0/AndroidManifest.xml:35:17-82
+192            <meta-data
+192-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:25:13-27:85
+193                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckKtxRegistrar"
+193-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:26:17-120
+194                android:value="com.google.firebase.components.ComponentRegistrar" />
+194-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:27:17-82
+195            <meta-data
+195-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:28:13-30:85
+196                android:name="com.google.firebase.components:com.google.firebase.appcheck.FirebaseAppCheckRegistrar"
+196-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:29:17-117
+197                android:value="com.google.firebase.components.ComponentRegistrar" />
+197-->[com.google.firebase:firebase-appcheck:18.0.0] /Users/yuta/.gradle/caches/transforms-3/dd3f35c6b0f7719a05eee8ce0009081c/transformed/jetified-firebase-appcheck-18.0.0/AndroidManifest.xml:30:17-82
+198            <meta-data
+198-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:14:13-16:85
+199                android:name="com.google.firebase.components:com.google.firebase.perf.FirebasePerfKtxRegistrar"
+199-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:15:17-112
+200                android:value="com.google.firebase.components.ComponentRegistrar" />
+200-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:16:17-82
+201            <meta-data
+201-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:17:13-19:85
+202                android:name="com.google.firebase.components:com.google.firebase.perf.FirebasePerfRegistrar"
+202-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:18:17-109
+203                android:value="com.google.firebase.components.ComponentRegistrar" />
+203-->[com.google.firebase:firebase-perf:21.0.1] /Users/yuta/.gradle/caches/transforms-3/320040284b52bf4d9fe7c79edb5ec89d/transformed/jetified-firebase-perf-21.0.1/AndroidManifest.xml:19:17-82
+204            <meta-data
+204-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:29:13-31:85
+205                android:name="com.google.firebase.components:com.google.firebase.remoteconfig.FirebaseRemoteConfigKtxRegistrar"
+205-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:30:17-128
+206                android:value="com.google.firebase.components.ComponentRegistrar" />
+206-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:31:17-82
+207            <meta-data
+207-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:32:13-34:85
+208                android:name="com.google.firebase.components:com.google.firebase.remoteconfig.RemoteConfigRegistrar"
+208-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:33:17-117
+209                android:value="com.google.firebase.components.ComponentRegistrar" />
+209-->[com.google.firebase:firebase-config:22.0.0] /Users/yuta/.gradle/caches/transforms-3/4b85dc2d70b75bde85d04c08ba5b080a/transformed/jetified-firebase-config-22.0.0/AndroidManifest.xml:34:17-82
+210            <meta-data
+210-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:29:13-31:85
+211                android:name="com.google.firebase.components:com.google.firebase.sessions.FirebaseSessionsRegistrar"
+211-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:30:17-117
+212                android:value="com.google.firebase.components.ComponentRegistrar" />
+212-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:31:17-82
+213            <meta-data
+213-->[com.google.firebase:firebase-iid:21.1.0] /Users/yuta/.gradle/caches/transforms-3/bb981adc0a23145b82591d9ea011aa7c/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+214                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+214-->[com.google.firebase:firebase-iid:21.1.0] /Users/yuta/.gradle/caches/transforms-3/bb981adc0a23145b82591d9ea011aa7c/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+215                android:value="com.google.firebase.components.ComponentRegistrar" />
+215-->[com.google.firebase:firebase-iid:21.1.0] /Users/yuta/.gradle/caches/transforms-3/bb981adc0a23145b82591d9ea011aa7c/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+216            <meta-data
+216-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:15:13-17:85
+217                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsKtxRegistrar"
+217-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:16:17-130
+218                android:value="com.google.firebase.components.ComponentRegistrar" />
+218-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:17:17-82
+219            <meta-data
+219-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:18:13-20:85
+220                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+220-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:19:17-127
+221                android:value="com.google.firebase.components.ComponentRegistrar" />
+221-->[com.google.firebase:firebase-installations:18.0.0] /Users/yuta/.gradle/caches/transforms-3/ce8083f66e5e610ef94820d9e5e22623/transformed/jetified-firebase-installations-18.0.0/AndroidManifest.xml:20:17-82
+222            <meta-data
+222-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/yuta/.gradle/caches/transforms-3/57f4d382bed34870b9bb82456088890d/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:12:13-14:85
+223                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+223-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/yuta/.gradle/caches/transforms-3/57f4d382bed34870b9bb82456088890d/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:13:17-116
+224                android:value="com.google.firebase.components.ComponentRegistrar" />
+224-->[com.google.firebase:firebase-common-ktx:21.0.0] /Users/yuta/.gradle/caches/transforms-3/57f4d382bed34870b9bb82456088890d/transformed/jetified-firebase-common-ktx-21.0.0/AndroidManifest.xml:14:17-82
+225            <meta-data
+225-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:35:13-37:85
+226                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+226-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:36:17-109
+227                android:value="com.google.firebase.components.ComponentRegistrar" />
+227-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:37:17-82
+228            <meta-data
+228-->[com.google.firebase:firebase-abt:21.1.1] /Users/yuta/.gradle/caches/transforms-3/e003aaf80e73c98243deca5de8c42a92/transformed/jetified-firebase-abt-21.1.1/AndroidManifest.xml:12:13-14:85
+229                android:name="com.google.firebase.components:com.google.firebase.abt.component.AbtRegistrar"
+229-->[com.google.firebase:firebase-abt:21.1.1] /Users/yuta/.gradle/caches/transforms-3/e003aaf80e73c98243deca5de8c42a92/transformed/jetified-firebase-abt-21.1.1/AndroidManifest.xml:13:17-109
+230                android:value="com.google.firebase.components.ComponentRegistrar" />
+230-->[com.google.firebase:firebase-abt:21.1.1] /Users/yuta/.gradle/caches/transforms-3/e003aaf80e73c98243deca5de8c42a92/transformed/jetified-firebase-abt-21.1.1/AndroidManifest.xml:14:17-82
+231            <meta-data
+231-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/yuta/.gradle/caches/transforms-3/85d42ce5a4213bb593230b2dfac32878/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:25:13-27:85
+232                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+232-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/yuta/.gradle/caches/transforms-3/85d42ce5a4213bb593230b2dfac32878/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:26:17-115
+233                android:value="com.google.firebase.components.ComponentRegistrar" />
+233-->[com.google.firebase:firebase-datatransport:18.2.0] /Users/yuta/.gradle/caches/transforms-3/85d42ce5a4213bb593230b2dfac32878/transformed/jetified-firebase-datatransport-18.2.0/AndroidManifest.xml:27:17-82
+234        </service>
+235        <service
+235-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:16:9-19:72
+236            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+236-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:17:13-107
+237            android:exported="false"
+237-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:18:13-37
+238            android:permission="android.permission.BIND_JOB_SERVICE" />
+238-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:19:13-69
+239        <service
+239-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:20:9-26:19
+240            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+240-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:21:13-97
+241            android:exported="false" >
+241-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-37
+242            <intent-filter>
+242-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-25:29
+243                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+243-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-78
+243-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:25-75
+244            </intent-filter>
+245        </service>
+246
+247        <receiver
+247-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:28:9-35:20
+248            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+248-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-98
+249            android:exported="true"
+249-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-36
+250            android:permission="com.google.android.c2dm.permission.SEND" >
+250-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:31:13-73
+251            <intent-filter>
+251-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-34:29
+252                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+252-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:17-81
+252-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:25-78
+253            </intent-filter>
+254        </receiver>
+255
+256        <provider
+256-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:43:9-47:38
+257            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+257-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:44:13-102
+258            android:authorities="com.mycompany.voguetnc.flutterfirebasemessaginginitprovider"
+258-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:45:13-88
+259            android:exported="false"
+259-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:46:13-37
+260            android:initOrder="99" />
+260-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:47:13-35
+261        <provider
+261-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:9-19:20
+262            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+262-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-82
+263            android:authorities="com.mycompany.voguetnc.flutter.image_provider"
+263-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-74
+264            android:exported="false"
+264-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-37
+265            android:grantUriPermissions="true" >
+265-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-47
+266            <meta-data
+266-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:16:13-18:75
+267                android:name="android.support.FILE_PROVIDER_PATHS"
+267-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
+268                android:resource="@xml/flutter_image_picker_file_paths" />
+268-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:18:17-72
+269        </provider> <!-- Trigger Google Play services to install the backported photo picker module. -->
+270        <service
+270-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:21:9-33:19
+271            android:name="com.google.android.gms.metadata.ModuleDependencies"
+271-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:22:13-78
+272            android:enabled="false"
+272-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-36
+273            android:exported="false" >
+273-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:24:13-37
+274            <intent-filter>
+274-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-28:29
+275                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
+275-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:27:17-94
+275-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:27:25-91
+276            </intent-filter>
+277
+278            <meta-data
+278-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:30:13-32:36
+279                android:name="photopicker_activity:0:required"
+279-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:31:17-63
+280                android:value="" />
+280-->[:image_picker_android] /Users/yuta/Downloads/furugi_with_template 2/build/image_picker_android/intermediates/merged_manifest/debug/AndroidManifest.xml:32:17-33
+281        </service>
+282        <service
+282-->[:geolocator_android] /Users/yuta/Downloads/furugi_with_template 2/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-14:56
+283            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+283-->[:geolocator_android] /Users/yuta/Downloads/furugi_with_template 2/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-77
+284            android:enabled="true"
+284-->[:geolocator_android] /Users/yuta/Downloads/furugi_with_template 2/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-35
+285            android:exported="false"
+285-->[:geolocator_android] /Users/yuta/Downloads/furugi_with_template 2/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+286            android:foregroundServiceType="location" />
+286-->[:geolocator_android] /Users/yuta/Downloads/furugi_with_template 2/build/geolocator_android/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-53
+287
+288        <activity
+288-->[:url_launcher_android] /Users/yuta/Downloads/furugi_with_template 2/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-13:74
+289            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+289-->[:url_launcher_android] /Users/yuta/Downloads/furugi_with_template 2/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-74
+290            android:exported="false"
+290-->[:url_launcher_android] /Users/yuta/Downloads/furugi_with_template 2/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-37
+291            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+291-->[:url_launcher_android] /Users/yuta/Downloads/furugi_with_template 2/build/url_launcher_android/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-71
+292        <activity
+292-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:21:9-65:20
+293            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetRedirectActivity"
+293-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:22:13-109
+294            android:exported="true"
+294-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:23:13-36
+295            android:launchMode="singleTask" >
+295-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:24:13-44
+296            <intent-filter>
+296-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:25:13-64:29
+297                <action android:name="android.intent.action.VIEW" />
+297-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+297-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+298
+299                <category android:name="android.intent.category.DEFAULT" />
+299-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+299-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+300                <category android:name="android.intent.category.BROWSABLE" />
+300-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+300-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+301
+302                <!-- Returning from app2app: return_url is triggered to reopen web AuthFlow and poll accounts. -->
+303                <data
+303-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+304                    android:host="link-accounts"
+304-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+305                    android:pathPrefix="/com.mycompany.voguetnc/authentication_return"
+306                    android:scheme="stripe-auth" />
+306-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+307
+308                <!-- Returning from app2app: return_url is triggered to reopen native AuthFlow and poll accounts. -->
+309                <data
+309-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+310                    android:host="link-native-accounts"
+310-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+311                    android:pathPrefix="/com.mycompany.voguetnc/authentication_return"
+312                    android:scheme="stripe-auth" />
+312-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+313
+314                <!-- End of web AuthFlow success and cancel URIs that begin with "stripe-auth://link-accounts/{app-id}/...” -->
+315                <data
+315-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+316                    android:host="link-accounts"
+316-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+317                    android:path="/com.mycompany.voguetnc/success"
+318                    android:scheme="stripe-auth" />
+318-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+319                <data
+319-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+320                    android:host="link-accounts"
+320-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+321                    android:path="/com.mycompany.voguetnc/cancel"
+322                    android:scheme="stripe-auth" />
+322-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+323
+324                <!-- Opening app2app: Web flow triggers stripe-auth://native-redirect/{app-id}/http://web-that-redirects-to-native -->
+325                <data
+325-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+326                    android:host="native-redirect"
+326-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+327                    android:pathPrefix="/com.mycompany.voguetnc"
+328                    android:scheme="stripe-auth" />
+328-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+329
+330                <!-- Accepts success/cancel/fail URIs that begin with "stripe://auth-redirect” -->
+331                <data
+331-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+332                    android:host="auth-redirect"
+332-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+333                    android:pathPrefix="/com.mycompany.voguetnc"
+334                    android:scheme="stripe" />
+334-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+335            </intent-filter>
+336        </activity>
+337        <activity
+337-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:66:9-69:57
+338            android:name="com.stripe.android.financialconnections.FinancialConnectionsSheetActivity"
+338-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:67:13-101
+339            android:exported="false"
+339-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:68:13-37
+340            android:theme="@style/StripeDefaultTheme" />
+340-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:69:13-54
+341        <activity
+341-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:70:9-74:58
+342            android:name="com.stripe.android.financialconnections.ui.FinancialConnectionsSheetNativeActivity"
+342-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:71:13-110
+343            android:exported="false"
+343-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:72:13-37
+344            android:theme="@style/StripeDefaultTheme"
+344-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:73:13-54
+345            android:windowSoftInputMode="adjustResize" />
+345-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:74:13-55
+346
+347        <provider
+347-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:76:9-80:43
+348            android:name="com.stripe.android.financialconnections.appinitializer.FinancialConnectionsInitializer"
+348-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:77:13-114
+349            android:authorities="com.mycompany.voguetnc.financialconnections-init"
+349-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:78:13-77
+350            android:exported="false"
+350-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:79:13-37
+351            android:multiprocess="true" />
+351-->[com.stripe:financial-connections:20.34.4] /Users/yuta/.gradle/caches/transforms-3/adbfc11ac61b8cb7daff5c8199312bca/transformed/jetified-financial-connections-20.34.4/AndroidManifest.xml:80:13-40
+352
+353        <activity
+353-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:8:9-12:58
+354            android:name="com.stripe.android.paymentsheet.PaymentSheetActivity"
+354-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:9:13-80
+355            android:exported="false"
+355-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:10:13-37
+356            android:theme="@style/StripePaymentSheetDefaultTheme"
+356-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:11:13-66
+357            android:windowSoftInputMode="adjustResize" />
+357-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:12:13-55
+358        <activity
+358-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:13:9-17:58
+359            android:name="com.stripe.android.paymentsheet.PaymentOptionsActivity"
+359-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:14:13-82
+360            android:exported="false"
+360-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:15:13-37
+361            android:theme="@style/StripePaymentSheetDefaultTheme"
+361-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:16:13-66
+362            android:windowSoftInputMode="adjustResize" />
+362-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:17:13-55
+363        <activity
+363-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:18:9-22:58
+364            android:name="com.stripe.android.customersheet.CustomerSheetActivity"
+364-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:19:13-82
+365            android:exported="false"
+365-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:20:13-37
+366            android:theme="@style/StripePaymentSheetDefaultTheme"
+366-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:21:13-66
+367            android:windowSoftInputMode="adjustResize" />
+367-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:22:13-55
+368        <activity
+368-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:23:9-26:69
+369            android:name="com.stripe.android.paymentsheet.addresselement.AddressElementActivity"
+369-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:24:13-97
+370            android:exported="false"
+370-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:25:13-37
+371            android:theme="@style/StripePaymentSheetDefaultTheme" />
+371-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:26:13-66
+372        <activity
+372-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:27:9-30:69
+373            android:name="com.stripe.android.paymentsheet.paymentdatacollection.bacs.BacsMandateConfirmationActivity"
+373-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:28:13-118
+374            android:exported="false"
+374-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:29:13-37
+375            android:theme="@style/StripePaymentSheetDefaultTheme" />
+375-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:30:13-66
+376        <activity
+376-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:31:9-34:69
+377            android:name="com.stripe.android.paymentsheet.paymentdatacollection.polling.PollingActivity"
+377-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:32:13-105
+378            android:exported="false"
+378-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:33:13-37
+379            android:theme="@style/StripePaymentSheetDefaultTheme" />
+379-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:34:13-66
+380        <activity
+380-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:35:9-38:69
+381            android:name="com.stripe.android.paymentsheet.ui.SepaMandateActivity"
+381-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:36:13-82
+382            android:exported="false"
+382-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:37:13-37
+383            android:theme="@style/StripePaymentSheetDefaultTheme" />
+383-->[com.stripe:paymentsheet:20.34.4] /Users/yuta/.gradle/caches/transforms-3/569f80695fc1b21a9d1f62b13ff073a2/transformed/jetified-paymentsheet-20.34.4/AndroidManifest.xml:38:13-66
+384        <activity
+384-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:8:9-13:61
+385            android:name="com.stripe.android.link.LinkForegroundActivity"
+385-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:9:13-74
+386            android:autoRemoveFromRecents="true"
+386-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:10:13-49
+387            android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|screenSize|smallestScreenSize"
+387-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:11:13-115
+388            android:launchMode="singleTop"
+388-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:12:13-43
+389            android:theme="@style/StripeTransparentTheme" />
+389-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:13:13-58
+390        <activity
+390-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:14:9-31:20
+391            android:name="com.stripe.android.link.LinkRedirectHandlerActivity"
+391-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:15:13-79
+392            android:autoRemoveFromRecents="true"
+392-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:16:13-49
+393            android:exported="true"
+393-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:17:13-36
+394            android:launchMode="singleInstance"
+394-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:18:13-48
+395            android:theme="@style/StripeTransparentTheme" >
+395-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:19:13-58
+396            <intent-filter>
+396-->[com.stripe:link:20.34.4] /Users/yuta/.gradle/caches/transforms-3/e003095f777ae9d51f47dfb020ee3943/transformed/jetified-link-20.34.4/AndroidManifest.xml:20:13-30:29
+397                <action android:name="android.intent.action.VIEW" />
+397-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+397-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+398
+399                <category android:name="android.intent.category.DEFAULT" />
+399-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+399-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+400                <category android:name="android.intent.category.BROWSABLE" />
+400-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+400-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+401
+402                <data
+402-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+403                    android:host="complete"
+403-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+404                    android:path="/com.mycompany.voguetnc"
+405                    android:scheme="link-popup" />
+405-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+406            </intent-filter>
+407        </activity>
+408        <activity
+408-->[com.stripe:payments-ui-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/5aaf302bd3c241889491f8b7ad533904/transformed/jetified-payments-ui-core-20.34.4/AndroidManifest.xml:8:9-11:69
+409            android:name="com.stripe.android.ui.core.cardscan.CardScanActivity"
+409-->[com.stripe:payments-ui-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/5aaf302bd3c241889491f8b7ad533904/transformed/jetified-payments-ui-core-20.34.4/AndroidManifest.xml:9:13-80
+410            android:exported="false"
+410-->[com.stripe:payments-ui-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/5aaf302bd3c241889491f8b7ad533904/transformed/jetified-payments-ui-core-20.34.4/AndroidManifest.xml:10:13-37
+411            android:theme="@style/StripePaymentSheetDefaultTheme" />
+411-->[com.stripe:payments-ui-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/5aaf302bd3c241889491f8b7ad533904/transformed/jetified-payments-ui-core-20.34.4/AndroidManifest.xml:11:13-66
+412        <activity
+412-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:15:9-18:57
+413            android:name="com.stripe.android.view.AddPaymentMethodActivity"
+413-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:16:13-76
+414            android:exported="false"
+414-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:17:13-37
+415            android:theme="@style/StripeDefaultTheme" />
+415-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:18:13-54
+416        <activity
+416-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:19:9-22:57
+417            android:name="com.stripe.android.view.PaymentMethodsActivity"
+417-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:20:13-74
+418            android:exported="false"
+418-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:21:13-37
+419            android:theme="@style/StripeDefaultTheme" />
+419-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:22:13-54
+420        <activity
+420-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:23:9-26:57
+421            android:name="com.stripe.android.view.PaymentFlowActivity"
+421-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:24:13-71
+422            android:exported="false"
+422-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:25:13-37
+423            android:theme="@style/StripeDefaultTheme" />
+423-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:26:13-54
+424        <activity
+424-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:27:9-31:58
+425            android:name="com.stripe.android.view.PaymentAuthWebViewActivity"
+425-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:28:13-78
+426            android:exported="false"
+426-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:29:13-37
+427            android:theme="@style/StripeDefaultTheme"
+427-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:30:13-54
+428            android:windowSoftInputMode="adjustResize" />
+428-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:31:13-55
+429        <activity
+429-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:32:9-35:61
+430            android:name="com.stripe.android.view.PaymentRelayActivity"
+430-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:33:13-72
+431            android:exported="false"
+431-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:34:13-37
+432            android:theme="@style/StripeTransparentTheme" />
+432-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:35:13-58
+433        <!--
+434        Set android:launchMode="singleTop" so that the StripeBrowserLauncherActivity instance that
+435        launched the browser Activity will also handle the return URL deep link.
+436        -->
+437        <activity
+437-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:41:9-45:61
+438            android:name="com.stripe.android.payments.StripeBrowserLauncherActivity"
+438-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:42:13-85
+439            android:exported="false"
+439-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:43:13-37
+440            android:launchMode="singleTask"
+440-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:44:13-44
+441            android:theme="@style/StripeTransparentTheme" />
+441-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:45:13-58
+442        <activity
+442-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:46:9-63:20
+443            android:name="com.stripe.android.payments.StripeBrowserProxyReturnActivity"
+443-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:47:13-88
+444            android:exported="true"
+444-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:48:13-36
+445            android:launchMode="singleTask"
+445-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:49:13-44
+446            android:theme="@style/StripeTransparentTheme" >
+446-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:50:13-58
+447            <intent-filter>
+447-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:51:13-62:29
+448                <action android:name="android.intent.action.VIEW" />
+448-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+448-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+449
+450                <category android:name="android.intent.category.DEFAULT" />
+450-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+450-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+451                <category android:name="android.intent.category.BROWSABLE" />
+451-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+451-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+452
+453                <!-- Must match `DefaultReturnUrl#value`. -->
+454                <data
+454-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+455                    android:host="payment_return_url"
+455-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+456                    android:path="/com.mycompany.voguetnc"
+457                    android:scheme="stripesdk" />
+457-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+458            </intent-filter>
+459        </activity>
+460        <activity
+460-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:64:9-67:57
+461            android:name="com.stripe.android.payments.core.authentication.threeds2.Stripe3ds2TransactionActivity"
+461-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:65:13-114
+462            android:exported="false"
+462-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:66:13-37
+463            android:theme="@style/StripeDefaultTheme" />
+463-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:67:13-54
+464        <activity
+464-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:68:9-71:66
+465            android:name="com.stripe.android.googlepaylauncher.GooglePayLauncherActivity"
+465-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:69:13-90
+466            android:exported="false"
+466-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:70:13-37
+467            android:theme="@style/StripeGooglePayDefaultTheme" />
+467-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:71:13-63
+468        <activity
+468-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:72:9-75:66
+469            android:name="com.stripe.android.googlepaylauncher.GooglePayPaymentMethodLauncherActivity"
+469-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:73:13-103
+470            android:exported="false"
+470-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:74:13-37
+471            android:theme="@style/StripeGooglePayDefaultTheme" />
+471-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:75:13-63
+472        <activity
+472-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:76:9-79:68
+473            android:name="com.stripe.android.payments.paymentlauncher.PaymentLauncherConfirmationActivity"
+473-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:77:13-107
+474            android:exported="false"
+474-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:78:13-37
+475            android:theme="@style/StripePayLauncherDefaultTheme" />
+475-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:79:13-65
+476        <activity
+476-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:80:9-83:61
+477            android:name="com.stripe.android.payments.bankaccount.ui.CollectBankAccountActivity"
+477-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:81:13-97
+478            android:exported="false"
+478-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:82:13-37
+479            android:theme="@style/StripeTransparentTheme" /> <!-- Needs to be explicitly declared on P+ -->
+479-->[com.stripe:payments-core:20.34.4] /Users/yuta/.gradle/caches/transforms-3/68dc4d953381bca696d49e0c447ed9d0/transformed/jetified-payments-core-20.34.4/AndroidManifest.xml:83:13-58
+480        <uses-library
+480-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:39:9-41:40
+481            android:name="org.apache.http.legacy"
+481-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:40:13-50
+482            android:required="false" />
+482-->[com.google.android.gms:play-services-maps:18.2.0] /Users/yuta/.gradle/caches/transforms-3/769d6602098a8fe053727a114f54ed3f/transformed/jetified-play-services-maps-18.2.0/AndroidManifest.xml:41:13-37
+483
+484        <activity
+484-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:29:9-46:20
+485            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+485-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:30:13-80
+486            android:excludeFromRecents="true"
+486-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:31:13-46
+487            android:exported="true"
+487-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:32:13-36
+488            android:launchMode="singleTask"
+488-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:33:13-44
+489            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+489-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:34:13-72
+490            <intent-filter>
+490-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:35:13-45:29
+491                <action android:name="android.intent.action.VIEW" />
+491-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+491-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+492
+493                <category android:name="android.intent.category.DEFAULT" />
+493-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+493-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+494                <category android:name="android.intent.category.BROWSABLE" />
+494-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+494-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+495
+496                <data
+496-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+497                    android:host="firebase.auth"
+497-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+498                    android:path="/"
+499                    android:scheme="genericidp" />
+499-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+500            </intent-filter>
+501        </activity>
+502        <activity
+502-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:47:9-64:20
+503            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+503-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:48:13-79
+504            android:excludeFromRecents="true"
+504-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:49:13-46
+505            android:exported="true"
+505-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:50:13-36
+506            android:launchMode="singleTask"
+506-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:51:13-44
+507            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+507-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:52:13-72
+508            <intent-filter>
+508-->[com.google.firebase:firebase-auth:23.0.0] /Users/yuta/.gradle/caches/transforms-3/ca5aa704a1974bcdba5155201fc09918/transformed/jetified-firebase-auth-23.0.0/AndroidManifest.xml:53:13-63:29
+509                <action android:name="android.intent.action.VIEW" />
+509-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:17-69
+509-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:51:25-66
+510
+511                <category android:name="android.intent.category.DEFAULT" />
+511-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:17-76
+511-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:52:27-73
+512                <category android:name="android.intent.category.BROWSABLE" />
+512-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:17-78
+512-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:53:27-75
+513
+514                <data
+514-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:17-99
+515                    android:host="firebase.auth"
+515-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:59-96
+516                    android:path="/"
+517                    android:scheme="recaptcha" />
+517-->/Users/yuta/Downloads/furugi_with_template 2/android/app/src/main/AndroidManifest.xml:54:23-58
+518            </intent-filter>
+519        </activity>
+520
+521        <service
+521-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:24:9-32:19
+522            android:name="androidx.credentials.playservices.CredentialProviderMetadataHolder"
+522-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:25:13-94
+523            android:enabled="true"
+523-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:26:13-35
+524            android:exported="false" >
+524-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:27:13-37
+525            <meta-data
+525-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:29:13-31:104
+526                android:name="androidx.credentials.CREDENTIAL_PROVIDER_KEY"
+526-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:30:17-76
+527                android:value="androidx.credentials.playservices.CredentialProviderPlayServicesImpl" />
+527-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:31:17-101
+528        </service>
+529
+530        <activity
+530-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:34:9-41:20
+531            android:name="androidx.credentials.playservices.HiddenActivity"
+531-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:35:13-76
+532            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+532-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:36:13-87
+533            android:enabled="true"
+533-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:37:13-35
+534            android:exported="false"
+534-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:38:13-37
+535            android:fitsSystemWindows="true"
+535-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:39:13-45
+536            android:theme="@style/Theme.Hidden" >
+536-->[androidx.credentials:credentials-play-services-auth:1.2.0-rc01] /Users/yuta/.gradle/caches/transforms-3/2295e3dc7540ec5e401071112e83d5f4/transformed/jetified-credentials-play-services-auth-1.2.0-rc01/AndroidManifest.xml:40:13-48
+537        </activity>
+538        <activity
+538-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:23:9-27:75
+539            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+539-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:24:13-93
+540            android:excludeFromRecents="true"
+540-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:25:13-46
+541            android:exported="false"
+541-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:26:13-37
+542            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+542-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:27:13-72
+543        <!--
+544            Service handling Google Sign-In user revocation. For apps that do not integrate with
+545            Google Sign-In, this service will never be started.
+546        -->
+547        <service
+547-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:33:9-37:51
+548            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+548-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:34:13-89
+549            android:exported="true"
+549-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:35:13-36
+550            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+550-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:36:13-107
+551            android:visibleToInstantApps="true" />
+551-->[com.google.android.gms:play-services-auth:21.0.0] /Users/yuta/.gradle/caches/transforms-3/2861caffe3656a8d39d35b6f4bec3cca/transformed/jetified-play-services-auth-21.0.0/AndroidManifest.xml:37:13-48
+552
+553        <receiver
+553-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:29:9-40:20
+554            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+554-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:30:13-78
+555            android:exported="true"
+555-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:31:13-36
+556            android:permission="com.google.android.c2dm.permission.SEND" >
+556-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:32:13-73
+557            <intent-filter>
+557-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:32:13-34:29
+558                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+558-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:17-81
+558-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:33:25-78
+559            </intent-filter>
+560
+561            <meta-data
+561-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:37:13-39:40
+562                android:name="com.google.android.gms.cloudmessaging.FINISHED_AFTER_HANDLED"
+562-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:38:17-92
+563                android:value="true" />
+563-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:39:17-37
+564        </receiver>
+565        <!--
+566             FirebaseMessagingService performs security checks at runtime,
+567             but set to not exported to explicitly avoid allowing another app to call it.
+568        -->
+569        <service
+569-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:46:9-53:19
+570            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+570-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:47:13-82
+571            android:directBootAware="true"
+571-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:48:13-43
+572            android:exported="false" >
+572-->[com.google.firebase:firebase-messaging:24.0.1] /Users/yuta/.gradle/caches/transforms-3/4d3019c9e4ff5f595edb44802c7b3388/transformed/jetified-firebase-messaging-24.0.1/AndroidManifest.xml:49:13-37
+573            <intent-filter android:priority="-500" >
+573-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:23:13-25:29
+574                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+574-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:17-78
+574-->[:firebase_messaging] /Users/yuta/Downloads/furugi_with_template 2/build/firebase_messaging/intermediates/merged_manifest/debug/AndroidManifest.xml:24:25-75
+575            </intent-filter>
+576        </service>
+577
+578        <activity
+578-->[com.google.android.gms:play-services-base:18.3.0] /Users/yuta/.gradle/caches/transforms-3/a43691761a622881538cdada9269ee37/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:9-22:45
+579            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+579-->[com.google.android.gms:play-services-base:18.3.0] /Users/yuta/.gradle/caches/transforms-3/a43691761a622881538cdada9269ee37/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:20:19-85
+580            android:exported="false"
+580-->[com.google.android.gms:play-services-base:18.3.0] /Users/yuta/.gradle/caches/transforms-3/a43691761a622881538cdada9269ee37/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:22:19-43
+581            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+581-->[com.google.android.gms:play-services-base:18.3.0] /Users/yuta/.gradle/caches/transforms-3/a43691761a622881538cdada9269ee37/transformed/jetified-play-services-base-18.3.0/AndroidManifest.xml:21:19-78
+582
+583        <service
+583-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:22:9-25:40
+584            android:name="com.google.firebase.sessions.SessionLifecycleService"
+584-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:23:13-80
+585            android:enabled="true"
+585-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:24:13-35
+586            android:exported="false" />
+586-->[com.google.firebase:firebase-sessions:2.0.0] /Users/yuta/.gradle/caches/transforms-3/4decc12c22a725f8a82452c432c8ca60/transformed/jetified-firebase-sessions-2.0.0/AndroidManifest.xml:25:13-37
+587
+588        <provider
+588-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:23:9-28:39
+589            android:name="com.google.firebase.provider.FirebaseInitProvider"
+589-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:24:13-77
+590            android:authorities="com.mycompany.voguetnc.firebaseinitprovider"
+590-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:25:13-72
+591            android:directBootAware="true"
+591-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:26:13-43
+592            android:exported="false"
+592-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:27:13-37
+593            android:initOrder="100" />
+593-->[com.google.firebase:firebase-common:21.0.0] /Users/yuta/.gradle/caches/transforms-3/27467155defcef0b42f13a9aa83a2e61/transformed/jetified-firebase-common-21.0.0/AndroidManifest.xml:28:13-36
+594
+595        <uses-library
+595-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:23:9-25:40
+596            android:name="androidx.window.extensions"
+596-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:24:13-54
+597            android:required="false" />
+597-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:25:13-37
+598        <uses-library
+598-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:26:9-28:40
+599            android:name="androidx.window.sidecar"
+599-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:27:13-51
+600            android:required="false" />
+600-->[androidx.window:window:1.2.0] /Users/yuta/.gradle/caches/transforms-3/a82b715a6dc7b9a7173e15dc3049d4cd/transformed/jetified-window-1.2.0/AndroidManifest.xml:28:13-37
+601
+602        <activity
+602-->[com.stripe:stripe-3ds2-android:6.1.7] /Users/yuta/.gradle/caches/transforms-3/9c2cf92a24ab3db603445da35e8e9a15/transformed/jetified-stripe-3ds2-android-6.1.7/AndroidManifest.xml:8:9-11:54
+603            android:name="com.stripe.android.stripe3ds2.views.ChallengeActivity"
+603-->[com.stripe:stripe-3ds2-android:6.1.7] /Users/yuta/.gradle/caches/transforms-3/9c2cf92a24ab3db603445da35e8e9a15/transformed/jetified-stripe-3ds2-android-6.1.7/AndroidManifest.xml:9:13-81
+604            android:exported="false"
+604-->[com.stripe:stripe-3ds2-android:6.1.7] /Users/yuta/.gradle/caches/transforms-3/9c2cf92a24ab3db603445da35e8e9a15/transformed/jetified-stripe-3ds2-android-6.1.7/AndroidManifest.xml:10:13-37
+605            android:theme="@style/Stripe3DS2Theme" />
+605-->[com.stripe:stripe-3ds2-android:6.1.7] /Users/yuta/.gradle/caches/transforms-3/9c2cf92a24ab3db603445da35e8e9a15/transformed/jetified-stripe-3ds2-android-6.1.7/AndroidManifest.xml:11:13-51
+606
+607        <provider
+607-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+608            android:name="androidx.startup.InitializationProvider"
+608-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+609            android:authorities="com.mycompany.voguetnc.androidx-startup"
+609-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+610            android:exported="false" >
+610-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+611            <meta-data
+611-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+612                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+612-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+613                android:value="androidx.startup" />
+613-->[androidx.emoji2:emoji2:1.2.0] /Users/yuta/.gradle/caches/transforms-3/46892d7956c6dc0f7c2ecde90afa3721/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+614            <meta-data
+614-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/yuta/.gradle/caches/transforms-3/99cc5466ff3643c225b1ede36f9fd8d0/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:29:13-31:52
+615                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+615-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/yuta/.gradle/caches/transforms-3/99cc5466ff3643c225b1ede36f9fd8d0/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:30:17-78
+616                android:value="androidx.startup" />
+616-->[androidx.lifecycle:lifecycle-process:2.7.0] /Users/yuta/.gradle/caches/transforms-3/99cc5466ff3643c225b1ede36f9fd8d0/transformed/jetified-lifecycle-process-2.7.0/AndroidManifest.xml:31:17-49
+617            <meta-data
+617-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+618                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+618-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+619                android:value="androidx.startup" />
+619-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+620        </provider>
+621
+622        <meta-data
+622-->[com.google.android.gms:play-services-basement:18.3.0] /Users/yuta/.gradle/caches/transforms-3/97ce32b2c9758d9c3a2b7bd3ce8aec2b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:21:9-23:69
+623            android:name="com.google.android.gms.version"
+623-->[com.google.android.gms:play-services-basement:18.3.0] /Users/yuta/.gradle/caches/transforms-3/97ce32b2c9758d9c3a2b7bd3ce8aec2b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:22:13-58
+624            android:value="@integer/google_play_services_version" />
+624-->[com.google.android.gms:play-services-basement:18.3.0] /Users/yuta/.gradle/caches/transforms-3/97ce32b2c9758d9c3a2b7bd3ce8aec2b/transformed/jetified-play-services-basement-18.3.0/AndroidManifest.xml:23:13-66
+625
+626        <service
+626-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:28:9-34:19
+627            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+627-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:29:13-103
+628            android:exported="false" >
+628-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:30:13-37
+629            <meta-data
+629-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:31:13-33:39
+630                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+630-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:32:17-94
+631                android:value="cct" />
+631-->[com.google.android.datatransport:transport-backend-cct:3.1.9] /Users/yuta/.gradle/caches/transforms-3/3677f7f83c077fa0f7d717ccfc1af0e2/transformed/jetified-transport-backend-cct-3.1.9/AndroidManifest.xml:33:17-36
+632        </service>
+633
+634        <receiver
+634-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+635            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+635-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+636            android:directBootAware="false"
+636-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+637            android:enabled="true"
+637-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+638            android:exported="true"
+638-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+639            android:permission="android.permission.DUMP" >
+639-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+640            <intent-filter>
+640-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+641                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+641-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+641-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+642            </intent-filter>
+643            <intent-filter>
+643-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+644                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+644-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+644-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+645            </intent-filter>
+646            <intent-filter>
+646-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+647                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+647-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+647-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+648            </intent-filter>
+649            <intent-filter>
+649-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+650                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+650-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+650-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/yuta/.gradle/caches/transforms-3/a3136382d4419f60d535b7fff4cd731c/transformed/jetified-profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+651            </intent-filter>
+652        </receiver>
+653
+654        <service
+654-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:26:9-30:19
+655            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+655-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:27:13-117
+656            android:exported="false"
+656-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:28:13-37
+657            android:permission="android.permission.BIND_JOB_SERVICE" >
+657-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:29:13-69
+658        </service>
+659
+660        <receiver
+660-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:32:9-34:40
+661            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+661-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:33:13-132
+662            android:exported="false" />
+662-->[com.google.android.datatransport:transport-runtime:3.1.9] /Users/yuta/.gradle/caches/transforms-3/40ab35ff5a0382c99acdc3643be72f5e/transformed/jetified-transport-runtime-3.1.9/AndroidManifest.xml:34:13-37
+663
+664        <meta-data
+664-->[com.google.android.instantapps:instantapps:1.1.0] /Users/yuta/.gradle/caches/transforms-3/e6ff55c806b9d17ced10e0178a5ce3f4/transformed/jetified-instantapps-1.1.0/AndroidManifest.xml:10:9-12:33
+665            android:name="aia-compat-api-min-version"
+665-->[com.google.android.instantapps:instantapps:1.1.0] /Users/yuta/.gradle/caches/transforms-3/e6ff55c806b9d17ced10e0178a5ce3f4/transformed/jetified-instantapps-1.1.0/AndroidManifest.xml:11:13-54
+666            android:value="1" />
+666-->[com.google.android.instantapps:instantapps:1.1.0] /Users/yuta/.gradle/caches/transforms-3/e6ff55c806b9d17ced10e0178a5ce3f4/transformed/jetified-instantapps-1.1.0/AndroidManifest.xml:12:13-30
+667    </application>
+668
+669</manifest>

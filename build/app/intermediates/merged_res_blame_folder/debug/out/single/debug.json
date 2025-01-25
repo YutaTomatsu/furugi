@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/drawable_launch_background.xml.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/drawable/launch_background.xml"
+    },
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.mycompany.voguetnc.app-merged_res-104:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.mycompany.voguetnc.app-main-97:/mipmap-xhdpi/ic_launcher.png"
+    }
+]

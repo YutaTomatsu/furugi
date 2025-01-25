@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456437395005",
+    "project_id": "furugi-with-template-40pf0j",
+    "storage_bucket": "furugi-with-template-40pf0j.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456437395005:android:e05d2bcf8b3f0b42c54454",
+        "android_client_info": {
+          "package_name": "com.mycompany.voguetnc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8t4HDFjCWpeixP0piHoAwEsuodg-eFzo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

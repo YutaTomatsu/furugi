@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">456437395005</string>
+    <string name="google_api_key" translatable="false">AIzaSyB8t4HDFjCWpeixP0piHoAwEsuodg-eFzo</string>
+    <string name="google_app_id" translatable="false">1:456437395005:android:e05d2bcf8b3f0b42c54454</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyB8t4HDFjCWpeixP0piHoAwEsuodg-eFzo</string>
+    <string name="google_storage_bucket" translatable="false">furugi-with-template-40pf0j.appspot.com</string>
+    <string name="project_id" translatable="false">furugi-with-template-40pf0j</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "furugi_with_template 2",
+      "request": "launch",
+      "type": "dart"
+    },
+    {
+      "name": "furugi_with_template 2 (profile mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "furugi_with_template 2 (release mode)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release"
+    },
+    {
+      "name": "furugi_with_template 2 (Flutter Pixel_3a_API_34_extension_level_7_x86_64)",
+      "program": "lib/main.dart",
+      "deviceId": "emulator-5554",
+      "request": "launch",
+      "type": "dart"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.mycompany.voguetnc.app-mergeDebugResources-102:/values-nn/values-nn.xml",
+            "map": [
+                {
+                    "source": "/Users/yuta/.gradle/caches/transforms-3/9c2cf92a24ab3db603445da35e8e9a15/transformed/jetified-stripe-3ds2-android-6.1.7/res/values-nn/values-nn.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,142,244,311,378,442,513",
+                        "endColumns": "86,101,66,66,63,70,66",
+                        "endOffsets": "137,239,306,373,437,508,575"
+                    }
+                }
+            ]
+        }
+    ]
+}

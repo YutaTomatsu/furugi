@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyCzPa9E8C6tfNlF6iJ-qjM3K1buQygduNI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>456437395005</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.voguetnc</string>
+	<key>PROJECT_ID</key>
+	<string>furugi-with-template-40pf0j</string>
+	<key>STORAGE_BUCKET</key>
+	<string>furugi-with-template-40pf0j.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:456437395005:ios:894ed60128927b26c54454</string>
+</dict>
+</plist>
