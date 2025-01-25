@@ -1,1 +1,0 @@
- /Users/yuta/Downloads/furugi_with_template\ 2/.dart_tool/flutter_build/12cc54b600dd9444f352fae4149a58dd/native_assets.yaml: 
