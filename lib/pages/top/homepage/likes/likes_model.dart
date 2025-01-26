@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 class LikesModel extends FlutterFlowModel<LikesWidget> {
   ///  State fields for stateful widgets in this page.
-
   // Model for header component.
   late HeaderModel headerModel;
   // Model for NavBar12 component.
