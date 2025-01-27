@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/nav_bar12_widget.dart';
@@ -148,6 +150,39 @@ class _ProfileWidgetState extends State<ProfileWidget>
     super.dispose();
   }
 
+  /// レビュー件数を取得するためのウィジェット
+  Widget _buildTabBarWithReviewCount() {
+    return StreamBuilder<List<ReviewsRecord>>(
+      stream: queryReviewsRecord(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final allReviews = snapshot.data!;
+        // ログインユーザーが出品した商品に対するレビュー
+        final filteredReviews =
+            allReviews.where((r) => _hasCurrentUserId(r.product)).toList();
+        final reviewCount = filteredReviews.length;
+
+        return FlutterFlowButtonTabBar(
+          isScrollable: true,
+          labelColor: FlutterFlowTheme.of(context).primaryText,
+          unselectedLabelColor: FlutterFlowTheme.of(context).primaryText,
+          borderColor: FlutterFlowTheme.of(context).primary,
+          borderWidth: 2.0,
+          borderRadius: 12.0,
+          labelPadding: const EdgeInsetsDirectional.fromSTEB(25, 0, 25, 0),
+          tabs: [
+            const Tab(text: '出品中'),
+            // レビュー件数を表示
+            Tab(text: 'レビュー($reviewCount)'),
+          ],
+          controller: _model.tabBarController,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -288,11 +323,9 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                     .toList(),
                                                               )
                                                             : 0.0;
-                                                    return RatingBar.builder(
-                                                      initialRating:
+                                                    return RatingBarIndicator(
+                                                      rating:
                                                           ratingValue ?? 0.0,
-                                                      minRating: 0,
-                                                      allowHalfRating: true,
                                                       itemCount: 5,
                                                       itemBuilder:
                                                           (context, index) =>
@@ -306,11 +339,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                   context)
                                                               .accent2,
                                                       itemSize: 20.0,
-                                                      onRatingUpdate: (v) =>
-                                                          setState(() {
-                                                        _model.ratingBarValue1 =
-                                                            v;
-                                                      }),
                                                     );
                                                   },
                                                 ),
@@ -353,28 +381,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                     child: Column(
                                       children: [
                                         if (_model.tabBarController != null)
-                                          FlutterFlowButtonTabBar(
-                                            isScrollable: true,
-                                            labelColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            unselectedLabelColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderWidth: 2.0,
-                                            borderRadius: 12.0,
-                                            labelPadding:
-                                                const EdgeInsetsDirectional
-                                                    .fromSTEB(25, 0, 25, 0),
-                                            tabs: const [
-                                              Tab(text: '出品中'),
-                                              Tab(text: 'レビュー'),
-                                            ],
-                                            controller: _model.tabBarController,
-                                          )
+                                          _buildTabBarWithReviewCount()
                                         else
                                           const Center(
                                             child: CircularProgressIndicator(),
@@ -386,77 +393,164 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                   _model.tabBarController,
                                               children: [
                                                 // --- タブ1: 出品中 ---
+                                                // purchases と products を両方取得し、sold 判定と画面遷移を行う
                                                 StreamBuilder<
                                                     List<ProductsRecord>>(
                                                   stream: queryProductsRecord(
                                                     parent:
                                                         currentUserReference,
                                                   ),
-                                                  builder: (context, snap) {
-                                                    if (!snap.hasData) {
+                                                  builder: (context, snapProd) {
+                                                    if (!snapProd.hasData) {
                                                       return const Center(
                                                         child:
                                                             CircularProgressIndicator(),
                                                       );
                                                     }
-                                                    final products = snap.data!;
-                                                    return MasonryGridView
-                                                        .builder(
-                                                      gridDelegate:
-                                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                                        crossAxisCount: 3,
-                                                      ),
-                                                      itemCount:
-                                                          products.length,
-                                                      shrinkWrap: true,
-                                                      itemBuilder:
-                                                          (context, index) {
-                                                        final product =
-                                                            products[index];
-                                                        final imageUrl = (product
-                                                                .images
-                                                                .isNotEmpty)
-                                                            ? product
-                                                                .images.first
-                                                            : 'https://via.placeholder.com/300';
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                  4, 12, 4, 0),
-                                                          child: Container(
-                                                            width: 200.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          2.0),
-                                                              child:
-                                                                  Image.network(
-                                                                imageUrl,
-                                                                fit: BoxFit
-                                                                    .fitWidth,
+                                                    final products =
+                                                        snapProd.data!;
+                                                    return StreamBuilder<
+                                                        List<PurchasesRecord>>(
+                                                      stream:
+                                                          queryPurchasesRecord(),
+                                                      builder:
+                                                          (context, snapPurch) {
+                                                        if (!snapPurch
+                                                            .hasData) {
+                                                          return const Center(
+                                                            child:
+                                                                CircularProgressIndicator(),
+                                                          );
+                                                        }
+                                                        final allPurchases =
+                                                            snapPurch.data!;
+                                                        return MasonryGridView
+                                                            .builder(
+                                                          gridDelegate:
+                                                              const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                            crossAxisCount: 3,
+                                                          ),
+                                                          itemCount:
+                                                              products.length,
+                                                          shrinkWrap: true,
+                                                          itemBuilder:
+                                                              (context, index) {
+                                                            final product =
+                                                                products[index];
+                                                            final imageUrl = (product
+                                                                    .images
+                                                                    .isNotEmpty)
+                                                                ? product.images
+                                                                    .first
+                                                                : 'https://via.placeholder.com/300';
+
+                                                            // sold 判定（該当商品のDocumentReferenceが購入済かどうか）
+                                                            final isSold =
+                                                                allPurchases
+                                                                    .any(
+                                                              (purchase) => purchase
+                                                                  .product
+                                                                  .contains(product
+                                                                      .reference),
+                                                            );
+
+                                                            return InkWell(
+                                                              onTap: () async {
+                                                                // 商品詳細ページに遷移
+                                                                context
+                                                                    .pushNamed(
+                                                                  'ProductScreen',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'productInfo':
+                                                                        serializeParam(
+                                                                      product
+                                                                          .reference,
+                                                                      ParamType
+                                                                          .DocumentReference,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                );
+                                                              },
+                                                              child: Stack(
+                                                                children: [
+                                                                  Container(
+                                                                    width:
+                                                                        200.0,
+                                                                    margin: const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                        4,
+                                                                        12,
+                                                                        4,
+                                                                        0),
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              12.0),
+                                                                    ),
+                                                                    child:
+                                                                        ClipRRect(
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              2.0),
+                                                                      child: Image
+                                                                          .network(
+                                                                        imageUrl,
+                                                                        fit: BoxFit
+                                                                            .fitWidth,
+                                                                      ),
+                                                                    ),
+                                                                  ).animateOnPageLoad(
+                                                                    animationsMap[
+                                                                        'containerOnPageLoadAnimation1']!,
+                                                                  ),
+                                                                  if (isSold)
+                                                                    Positioned(
+                                                                      top: 12,
+                                                                      right: 4,
+                                                                      child:
+                                                                          Container(
+                                                                        padding:
+                                                                            const EdgeInsets.symmetric(
+                                                                          horizontal:
+                                                                              6,
+                                                                          vertical:
+                                                                              2,
+                                                                        ),
+                                                                        decoration:
+                                                                            BoxDecoration(
+                                                                          color:
+                                                                              Colors.red,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(0),
+                                                                        ),
+                                                                        child:
+                                                                            const Text(
+                                                                          'sold',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                Colors.white,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                ],
                                                               ),
-                                                            ),
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'containerOnPageLoadAnimation1']!),
+                                                            );
+                                                          },
                                                         );
                                                       },
                                                     );
                                                   },
                                                 ),
-                                                // --- タブ3: レビュー ---
+                                                // --- タブ2: レビュー ---
                                                 Padding(
                                                   padding:
                                                       const EdgeInsetsDirectional
@@ -507,6 +601,15 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                           final listViewReviewsRecord =
                                                               listViewReviewsRecordList[
                                                                   listViewIndex];
+                                                          if (listViewReviewsRecord
+                                                                  .product ==
+                                                              null) {
+                                                            return const ListTile(
+                                                              title: Text(
+                                                                  '商品データなし'),
+                                                            );
+                                                          }
+                                                          // product配列が空の場合の対策
                                                           if (listViewReviewsRecord
                                                               .product
                                                               .isEmpty) {
@@ -559,7 +662,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                       .getDocument(
                                                                     listViewReviewsRecord
                                                                             .user ??
-                                                                        currentUserReference!, // null対策
+                                                                        currentUserReference!,
                                                                   ),
                                                                   builder: (
                                                                     context,
@@ -615,7 +718,7 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                                 child: Column(
                                                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                                                   children: [
-                                                                                    // ユーザー名＋アイコンを左にする
+                                                                                    // ユーザー名＋アイコン
                                                                                     Row(
                                                                                       children: [
                                                                                         ClipRRect(
@@ -637,7 +740,12 @@ class _ProfileWidgetState extends State<ProfileWidget>
                                                                                     // 商品名
                                                                                     Text(
                                                                                       product.name,
-                                                                                      style: FlutterFlowTheme.of(context).titleLarge,
+                                                                                      style: FlutterFlowTheme.of(context).titleSmall.override(
+                                                                                            fontFamily: 'Inter',
+                                                                                            color: FlutterFlowTheme.of(context).primaryText,
+                                                                                            fontSize: 14.0,
+                                                                                            letterSpacing: 0.0,
+                                                                                          ),
                                                                                     ),
                                                                                     // 価格
                                                                                     Text(
