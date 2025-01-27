@@ -109,7 +109,7 @@ class _SearchShopWidgetState extends State<SearchShopWidget>
               controller: _model.searchBarTextController,
               focusNode: _model.searchBarFocusNode,
               decoration: const InputDecoration(
-                labelText: 'Shop name...',
+                labelText: 'ショップ名で検索',
                 prefixIcon: Icon(Icons.search),
               ),
               onChanged: (_) => _recalculateHitCount(),
