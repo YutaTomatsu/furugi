@@ -119,6 +119,8 @@ class _SearchShopWidgetState extends State<SearchShopWidget>
           // --- タブバー ---
           TabBar(
             controller: _model.tabController,
+            labelColor: Colors.black, // 選択中のタブの文字色を黒にする
+            unselectedLabelColor: Colors.grey, // 未選択のタブの文字色をグレーにする
             tabs: const [
               Tab(text: '都道府県'),
               Tab(text: '価格帯'),
