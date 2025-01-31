@@ -80,7 +80,7 @@ class _AddContentsWidgetState extends State<AddContentsWidget>
                       width: 250.0,
                       height: 70.0,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF638091),
+                        color: FlutterFlowTheme.of(context).furugiMainColor,
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: Image.network(
@@ -89,7 +89,7 @@ class _AddContentsWidgetState extends State<AddContentsWidget>
                         ),
                         borderRadius: BorderRadius.circular(10.0),
                         border: Border.all(
-                          color: const Color(0xFF638091),
+                          color: FlutterFlowTheme.of(context).furugiMainColor,
                         ),
                       ),
                       child: Row(
@@ -160,16 +160,17 @@ class _AddContentsWidgetState extends State<AddContentsWidget>
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Inter',
-                                    color: const Color(0xFF638091),
+                                    color: FlutterFlowTheme.of(context)
+                                        .furugiMainColor,
                                     fontSize: 19.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                             ),
                           ),
-                          const Icon(
+                          Icon(
                             Icons.home_work,
-                            color: Color(0xFF638091),
+                            color: FlutterFlowTheme.of(context).furugiMainColor,
                             size: 24.0,
                           ),
                         ],
