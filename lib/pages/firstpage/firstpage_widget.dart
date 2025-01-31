@@ -68,7 +68,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 Align(
-                                  alignment: const AlignmentDirectional(0.0, 1.0),
+                                  alignment:
+                                      const AlignmentDirectional(0.0, 1.0),
                                   child: SingleChildScrollView(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
@@ -93,10 +94,13 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                                   BorderRadius.circular(4.0),
                                             ),
                                             alignment:
-                                                const AlignmentDirectional(0.0, 1.0),
+                                                const AlignmentDirectional(
+                                                    0.0, 1.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                      5.0, 0.0, 5.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
@@ -112,7 +116,7 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                                         const AlignmentDirectional(
                                                             0.0, 0.0),
                                                     child: Text(
-                                                      'Sign-up with Email',
+                                                      'サインアップする',
                                                       style: FlutterFlowTheme
                                                               .of(context)
                                                           .bodyMedium
@@ -128,7 +132,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                                           ),
                                                     ),
                                                   ),
-                                                ].divide(const SizedBox(width: 7.0)),
+                                                ].divide(
+                                                    const SizedBox(width: 7.0)),
                                               ),
                                             ),
                                           ),
@@ -142,31 +147,31 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                   text: TextSpan(
                                     children: [
                                       TextSpan(
-                                        text: 'Already have an account?',
+                                        text: 'すでにアカウントをお持ちの方はこちらへ',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Inter',
-                                              color: Colors.white,
+                                              color: Colors.black,
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
                                       ),
-                                      TextSpan(
-                                        text: ' Log in',
+                                      /*TextSpan(
+                                        text: 'ログイン',
                                         style: const TextStyle(),
                                         mouseCursor: SystemMouseCursors.click,
                                         recognizer: TapGestureRecognizer()
                                           ..onTap = () async {
                                             context.pushNamed('Login');
                                           },
-                                      )
+                                      )*/
                                     ],
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Inter',
-                                          color: Colors.white,
+                                          color: Colors.transparent,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.bold,
                                         ),
@@ -188,10 +193,12 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                       color: const Color(0xFF333333),
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
-                                    alignment: const AlignmentDirectional(0.0, 1.0),
+                                    alignment:
+                                        const AlignmentDirectional(0.0, 1.0),
                                     child: Padding(
-                                      padding: const EdgeInsetsDirectional.fromSTEB(
-                                          5.0, 0.0, 5.0, 0.0),
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              5.0, 0.0, 5.0, 0.0),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -199,7 +206,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(
+                                                    0.0, 0.0),
                                             child: Text(
                                               'Skip',
                                               style: FlutterFlowTheme.of(
@@ -207,7 +215,8 @@ class _FirstpageWidgetState extends State<FirstpageWidget> {
                                                   .bodyMedium
                                                   .override(
                                                     fontFamily: 'Work Sans',
-                                                    color: const Color(0xFFF8F7F7),
+                                                    color:
+                                                        const Color(0xFFF8F7F7),
                                                     fontSize: 16.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w500,
