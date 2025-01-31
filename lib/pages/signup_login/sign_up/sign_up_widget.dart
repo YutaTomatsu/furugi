@@ -143,7 +143,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(32.0, 12.0, 32.0, 32.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(
+                    32.0, 12.0, 32.0, 32.0),
                 child: Container(
                   width: double.infinity,
                   height: 230.0,
@@ -153,10 +154,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                   ),
                   alignment: const AlignmentDirectional(0.0, 0.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 72.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 72.0),
                     child: Text(
-                      'brand.ai',
+                      'Furugi.YT',
                       style: FlutterFlowTheme.of(context).displaySmall.override(
                             fontFamily: 'Readex Pro',
                             letterSpacing: 0.0,
@@ -168,7 +169,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.0),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 170.0, 0.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      0.0, 170.0, 0.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -239,10 +241,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                       indicatorWeight: 3.0,
                                       tabs: const [
                                         Tab(
-                                          text: 'Create Account',
+                                          text: 'アカウント作成',
                                         ),
                                         Tab(
-                                          text: 'Log In',
+                                          text: 'ログイン',
                                         ),
                                       ],
                                       controller: _model.tabBarController,
@@ -256,12 +258,12 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                       controller: _model.tabBarController,
                                       children: [
                                         Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, -1.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, -1.0),
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 16.0, 24.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(
+                                                24.0, 16.0, 24.0, 0.0),
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -283,7 +285,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       ),
                                                     ),
                                                   Text(
-                                                    'Create Account',
+                                                    'アカウント作成',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -298,9 +300,9 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
-                                                                0.0, 24.0),
+                                                            0.0, 24.0),
                                                     child: Text(
-                                                      'Let\'s get started by filling out the form below.',
+                                                      '以下のフォームを入力してください。',
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: FlutterFlowTheme
@@ -316,7 +318,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -331,8 +333,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText:
-                                                              'User Name',
+                                                          labelText: 'ユーザー名',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -404,8 +405,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
+                                                              const EdgeInsets
+                                                                  .all(24.0),
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -431,7 +432,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -446,7 +447,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText: 'Email',
+                                                          labelText: 'メールアドレス',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -518,8 +519,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
+                                                              const EdgeInsets
+                                                                  .all(24.0),
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -545,7 +546,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -560,8 +561,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText:
-                                                              'Phone Number',
+                                                          labelText: '電話番号',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -633,8 +633,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
+                                                              const EdgeInsets
+                                                                  .all(24.0),
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -660,7 +660,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -676,7 +676,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                             .passwordCreateVisibility,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText: 'Password',
+                                                          labelText: 'パスワード',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -748,8 +748,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   .of(context)
                                                               .secondaryBackground,
                                                           contentPadding:
-                                                              const EdgeInsets.all(
-                                                                  24.0),
+                                                              const EdgeInsets
+                                                                  .all(24.0),
                                                           suffixIcon: InkWell(
                                                             onTap: () =>
                                                                 safeSetState(
@@ -798,11 +798,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
+                                                              .fromSTEB(0.0,
+                                                              0.0, 0.0, 16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           GoRouter.of(context)
@@ -843,7 +840,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               'HomePage',
                                                               context.mounted);
                                                         },
-                                                        text: 'Get Started',
+                                                        text: '登録する',
                                                         options:
                                                             FFButtonOptions(
                                                           width: 230.0,
@@ -851,17 +848,17 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           iconPadding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
@@ -873,7 +870,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                     fontFamily:
                                                                         'Inter',
                                                                     color: Colors
-                                                                        .white,
+                                                                        .black,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -899,12 +896,12 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                           ),
                                         ),
                                         Align(
-                                          alignment:
-                                              const AlignmentDirectional(0.0, -1.0),
+                                          alignment: const AlignmentDirectional(
+                                              0.0, -1.0),
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    24.0, 16.0, 24.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(
+                                                24.0, 16.0, 24.0, 0.0),
                                             child: SingleChildScrollView(
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.max,
@@ -926,7 +923,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                       ),
                                                     ),
                                                   Text(
-                                                    'Welcome Back',
+                                                    'ようこそ！',
                                                     textAlign: TextAlign.start,
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -941,9 +938,9 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 4.0,
-                                                                0.0, 24.0),
+                                                            0.0, 24.0),
                                                     child: Text(
-                                                      'Fill out the information below in order to access your account.',
+                                                      '以下の情報を入力して、ログインしてください。',
                                                       textAlign:
                                                           TextAlign.start,
                                                       style: FlutterFlowTheme
@@ -959,7 +956,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -974,7 +971,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                         obscureText: false,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText: 'Email',
+                                                          labelText: 'メールアドレス',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1048,10 +1045,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           contentPadding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      24.0,
-                                                                      24.0,
-                                                                      0.0,
-                                                                      24.0),
+                                                                  24.0,
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0),
                                                         ),
                                                         style:
                                                             FlutterFlowTheme.of(
@@ -1077,7 +1074,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     padding:
                                                         const EdgeInsetsDirectional
                                                             .fromSTEB(0.0, 0.0,
-                                                                0.0, 16.0),
+                                                            0.0, 16.0),
                                                     child: SizedBox(
                                                       width: double.infinity,
                                                       child: TextFormField(
@@ -1093,7 +1090,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                             .passwordVisibility,
                                                         decoration:
                                                             InputDecoration(
-                                                          labelText: 'Password',
+                                                          labelText: 'パスワード',
                                                           labelStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -1167,10 +1164,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           contentPadding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      24.0,
-                                                                      24.0,
-                                                                      0.0,
-                                                                      24.0),
+                                                                  24.0,
+                                                                  24.0,
+                                                                  0.0,
+                                                                  24.0),
                                                           suffixIcon: InkWell(
                                                             onTap: () =>
                                                                 safeSetState(
@@ -1219,11 +1216,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
+                                                              .fromSTEB(0.0,
+                                                              0.0, 0.0, 16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           GoRouter.of(context)
@@ -1248,7 +1242,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               'HomePage',
                                                               context.mounted);
                                                         },
-                                                        text: 'Sign In',
+                                                        text: 'サインイン',
                                                         options:
                                                             FFButtonOptions(
                                                           width: 230.0,
@@ -1256,17 +1250,17 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           iconPadding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
@@ -1278,7 +1272,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                     fontFamily:
                                                                         'Inter',
                                                                     color: Colors
-                                                                        .white,
+                                                                        .black,
                                                                     letterSpacing:
                                                                         0.0,
                                                                   ),
@@ -1304,13 +1298,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  24.0),
+                                                              .fromSTEB(16.0,
+                                                              0.0, 16.0, 24.0),
                                                       child: Text(
-                                                        'Or sign in with',
+                                                        'ーまたはー',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style:
@@ -1351,10 +1342,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  16.0),
                                                           child: FFButtonWidget(
                                                             onPressed:
                                                                 () async {
@@ -1375,8 +1366,7 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                   context
                                                                       .mounted);
                                                             },
-                                                            text:
-                                                                'Continue with Google',
+                                                            text: 'Googleで続ける',
                                                             icon: const FaIcon(
                                                               FontAwesomeIcons
                                                                   .google,
@@ -1389,17 +1379,17 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               padding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                               iconPadding:
                                                                   const EdgeInsetsDirectional
                                                                       .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
                                                               color: FlutterFlowTheme
                                                                       .of(context)
                                                                   .secondaryBackground,
@@ -1440,10 +1430,10 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                 padding:
                                                                     const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            16.0),
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        16.0),
                                                                 child:
                                                                     FFButtonWidget(
                                                                   onPressed:
@@ -1465,8 +1455,9 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                             .mounted);
                                                                   },
                                                                   text:
-                                                                      'Continue with Apple',
-                                                                  icon: const FaIcon(
+                                                                      'Apple で続ける',
+                                                                  icon:
+                                                                      const FaIcon(
                                                                     FontAwesomeIcons
                                                                         .apple,
                                                                     size: 20.0,
@@ -1479,12 +1470,13 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                                         44.0,
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        const EdgeInsetsDirectional
+                                                                            .fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -1532,11 +1524,8 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  16.0),
+                                                              .fromSTEB(0.0,
+                                                              0.0, 0.0, 16.0),
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           GoRouter.of(context)
@@ -1554,24 +1543,24 @@ class _SignUpWidgetState extends State<SignUpWidget>
                                                               context.mounted);
                                                         },
                                                         text:
-                                                            'Forgot Password?',
+                                                            'パスワードをお忘れの方はこちらへ',
                                                         options:
                                                             FFButtonOptions(
                                                           height: 44.0,
                                                           padding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      32.0,
-                                                                      0.0,
-                                                                      32.0,
-                                                                      0.0),
+                                                                  32.0,
+                                                                  0.0,
+                                                                  32.0,
+                                                                  0.0),
                                                           iconPadding:
                                                               const EdgeInsetsDirectional
                                                                   .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .secondaryBackground,
