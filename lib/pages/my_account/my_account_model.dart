@@ -1,6 +1,6 @@
 import '/components/nav_bar12_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'myaccount_widget.dart' show MyaccountWidget;
+import 'my_account_widget.dart' show MyaccountWidget;
 import 'package:flutter/material.dart';
 
 class MyaccountModel extends FlutterFlowModel<MyaccountWidget> {
@@ -17,6 +17,8 @@ class MyaccountModel extends FlutterFlowModel<MyaccountWidget> {
 
   // Model for NavBar12 component.
   late NavBar12Model navBar12Model;
+
+  String? uploadedFileUrl;
 
   @override
   void initState(BuildContext context) {

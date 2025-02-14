@@ -1,3 +1,5 @@
+import 'package:furugi_with_template/backend/firebase_storage/storage.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/nav_bar12_widget.dart';
@@ -10,8 +12,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'myaccount_model.dart';
-export 'myaccount_model.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'my_account_model.dart';
+export 'my_account_model.dart';
 
 class MyaccountWidget extends StatefulWidget {
   const MyaccountWidget({super.key});
@@ -155,6 +158,8 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                             ),
                           ),
                           const SizedBox(height: 15.0),
+                          SvgPicture.asset('assets/bottom_bar/home.svg',
+                              width: 30.0, height: 30.0),
                           Container(
                             width: 344.0,
                             height: 114.0,
@@ -169,12 +174,10 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+// アイコンの InkWell タップ箇所
                                   InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      // メディア(画像)を選択
                                       final selectedMedia =
                                           await selectMediaWithSourceBottomSheet(
                                         context: context,
@@ -184,32 +187,57 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                                           selectedMedia.every((m) =>
                                               validateFileFormat(
                                                   m.storagePath, context))) {
+                                        // アップロード中フラグをセット
                                         safeSetState(() =>
                                             _model.isDataUploading = true);
+
                                         var selectedUploadedFiles =
                                             <FFUploadedFile>[];
+                                        var downloadUrls = <String>[];
 
                                         try {
+                                          // FFUploadedFile のリストを作成
                                           selectedUploadedFiles = selectedMedia
-                                              .map((m) => FFUploadedFile(
-                                                    name: m.storagePath
-                                                        .split('/')
-                                                        .last,
-                                                    bytes: m.bytes,
-                                                    height:
-                                                        m.dimensions?.height,
-                                                    width: m.dimensions?.width,
-                                                    blurHash: m.blurHash,
-                                                  ))
+                                              .map(
+                                                (m) => FFUploadedFile(
+                                                  name: m.storagePath
+                                                      .split('/')
+                                                      .last,
+                                                  bytes: m.bytes,
+                                                  height: m.dimensions?.height,
+                                                  width: m.dimensions?.width,
+                                                  blurHash: m.blurHash,
+                                                ),
+                                              )
                                               .toList();
+
+                                          // Firebase Storage の「users/icon」以下にアップロード
+                                          final downloadUrl = await uploadData(
+                                              'users/${currentUserUid}/icon/${selectedUploadedFiles.first.name}',
+                                              selectedUploadedFiles
+                                                  .first.bytes!);
+                                          if (downloadUrl != null) {
+                                            downloadUrls.add(downloadUrl);
+                                          }
                                         } finally {
                                           _model.isDataUploading = false;
                                         }
+
                                         if (selectedUploadedFiles.length ==
-                                            selectedMedia.length) {
+                                                selectedMedia.length &&
+                                            downloadUrls.length ==
+                                                selectedMedia.length) {
+                                          // ローカルに選んだファイルを保持（即時プレビュー用）
                                           safeSetState(() {
                                             _model.uploadedLocalFile =
                                                 selectedUploadedFiles.first;
+                                            // ここで一旦 URL も保持しておくと便利です
+                                            _model.uploadedFileUrl =
+                                                downloadUrls.first;
+                                          });
+                                          // Firestore の users ドキュメント(image フィールド)を更新
+                                          await currentUserReference!.update({
+                                            'image': _model.uploadedFileUrl,
                                           });
                                         } else {
                                           safeSetState(() {});
@@ -218,17 +246,18 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                                       }
                                     },
                                     child: Container(
-                                      width: 80.0,
-                                      height: 80.0,
+                                      width: 60.0,
+                                      height: 60.0,
                                       decoration: const BoxDecoration(),
                                       child: Builder(
                                         builder: (context) {
+                                          // 画像がローカルに選択されていればそちらを表示、なければ Firestore の users.image を表示
                                           if ((_model.uploadedLocalFile.bytes
                                                   ?.isNotEmpty ??
                                               false)) {
                                             return ClipRRect(
                                               borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                  BorderRadius.circular(50.0),
                                               child: Image.memory(
                                                 _model.uploadedLocalFile
                                                         .bytes ??
@@ -239,6 +268,7 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                                               ),
                                             );
                                           } else {
+                                            // Firestore の image フィールドが空の場合、デフォルト画像を表示
                                             return AuthUserStreamWidget(
                                               builder: (context) => ClipRRect(
                                                 borderRadius:
@@ -262,10 +292,11 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                                       ),
                                     ),
                                   ),
+
                                   Padding(
                                     padding:
                                         const EdgeInsetsDirectional.fromSTEB(
-                                            7.0, 0.0, 0.0, 0.0),
+                                            15.0, 0.0, 0.0, 0.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
