@@ -59,12 +59,6 @@ class _NavBar12WidgetState extends State<NavBar12Widget> {
           height: 70.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).primaryBackground,
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(0.0),
-              bottomRight: Radius.circular(0.0),
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
-            ),
           ),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -121,26 +115,17 @@ class _NavBar12WidgetState extends State<NavBar12Widget> {
                   context.pushNamed('Map');
                 },
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 25.0,
-                    borderWidth: 1.0,
-                    buttonSize: 60.0,
-                    fillColor: FlutterFlowTheme.of(context).primary,
-                    icon: Icon(
-                      Icons.add,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 30.0,
-                    ),
-                    onPressed: () async {
-                      context.pushNamed('AddContents');
-                    },
-                  ),
-                ],
+              FlutterFlowIconButton(
+                borderColor: Colors.transparent,
+                buttonSize: 60.0,
+                icon: Icon(
+                  Icons.add,
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                  size: 30.0,
+                ),
+                onPressed: () async {
+                  context.pushNamed('AddContents');
+                },
               ),
               FlutterFlowIconButton(
                 borderColor: Colors.transparent,

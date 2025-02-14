@@ -14,8 +14,8 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'home_page_model.dart';
-export 'home_page_model.dart';
+import 'toppage_model.dart';
+export 'toppage_model.dart';
 
 class HomePageWidget extends StatefulWidget {
   const HomePageWidget({super.key});

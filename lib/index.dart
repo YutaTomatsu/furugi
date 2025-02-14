@@ -1,22 +1,20 @@
 // Export pages
 export '/pages/firstpage/firstpage_widget.dart' show FirstpageWidget;
-export '/pages/top/home_page/home_page_widget.dart' show HomePageWidget;
+export 'pages/top/home_page/toppage_widget.dart' show HomePageWidget;
 export '/pages/top/homepage/product_screen/product_screen/product_screen_widget.dart'
     show ProductScreenWidget;
 export '/pages/productpage/productpage_widget.dart' show ProductpageWidget;
-export '/pages/myaccount/myaccount_widget.dart' show MyaccountWidget;
-export '/pages/b_u_y_check_out/b_u_y_check_out_widget.dart'
-    show BUYCheckOutWidget;
+export 'pages/my_account/my_account_widget.dart' show MyaccountWidget;
 export '/pages/signup_login/login/login_widget.dart' show LoginWidget;
 export '/pages/my_order/my_order_widget.dart' show MyOrderWidget;
-export '/pages/order_history/order_history_widget.dart' show OrderHistoryWidget;
 export '/pages/top/homepage/likes/likes_widget.dart' show LikesWidget;
-export '/pages/editprofile/editprofile_widget.dart' show EditprofileWidget;
+export 'pages/edit_profile/edit_profile_widget.dart' show EditprofileWidget;
+export '/pages/shipping_address/shipping_address_widget.dart'
+    show ShippingAddressWidget;
 export '/pages/settingss/settingss_widget.dart' show SettingssWidget;
 export '/pages/categories/categories_widget.dart' show CategoriesWidget;
 export '/pages/signup_login/forget_password/forget_password_widget.dart'
     show ForgetPasswordWidget;
-export '/pages/productinfo/productinfo_widget.dart' show ProductinfoWidget;
 export '/pages/cart/cart_widget.dart' show CartWidget;
 export '/dashboard/dashboard_widget.dart' show DashboardWidget;
 export '/admin/admin_order_management_all/admin_order_management_all_widget.dart'

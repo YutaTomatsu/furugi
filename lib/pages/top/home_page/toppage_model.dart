@@ -1,7 +1,7 @@
 import '/components/header_widget.dart';
 import '/components/nav_bar12_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'home_page_widget.dart' show HomePageWidget;
+import 'toppage_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
 
 class HomePageModel extends FlutterFlowModel<HomePageWidget> {
@@ -32,10 +32,9 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    headerModel.dispose();
     searchFieldFocusNode?.dispose();
     searchFieldTextController?.dispose();
-
+    headerModel.dispose();
     navBar12Model.dispose();
   }
 }
