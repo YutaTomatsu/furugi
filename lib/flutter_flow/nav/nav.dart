@@ -117,11 +117,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const MyaccountWidget(),
         ),
         FFRoute(
-          name: 'BUY_CheckOut',
-          path: '/bUYCheckOut',
-          builder: (context, params) => const BUYCheckOutWidget(),
-        ),
-        FFRoute(
           name: 'Login',
           path: '/login',
           builder: (context, params) => const LoginWidget(),
@@ -132,11 +127,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const MyOrderWidget(),
         ),
         FFRoute(
-          name: 'OrderHistory',
-          path: '/orderHistory',
-          builder: (context, params) => const OrderHistoryWidget(),
-        ),
-        FFRoute(
           name: 'Likes',
           path: '/likes',
           builder: (context, params) => const LikesWidget(),
@@ -145,6 +135,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Editprofile',
           path: '/editprofile',
           builder: (context, params) => const EditprofileWidget(),
+        ),
+        FFRoute(
+          name: 'ShippingAddress',
+          path: '/shippingAddress',
+          builder: (context, params) => const ShippingAddressWidget(),
         ),
         FFRoute(
           name: 'Settingss',
@@ -160,11 +155,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ForgetPassword',
           path: '/forgetPassword',
           builder: (context, params) => const ForgetPasswordWidget(),
-        ),
-        FFRoute(
-          name: 'productinfo',
-          path: '/productinfo',
-          builder: (context, params) => const ProductinfoWidget(),
         ),
         FFRoute(
           name: 'Cart',

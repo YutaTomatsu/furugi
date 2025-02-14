@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furugi_with_template/flutter_flow/flutter_flow_theme.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -66,10 +67,18 @@ class _PurchasesWidgetState extends State<PurchasesWidget>
             child: Column(
               children: [
                 // ヘッダー
-                wrapWithModel(
-                  model: _model.headerModel,
-                  updateCallback: () => setState(() {}),
-                  child: const HeaderWidget(),
+                AppBar(
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).primaryBackground,
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    '取引',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                          fontFamily: 'Readex Pro',
+                        ),
+                  ),
+                  centerTitle: false,
+                  elevation: 0.0,
                 ),
 
                 // タブバー
