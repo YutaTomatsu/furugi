@@ -1,7 +1,6 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
-// ▼▼▼ ナビゲーションバー用のWidgetをインポート（例: nav_bar12_widget.dart 等）
 import '/components/nav_bar12_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -14,7 +13,7 @@ import 'cart_model.dart';
 export 'cart_model.dart';
 
 class CartWidget extends StatefulWidget {
-  const CartWidget({super.key});
+  const CartWidget({Key? key}) : super(key: key);
 
   @override
   State<CartWidget> createState() => _CartWidgetState();
@@ -22,7 +21,6 @@ class CartWidget extends StatefulWidget {
 
 class _CartWidgetState extends State<CartWidget> {
   late CartModel _model;
-  // ▼▼▼ ナビゲーションバーのためのModelを用意（NavBar12Widgetの例）
   late NavBar12Model _navBar12Model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -43,7 +41,6 @@ class _CartWidgetState extends State<CartWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // FFAppState の変更を監視する場合
     context.watch<FFAppState>();
 
     return GestureDetector(
@@ -51,24 +48,21 @@ class _CartWidgetState extends State<CartWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        // ▼▼▼ bottomNavigationBar は使わず、profile_widget.dart 同様に Stack で実現
         body: SafeArea(
           top: true,
           child: Stack(
             children: [
-              // ---- ① メインのコンテンツを SingleChildScrollView + Column で構築 ----
               SingleChildScrollView(
+                padding: const EdgeInsets.only(bottom: 150.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // ヘッダー
                     wrapWithModel(
                       model: _model.headerModel,
                       updateCallback: () => setState(() {}),
                       child: const HeaderWidget(),
                     ),
-                    // 中身
                     Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       alignment: const AlignmentDirectional(0.0, 0.0),
@@ -78,14 +72,10 @@ class _CartWidgetState extends State<CartWidget> {
                           Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              // タイトル等 (「カート」を中央に)
+                              // タイトル部分
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0,
-                                  0.0,
-                                  0.0,
-                                  10.0,
-                                ),
+                                    0.0, 0.0, 0.0, 10.0),
                                 child: Container(
                                   height: 38.0,
                                   decoration: BoxDecoration(
@@ -129,7 +119,7 @@ class _CartWidgetState extends State<CartWidget> {
                                   ),
                                 ),
                               ),
-                              // カート一覧表示
+                              // カート一覧表示部分（既存商品一覧など）
                               Builder(
                                 builder: (context) {
                                   final cartProductItems =
@@ -145,12 +135,7 @@ class _CartWidgetState extends State<CartWidget> {
                                               cartProductItemsIndex];
                                       return Padding(
                                         padding: const EdgeInsetsDirectional
-                                            .fromSTEB(
-                                          10.0,
-                                          10.0,
-                                          10.0,
-                                          10.0,
-                                        ),
+                                            .fromSTEB(10.0, 10.0, 10.0, 10.0),
                                         child: StreamBuilder<ProductsRecord>(
                                           stream: ProductsRecord.getDocument(
                                               cartProductItemsItem),
@@ -216,11 +201,10 @@ class _CartWidgetState extends State<CartWidget> {
                                                             padding:
                                                                 const EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                              10.0,
-                                                              0.0,
-                                                              0.0,
-                                                              0.0,
-                                                            ),
+                                                                    10.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
                                                             child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -252,11 +236,10 @@ class _CartWidgetState extends State<CartWidget> {
                                                                   padding:
                                                                       const EdgeInsetsDirectional
                                                                           .fromSTEB(
-                                                                    0.0,
-                                                                    10.0,
-                                                                    0.0,
-                                                                    10.0,
-                                                                  ),
+                                                                          0.0,
+                                                                          10.0,
+                                                                          0.0,
+                                                                          10.0),
                                                                   child: Text(
                                                                     containerProductsRecord
                                                                         .shippingDays,
@@ -332,7 +315,6 @@ class _CartWidgetState extends State<CartWidget> {
                                                                           containerProductsRecord
                                                                               .reference,
                                                                         );
-                                                                        // カート合計の再計算
                                                                         FFAppState()
                                                                             .cartSum = FFAppState()
                                                                                 .cartSum +
@@ -351,10 +333,9 @@ class _CartWidgetState extends State<CartWidget> {
                                                                       ),
                                                                     ),
                                                                   ].divide(
-                                                                    const SizedBox(
-                                                                        width:
-                                                                            5.0),
-                                                                  ),
+                                                                      const SizedBox(
+                                                                          width:
+                                                                              5.0)),
                                                                 ),
                                                               ],
                                                             ),
@@ -402,44 +383,6 @@ class _CartWidgetState extends State<CartWidget> {
                                   fontWeight: FontWeight.w500,
                                 ),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Retail Price',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: const Color(0xFF555555),
-                                      fontSize: 16.0,
-                                    ),
-                              ),
-                              Text(
-                                FFAppState().cartSum.toString(),
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Sale Price',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Inter',
-                                      color: const Color(0xFF555555),
-                                      fontSize: 16.0,
-                                    ),
-                              ),
-                              Text(
-                                '£120', // 仮の値
-                                style: FlutterFlowTheme.of(context).bodyMedium,
-                              ),
-                            ],
-                          ),
                         ].divide(const SizedBox(height: 10.0)),
                       ),
                     ),
@@ -473,14 +416,14 @@ class _CartWidgetState extends State<CartWidget> {
                       ),
                     ),
                     const Divider(thickness: 10.0, color: Color(0xFFF1F1F1)),
-                    // Addressなど
+                    // 配送先表示部分：デフォルト配送先として設定されている住所情報を表示
                     Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Address title
+                          // タイトル
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -494,9 +437,10 @@ class _CartWidgetState extends State<CartWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                               ),
+                              // 配送先管理画面へ遷移するボタン
                               InkWell(
                                 onTap: () async {
-                                  context.pushNamed('Editprofile');
+                                  context.pushNamed('ShippingAddress');
                                 },
                                 child: Row(
                                   children: [
@@ -515,40 +459,69 @@ class _CartWidgetState extends State<CartWidget> {
                               ),
                             ],
                           ),
+                          // デフォルト配送先情報の表示（name,email,phone,address）
                           AuthUserStreamWidget(
-                            builder: (context) => Text(
-                              currentUserDisplayName,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
-                          AuthUserStreamWidget(
-                            builder: (context) => Text(
-                              valueOrDefault(currentUserDocument?.address, ''),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: const Color(0xFF555555),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
-                          ),
-                          AuthUserStreamWidget(
-                            builder: (context) => Text(
-                              currentPhoneNumber,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: const Color(0xFF555555),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                            ),
+                            builder: (context) {
+                              if (currentUserDocument != null &&
+                                  currentUserDocument!.address is List &&
+                                  currentUserDocument!.address.isNotEmpty) {
+                                // Firestore の snapshotData から default_address_index を取得
+                                int defaultIndex =
+                                    (currentUserDocument!.snapshotData[
+                                            'default_address_index'] as int?) ??
+                                        0;
+                                final defaultAddr =
+                                    currentUserDocument!.address[defaultIndex];
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("名前: ${defaultAddr['name'] ?? ''}",
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                    Text(
+                                        "メールアドレス: ${defaultAddr['email'] ?? ''}",
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                    Text("電話番号: ${defaultAddr['phone'] ?? ''}",
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                    Text(
+                                        "配送先住所: ${defaultAddr['address'] ?? ''}",
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              color: const Color(0xFF000000),
+                                              fontWeight: FontWeight.w500,
+                                            )),
+                                  ],
+                                );
+                              } else {
+                                return Text('配送先が登録されていません',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Inter',
+                                          color: const Color(0xFF000000),
+                                          fontWeight: FontWeight.w500,
+                                        ));
+                              }
+                            },
                           ),
                         ].divide(const SizedBox(height: 10.0)),
                       ),
@@ -556,11 +529,9 @@ class _CartWidgetState extends State<CartWidget> {
                   ].addToEnd(const SizedBox(height: 20.0)),
                 ),
               ),
-              // ---- ② 画面下部に「レジへ進む」ボタン + ナビゲーションバーを固定配置 ----
               Align(
                 alignment: const AlignmentDirectional(0.0, 1.0),
                 child: Container(
-                  // お好みで色/デコレーションなど調整してください
                   width: MediaQuery.sizeOf(context).width,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -575,13 +546,11 @@ class _CartWidgetState extends State<CartWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // ▼▼▼ 「レジへ進む」ボタン
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 20.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            // 1. カート商品データを作る
                             final cartData = <Map<String, dynamic>>[];
                             for (final productRef in FFAppState().cartItems) {
                               final docSnap =
@@ -595,13 +564,9 @@ class _CartWidgetState extends State<CartWidget> {
                                 });
                               }
                             }
-
-                            // 2. FFAppState に保存
                             FFAppState().paymentCartItems = cartData;
                             FFAppState().paymentTotalPrice =
                                 FFAppState().cartSum;
-
-                            // 3. Payment画面へ遷移
                             context.pushNamed('Payment');
                           },
                           text: 'レジへ進む',
@@ -623,7 +588,6 @@ class _CartWidgetState extends State<CartWidget> {
                           ),
                         ),
                       ),
-                      // ▼▼▼ ナビゲーションバー
                       wrapWithModel(
                         model: _navBar12Model,
                         updateCallback: () => setState(() {}),
