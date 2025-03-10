@@ -16,9 +16,7 @@ class MapModel extends FlutterFlowModel<MapWidget> {
   late NavBar12Model navBar12Model;
 
   @override
-  void initState(BuildContext context) {
-    navBar12Model = createModel(context, () => NavBar12Model());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {

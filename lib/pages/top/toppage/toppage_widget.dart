@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -109,6 +111,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
         body: SafeArea(
           child: Stack(
             children: [
@@ -239,7 +246,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                             children: [
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('ProductCategory');
+                                  context.pushNamed(
+                                    'ProductCategory',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                      ),
+                                    },
+                                  );
                                 },
                                 text: '古着を探す',
                                 options: FFButtonOptions(
@@ -265,7 +281,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('SearchShop');
+                                  context.pushNamed(
+                                    'SearchShop',
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: const TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType:
+                                            PageTransitionType.rightToLeft,
+                                      ),
+                                    },
+                                  );
                                 },
                                 text: 'お店を探す',
                                 options: FFButtonOptions(
@@ -435,7 +460,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       onPressed: () async {
                                         // 新着入荷アイテムの「すべて見る」押下での遷移先
                                         // pages/top/homepage/products/products_widget.dart
-                                        context.pushNamed('Products');
+                                        context.pushNamed(
+                                          'Products',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey:
+                                                const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .rightToLeft,
+                                            ),
+                                          },
+                                        );
                                       },
                                       text: 'すべて見る',
                                       options: FFButtonOptions(
@@ -822,7 +857,17 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       onPressed: () async {
                                         // 新着SHOPの「すべて見る」押下での遷移先
                                         // pages/top/shops/shops_widget.dart
-                                        context.pushNamed('shops');
+                                        context.pushNamed(
+                                          'shops',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey:
+                                                const TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .rightToLeft,
+                                            ),
+                                          },
+                                        );
                                       },
                                       text: 'すべて見る',
                                       options: FFButtonOptions(
@@ -1107,14 +1152,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                       ),
                     ].addToEnd(const SizedBox(height: 100.0)),
                   ),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: wrapWithModel(
-                  model: _model.navBar12Model,
-                  updateCallback: () => safeSetState(() {}),
-                  child: const NavBar12Widget(),
                 ),
               ),
             ],

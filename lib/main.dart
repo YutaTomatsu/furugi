@@ -1,7 +1,7 @@
+import 'package:furugi_with_template/components/nav_bar12_model.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart'; // Stripeを使う場合に追加
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'auth/firebase_auth/firebase_user_provider.dart';
@@ -51,8 +51,13 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => appState,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => appState,
+        ),
+        ChangeNotifierProvider(create: (context) => NavBar12Model()),
+      ],
       child: const MyApp(),
     ),
   );

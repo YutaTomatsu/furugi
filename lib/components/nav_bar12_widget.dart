@@ -19,19 +19,15 @@ class _NavBar12WidgetState extends State<NavBar12Widget> {
   @override
   void setState(VoidCallback callback) {
     super.setState(callback);
-    _model.onUpdate();
   }
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NavBar12Model());
   }
 
   @override
   void dispose() {
-    _model.maybeDispose();
-
     super.dispose();
   }
 

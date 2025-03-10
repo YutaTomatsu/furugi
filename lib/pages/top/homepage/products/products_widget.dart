@@ -1,3 +1,5 @@
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -64,86 +66,111 @@ class _ProductsWidgetState extends State<ProductsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white, // ← ヘッダー背景色
+          foregroundColor: Colors.black, // ← ヘッダーテキスト色
+          elevation: 0,
+          title: Text(
+            '古着を探す',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Inter',
+                  fontSize: 16.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+          centerTitle: true,
+          actions: [
+            // ← 右側にアイコンを配置
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Cart'); // ← カート画面に遷移
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Notification'); // ← お知らせ画面に遷移
+              },
+            ),
+          ],
+        ),
         body: SingleChildScrollView(
           // 親が SingleChildScrollView のため MasonryGridView で shrinkWrap など調整必須
           child: Column(
             children: [
-              // ---------- ヘッダー ----------
-              wrapWithModel(
-                model: _model.headerModel,
-                updateCallback: () => setState(() {}),
-                child: const HeaderWidget(),
-              ),
-
               // ---------- 検索バー ----------
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 child: Container(
-                  width: MediaQuery.sizeOf(context).width,
-                  alignment: Alignment.center,
-                  child: Column(
+                  width: MediaQuery.sizeOf(context).width * 0.9,
+                  height: 38.0,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFF2F2F2),
+                    borderRadius: BorderRadius.circular(5.0),
+                    border: Border.all(
+                      color: const Color(0xFFF2F2F2),
+                    ),
+                  ),
+                  child: Row(
                     children: [
-                      Container(
-                        width: MediaQuery.sizeOf(context).width * 0.9,
-                        height: 38.0,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFF2F2F2),
-                          borderRadius: BorderRadius.circular(5.0),
-                          border: Border.all(
-                            color: const Color(0xFFF2F2F2),
+                      Expanded(
+                        child: Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(11, 0, 0, 0),
+                          child: TextFormField(
+                            controller: _model.textController,
+                            focusNode: _model.textFieldFocusNode,
+                            decoration: InputDecoration(
+                              hintText: 'Search products',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: const Color(0xFFA7A5A5),
+                                  ),
+                              border: InputBorder.none,
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                ),
+                            cursorColor:
+                                FlutterFlowTheme.of(context).primaryText,
                           ),
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    11, 0, 0, 0),
-                                child: TextFormField(
-                                  controller: _model.textController,
-                                  focusNode: _model.textFieldFocusNode,
-                                  decoration: InputDecoration(
-                                    hintText: 'Search products',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: const Color(0xFFA7A5A5),
-                                        ),
-                                    border: InputBorder.none,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                      ),
-                                  cursorColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                            ),
-                            // 検索ボタン
-                            FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 8.0,
-                              buttonSize: 40.0,
-                              fillColor: FlutterFlowTheme.of(context).primary,
-                              icon: Icon(
-                                Icons.search,
-                                color: FlutterFlowTheme.of(context).info,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                // 入力された検索ワードを FFAppState に保存
-                                FFAppState().search =
-                                    _model.textController.text;
-                                setState(() {});
-                              },
-                            ),
-                          ],
-                        ),
                       ),
-                    ].divide(const SizedBox(height: 25.0)),
+                      // 検索ボタン
+                      FlutterFlowIconButton(
+                        borderColor: Colors.transparent,
+                        borderRadius: 8.0,
+                        buttonSize: 40.0,
+                        fillColor: FlutterFlowTheme.of(context).primary,
+                        icon: Icon(
+                          Icons.search,
+                          color: FlutterFlowTheme.of(context).info,
+                          size: 24.0,
+                        ),
+                        onPressed: () {
+                          // 入力された検索ワードを FFAppState に保存
+                          FFAppState().search = _model.textController.text;
+                          setState(() {});
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ),

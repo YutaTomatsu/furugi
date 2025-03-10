@@ -5,6 +5,7 @@ import 'package:furugi_with_template/auth/firebase_auth/auth_util.dart';
 import 'package:furugi_with_template/backend/schema/notifications_record.dart';
 import 'package:furugi_with_template/backend/schema/purchases_record.dart';
 import 'package:furugi_with_template/backend/schema/util/firestore_util.dart';
+import 'package:furugi_with_template/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart'; // FFAppState使う場合
 
 // ★ 追加: Cloud Functions を使うため
@@ -225,7 +226,19 @@ class _PaymentWidgetState extends State<PaymentWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Payment: カートデータ & Stripe決済 (via Firebase)'),
+        backgroundColor: Colors.white, // ← ヘッダー背景色
+        foregroundColor: Colors.black, // ← ヘッダーテキスト色
+        elevation: 0,
+        title: Text(
+          '支払い',
+          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                letterSpacing: 0.0,
+                fontWeight: FontWeight.w500,
+              ),
+        ),
+        centerTitle: true,
       ),
       body: _paymentInProgress
           ? const Center(child: CircularProgressIndicator())

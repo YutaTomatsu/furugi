@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:furugi_with_template/flutter_flow/flutter_flow_theme.dart';
+import 'package:provider/provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/components/header_widget.dart' show HeaderWidget;
-import '/components/nav_bar12_widget.dart' show NavBar12Widget;
+import '/components/nav_bar12_widget.dart' show NavBar12Model, NavBar12Widget;
 
 class CompletedTransactionWidget extends StatefulWidget {
   const CompletedTransactionWidget({Key? key}) : super(key: key);
@@ -39,23 +41,34 @@ class _CompletedTransactionWidgetState extends State<CompletedTransactionWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Consumer<NavBar12Model>(
+        builder: (context, model, child) {
+          return NavBar12Widget();
+        },
+      ),
+      appBar: DefaultAppBarWidget(
+        title: '商品詳細',
+        showBackButton: true,
+        showCartIcon: true,
+        showNotificationIcon: true,
+      ),
       body: Stack(
         children: [
           // メイン
           SingleChildScrollView(
             child: Column(
               children: [
-                const HeaderWidget(),
-
                 // タブバー
                 Container(
                   color: Colors.white,
                   child: TabBar(
                     controller: _tabController,
                     labelColor: Colors.black,
+                    indicatorColor:
+                        FlutterFlowTheme.of(context).furugiMainColor,
                     tabs: const [
-                      Tab(text: '購入した(完了)'),
-                      Tab(text: '購入された(完了)'),
+                      Tab(text: '購入した商品'),
+                      Tab(text: '購入された商品'),
                     ],
                   ),
                 ),
@@ -315,11 +328,6 @@ class _CompletedTransactionWidgetState extends State<CompletedTransactionWidget>
                 ),
               ],
             ),
-          ),
-          // フッターナビ
-          Align(
-            alignment: const AlignmentDirectional(0, 1),
-            child: const NavBar12Widget(),
           ),
         ],
       ),

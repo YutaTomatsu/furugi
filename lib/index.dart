@@ -1,6 +1,6 @@
 // Export pages
 export '/pages/firstpage/firstpage_widget.dart' show FirstpageWidget;
-export 'pages/top/home_page/toppage_widget.dart' show HomePageWidget;
+export 'pages/top/toppage/toppage_widget.dart' show HomePageWidget;
 export '/pages/top/homepage/product_screen/product_screen/product_screen_widget.dart'
     show ProductScreenWidget;
 export '/pages/productpage/productpage_widget.dart' show ProductpageWidget;

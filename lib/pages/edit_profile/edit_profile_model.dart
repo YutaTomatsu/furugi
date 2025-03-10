@@ -112,6 +112,5 @@ class EditprofileModel extends FlutterFlowModel<EditprofileWidget> {
   @override
   void initState(BuildContext context) {
     headerModel = createModel(context, () => HeaderModel());
-    navBar12Model = createModel(context, () => NavBar12Model());
   }
 }

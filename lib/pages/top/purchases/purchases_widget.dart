@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:furugi_with_template/flutter_flow/flutter_flow_theme.dart';
+import 'package:provider/provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/components/header_widget.dart' show HeaderWidget;
-import '/components/nav_bar12_widget.dart' show NavBar12Widget;
+import '/components/nav_bar12_widget.dart' show NavBar12Model, NavBar12Widget;
 import 'purchases_model.dart';
 
 class PurchasesWidget extends StatefulWidget {
@@ -38,7 +39,7 @@ class _PurchasesWidgetState extends State<PurchasesWidget>
     return const Divider(
       height: 1,
       thickness: 1,
-      color: Colors.grey,
+      color: Color(0xFFE5E5E5),
     );
   }
 
@@ -47,7 +48,7 @@ class _PurchasesWidgetState extends State<PurchasesWidget>
     return Container(
       width: 80,
       height: 80,
-      color: Colors.grey[200],
+      color: Colors.white,
       child: (imageUrl.isNotEmpty)
           ? Image.network(
               imageUrl,
@@ -60,33 +61,63 @@ class _PurchasesWidgetState extends State<PurchasesWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      bottomNavigationBar: Consumer<NavBar12Model>(
+        builder: (context, model, child) {
+          return NavBar12Widget();
+        },
+      ),
+      appBar: AppBar(
+        backgroundColor: Colors.white, // ← ヘッダー背景色
+        foregroundColor: Colors.black, // ← ヘッダーテキスト色
+        elevation: 0,
+        title: Text(
+          '取引',
+          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                letterSpacing: 0.0,
+                fontWeight: FontWeight.w500,
+              ),
+        ),
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        actions: [
+          // ← 右側にアイコンを配置
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+            onPressed: () {
+              context.pushNamed('Cart'); // ← カート画面に遷移
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.notifications_none,
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+            onPressed: () {
+              context.pushNamed('Notification'); // ← お知らせ画面に遷移
+            },
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           // メイン表示部分
           SingleChildScrollView(
             child: Column(
               children: [
-                // ヘッダー
-                AppBar(
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).primaryBackground,
-                  automaticallyImplyLeading: false,
-                  title: Text(
-                    '取引',
-                    style: FlutterFlowTheme.of(context).headlineSmall.override(
-                          fontFamily: 'Readex Pro',
-                        ),
-                  ),
-                  centerTitle: false,
-                  elevation: 0.0,
-                ),
-
                 // タブバー
                 Container(
                   color: Colors.white,
                   child: TabBar(
                     controller: _tabController,
                     labelColor: Colors.black,
+                    indicatorColor:
+                        FlutterFlowTheme.of(context).furugiMainColor,
                     tabs: const [
                       Tab(text: '購入した商品'),
                       Tab(text: '購入された商品'),
@@ -385,16 +416,6 @@ class _PurchasesWidgetState extends State<PurchasesWidget>
                   ),
                 ),
               ],
-            ),
-          ),
-
-          // フッターナビ
-          Align(
-            alignment: const AlignmentDirectional(0, 1),
-            child: wrapWithModel(
-              model: _model.navBar12Model,
-              updateCallback: () => setState(() {}),
-              child: const NavBar12Widget(),
             ),
           ),
         ],

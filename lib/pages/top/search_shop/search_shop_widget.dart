@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:furugi_with_template/components/nav_bar12_model.dart';
+import 'package:furugi_with_template/flutter_flow/flutter_flow_theme.dart';
+import 'package:furugi_with_template/flutter_flow/flutter_flow_util.dart';
 import 'package:furugi_with_template/pages/top/shops/shops_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/backend/backend.dart'; // PrefecturesRecord, queryShopsRecordOnce() などを使う
 import 'search_shop_model.dart';
 
@@ -13,6 +19,7 @@ class SearchShopWidget extends StatefulWidget {
 class _SearchShopWidgetState extends State<SearchShopWidget>
     with TickerProviderStateMixin {
   late SearchShopModel _model;
+  late NavBar12Model _navBar12Model;
 
   @override
   void initState() {
@@ -97,8 +104,46 @@ class _SearchShopWidgetState extends State<SearchShopWidget>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Consumer<NavBar12Model>(
+        builder: (context, model, child) {
+          return NavBar12Widget();
+        },
+      ),
       appBar: AppBar(
-        title: const Text('ショップ検索'),
+        backgroundColor: Colors.white, // ← ヘッダー背景色
+        foregroundColor: Colors.black, // ← ヘッダーテキスト色
+        elevation: 0,
+        title: Text(
+          'ショップ検索',
+          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                fontFamily: 'Inter',
+                fontSize: 16.0,
+                letterSpacing: 0.0,
+                fontWeight: FontWeight.w500,
+              ),
+        ),
+        centerTitle: true,
+        actions: [
+          // ← 右側にアイコンを配置
+          IconButton(
+            icon: Icon(
+              Icons.shopping_cart,
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+            onPressed: () {
+              context.pushNamed('Cart'); // ← カート画面に遷移
+            },
+          ),
+          IconButton(
+            icon: Icon(
+              Icons.notifications_none,
+              color: FlutterFlowTheme.of(context).primaryText,
+            ),
+            onPressed: () {
+              context.pushNamed('Notification'); // ← お知らせ画面に遷移
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -121,6 +166,8 @@ class _SearchShopWidgetState extends State<SearchShopWidget>
             controller: _model.tabController,
             labelColor: Colors.black, // 選択中のタブの文字色を黒にする
             unselectedLabelColor: Colors.grey, // 未選択のタブの文字色をグレーにする
+            dividerColor: FlutterFlowTheme.of(context).furugiMainColor,
+            indicatorColor: FlutterFlowTheme.of(context).furugiMainColor,
             tabs: const [
               Tab(text: '都道府県'),
               Tab(text: '価格帯'),
@@ -166,6 +213,10 @@ class _SearchShopWidgetState extends State<SearchShopWidget>
                     );
                   },
                   child: const Text('検索'),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          FlutterFlowTheme.of(context).furugiMainColor,
+                      foregroundColor: Colors.white),
                 ),
               ],
             ),

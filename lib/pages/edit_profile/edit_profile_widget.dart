@@ -1,3 +1,6 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:provider/provider.dart';
+
 import '../../components/nav_bar12_widget.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -835,34 +838,16 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        bottomNavigationBar: wrapWithModel(
-          model: _model.navBar12Model,
-          updateCallback: () => setState(() {}),
-          child: const NavBar12Widget(),
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
         ),
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          toolbarHeight: 50,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {
-              if (_model.currentPageIndex == 0) {
-                Navigator.pop(context);
-              } else {
-                _goToPage(0);
-              }
-            },
-          ),
-          title: Text(
-            _getPageTitle(_model.currentPageIndex), // ヘッダータイトルを取得
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Inter',
-                  color: Colors.black,
-                  fontSize: 16.0,
-                  letterSpacing: 0.0,
-                  fontWeight: FontWeight.w500,
-                ),
-          ),
+        appBar: DefaultAppBarWidget(
+          title: 'ユーザー情報編集',
+          showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
         ),
         body: SafeArea(
           child: PageView(

@@ -1,3 +1,8 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:furugi_with_template/components/nav_bar12_model.dart';
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
@@ -112,6 +117,52 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
     super.dispose();
   }
 
+  Widget _buildTabBarWithReviewCount() {
+    return StreamBuilder<List<ReviewsRecord>>(
+      stream: queryReviewsRecord(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        final allReviews = snapshot.data!;
+        // ログインユーザーが出品した商品に対するレビュー
+        final filteredReviews =
+            allReviews.where((r) => _hasCurrentUserId(r.product)).toList();
+        final reviewCount = filteredReviews.length;
+
+        return FlutterFlowButtonTabBar(
+          isScrollable: true,
+          labelColor: FlutterFlowTheme.of(context).primaryText,
+          unselectedLabelColor: FlutterFlowTheme.of(context).primaryText,
+          borderColor: FlutterFlowTheme.of(context).primary,
+          borderWidth: 2.0,
+          borderRadius: 12.0,
+          labelPadding: const EdgeInsetsDirectional.fromSTEB(25, 0, 25, 0),
+          tabs: [
+            const Tab(text: '出品中'),
+            // レビュー件数を表示
+            Tab(text: 'レビュー($reviewCount)'),
+          ],
+          controller: _model.tabBarController,
+        );
+      },
+    );
+  }
+
+  bool _hasCurrentUserId(List<DocumentReference>? productRefs) {
+    if (productRefs == null) return false;
+    for (final ref in productRefs) {
+      final segments = ref.path.split('/');
+      if (segments.length > 1) {
+        final userId = segments[1]; // "xxx"
+        if (userId == currentUserReference?.id) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<UsersRecord>(
@@ -142,33 +193,16 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            appBar: AppBar(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-              automaticallyImplyLeading: false,
-              leading: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 30.0,
-                borderWidth: 1.0,
-                buttonSize: 60.0,
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  size: 30.0,
-                ),
-                onPressed: () async {
-                  context.pop();
-                },
-              ),
-              title: Text(
-                'Profile',
-                style: FlutterFlowTheme.of(context).headlineMedium.override(
-                      fontFamily: 'Readex Pro',
-                      letterSpacing: 0.0,
-                    ),
-              ),
-              actions: const [],
-              centerTitle: false,
-              elevation: 0.0,
+            bottomNavigationBar: Consumer<NavBar12Model>(
+              builder: (context, model, child) {
+                return NavBar12Widget();
+              },
+            ),
+            appBar: DefaultAppBarWidget(
+              title: 'ユーザー詳細',
+              showBackButton: true,
+              showCartIcon: true,
+              showNotificationIcon: true,
             ),
             body: SafeArea(
               top: true,
@@ -263,28 +297,6 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
                                                             fontSize: 20.0,
                                                             letterSpacing: 0.0,
                                                           ),
-                                                    ),
-                                                    InkWell(
-                                                      splashColor:
-                                                          Colors.transparent,
-                                                      focusColor:
-                                                          Colors.transparent,
-                                                      hoverColor:
-                                                          Colors.transparent,
-                                                      highlightColor:
-                                                          Colors.transparent,
-                                                      onTap: () async {
-                                                        context.pushNamed(
-                                                            'Myaccount');
-                                                      },
-                                                      child: Icon(
-                                                        Icons.arrow_forward_ios,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primaryText,
-                                                        size: 20.0,
-                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -473,593 +485,434 @@ class _UserProfileWidgetState extends State<UserProfileWidget>
                                               0.0, 12.0, 0.0, 0.0),
                                       child: Column(
                                         children: [
-                                          Align(
-                                            alignment: const Alignment(0.0, 0),
-                                            child: FlutterFlowButtonTabBar(
-                                              useToggleButtonStyle: false,
-                                              isScrollable: true,
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                              unselectedLabelStyle:
-                                                  const TextStyle(),
-                                              labelColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              unselectedLabelColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
-                                              borderColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              borderWidth: 2.0,
-                                              borderRadius: 12.0,
-                                              elevation: 0.0,
-                                              labelPadding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                      25.0, 0.0, 25.0, 0.0),
-                                              tabs: const [
-                                                Tab(
-                                                  text: '出品中',
-                                                ),
-                                                Tab(
-                                                  text: '売却済み',
-                                                ),
-                                                Tab(
-                                                  text: 'レビュー',
-                                                ),
-                                              ],
-                                              controller:
-                                                  _model.tabBarController,
-                                              onTap: (i) async {
-                                                [
-                                                  () async {},
-                                                  () async {},
-                                                  () async {}
-                                                ][i]();
-                                              },
+                                          if (_model.tabBarController != null)
+                                            _buildTabBarWithReviewCount()
+                                          else
+                                            const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: TabBarView(
-                                              controller:
-                                                  _model.tabBarController,
-                                              children: [
-                                                StreamBuilder<
-                                                    List<ProductsRecord>>(
-                                                  stream: queryProductsRecord(
-                                                    parent:
-                                                        currentUserReference,
-                                                  ),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50.0,
-                                                          height: 50.0,
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<ProductsRecord>
-                                                        staggeredViewProductsRecordList =
-                                                        snapshot.data!;
-
-                                                    return MasonryGridView
-                                                        .builder(
-                                                      gridDelegate:
-                                                          const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                                                        crossAxisCount: 3,
-                                                      ),
-                                                      itemCount:
-                                                          staggeredViewProductsRecordList
-                                                              .length,
-                                                      shrinkWrap: true,
-                                                      itemBuilder: (context,
-                                                          staggeredViewIndex) {
-                                                        final staggeredViewProductsRecord =
-                                                            staggeredViewProductsRecordList[
-                                                                staggeredViewIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                  4.0,
-                                                                  12.0,
-                                                                  4.0,
-                                                                  0.0),
-                                                          child: Container(
-                                                            width: 200.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            child: ClipRRect(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          0.0),
-                                                              child:
-                                                                  Image.network(
-                                                                staggeredViewProductsRecord
-                                                                    .images
-                                                                    .first,
-                                                                fit: BoxFit
-                                                                    .fitWidth,
-                                                              ),
-                                                            ),
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'containerOnPageLoadAnimation1']!),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                                StreamBuilder<
-                                                    List<ProductsRecord>>(
-                                                  stream: queryProductsRecord(),
-                                                  builder: (context, snapshot) {
-                                                    // Customize what your widget looks like when it's loading.
-                                                    if (!snapshot.hasData) {
-                                                      return Center(
-                                                        child: SizedBox(
-                                                          width: 50.0,
-                                                          height: 50.0,
-                                                          child:
-                                                              CircularProgressIndicator(
-                                                            valueColor:
-                                                                AlwaysStoppedAnimation<
-                                                                    Color>(
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    }
-                                                    List<ProductsRecord>
-                                                        listViewProductsRecordList =
-                                                        snapshot.data!;
-
-                                                    return ListView.builder(
-                                                      padding: EdgeInsets.zero,
-                                                      scrollDirection:
-                                                          Axis.vertical,
-                                                      itemCount:
-                                                          listViewProductsRecordList
-                                                              .length,
-                                                      itemBuilder: (context,
-                                                          listViewIndex) {
-                                                        final listViewProductsRecord =
-                                                            listViewProductsRecordList[
-                                                                listViewIndex];
-                                                        return Padding(
-                                                          padding:
-                                                              const EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                  4.0,
-                                                                  12.0,
-                                                                  4.0,
-                                                                  0.0),
-                                                          child: Container(
-                                                            width:
-                                                                double.infinity,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              boxShadow: const [
-                                                                BoxShadow(
-                                                                  blurRadius:
-                                                                      2.0,
-                                                                  color: Color(
-                                                                      0x520E151B),
-                                                                  offset:
-                                                                      Offset(
-                                                                    0.0,
-                                                                    1.0,
-                                                                  ),
-                                                                )
-                                                              ],
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          12.0),
-                                                            ),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      16.0,
-                                                                      0.0),
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                children: [
-                                                                  ClipRRect(
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            12.0),
-                                                                    child: Image
-                                                                        .network(
-                                                                      listViewProductsRecord
-                                                                          .images
-                                                                          .first,
-                                                                      width:
-                                                                          120.0,
-                                                                      height:
-                                                                          120.0,
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ),
-                                                                  ),
-                                                                  Expanded(
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: const EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Column(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.center,
-                                                                        crossAxisAlignment:
-                                                                            CrossAxisAlignment.start,
-                                                                        children: [
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                0.0,
-                                                                                0.0,
-                                                                                4.0),
-                                                                            child:
-                                                                                Text(
-                                                                              listViewProductsRecord.name,
-                                                                              style: FlutterFlowTheme.of(context).titleLarge.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                          Padding(
-                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                                                                0.0,
-                                                                                4.0,
-                                                                                0.0,
-                                                                                0.0),
-                                                                            child:
-                                                                                Text(
-                                                                              valueOrDefault<String>(
-                                                                                listViewProductsRecord.createdTime?.toString(),
-                                                                                'no data',
-                                                                              ),
-                                                                              style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                    fontFamily: 'Inter',
-                                                                                    letterSpacing: 0.0,
-                                                                                  ),
-                                                                            ),
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    listViewProductsRecord
-                                                                        .price
-                                                                        .toString(),
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .end,
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .headlineSmall
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Readex Pro',
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                        ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ).animateOnPageLoad(
-                                                              animationsMap[
-                                                                  'containerOnPageLoadAnimation2']!),
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsetsDirectional
-                                                          .fromSTEB(
-                                                          0.0, 12.0, 0.0, 0.0),
-                                                  child: StreamBuilder<
-                                                      List<ReviewsRecord>>(
-                                                    stream: queryReviewsRecord(
-                                                      queryBuilder:
-                                                          (reviewsRecord) =>
-                                                              reviewsRecord
-                                                                  .where(
-                                                        'product_user',
-                                                        isEqualTo:
-                                                            userProfileUsersRecord
-                                                                .reference,
-                                                      ),
+                                          if (_model.tabBarController != null)
+                                            Expanded(
+                                              child: TabBarView(
+                                                controller:
+                                                    _model.tabBarController,
+                                                children: [
+                                                  StreamBuilder<
+                                                      List<ProductsRecord>>(
+                                                    stream: queryProductsRecord(
+                                                      parent:
+                                                          userProfileUsersRecord
+                                                              .reference,
                                                     ),
                                                     builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              valueColor:
-                                                                  AlwaysStoppedAnimation<
-                                                                      Color>(
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                          ),
+                                                        (context, snapProd) {
+                                                      if (!snapProd.hasData) {
+                                                        return const Center(
+                                                          child:
+                                                              CircularProgressIndicator(),
                                                         );
                                                       }
-                                                      List<ReviewsRecord>
-                                                          listViewReviewsRecordList =
-                                                          snapshot.data!;
+                                                      final products =
+                                                          snapProd.data!;
+                                                      return StreamBuilder<
+                                                          List<
+                                                              PurchasesRecord>>(
+                                                        stream:
+                                                            queryPurchasesRecord(),
+                                                        builder: (context,
+                                                            snapPurch) {
+                                                          if (!snapPurch
+                                                              .hasData) {
+                                                            return const Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          }
+                                                          final allPurchases =
+                                                              snapPurch.data!;
+                                                          return MasonryGridView
+                                                              .builder(
+                                                            gridDelegate:
+                                                                const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                                                              crossAxisCount: 3,
+                                                            ),
+                                                            itemCount:
+                                                                products.length,
+                                                            shrinkWrap: true,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              final product =
+                                                                  products[
+                                                                      index];
+                                                              final imageUrl = (product
+                                                                      .images
+                                                                      .isNotEmpty)
+                                                                  ? product
+                                                                      .images
+                                                                      .first
+                                                                  : 'https://via.placeholder.com/300';
 
-                                                      return ListView.builder(
-                                                        padding:
-                                                            EdgeInsets.zero,
-                                                        scrollDirection:
-                                                            Axis.vertical,
-                                                        itemCount:
-                                                            listViewReviewsRecordList
-                                                                .length,
-                                                        itemBuilder: (context,
-                                                            listViewIndex) {
-                                                          final listViewReviewsRecord =
-                                                              listViewReviewsRecordList[
-                                                                  listViewIndex];
-                                                          return Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    12.0),
-                                                            child: StreamBuilder<
-                                                                UsersRecord>(
-                                                              stream: UsersRecord
-                                                                  .getDocument(
-                                                                      listViewReviewsRecord
-                                                                          .user!),
-                                                              builder: (context,
-                                                                  snapshot) {
-                                                                // Customize what your widget looks like when it's loading.
-                                                                if (!snapshot
-                                                                    .hasData) {
-                                                                  return Center(
-                                                                    child:
-                                                                        SizedBox(
+                                                              // sold 判定（該当商品のDocumentReferenceが購入済かどうか）
+                                                              final isSold =
+                                                                  allPurchases
+                                                                      .any(
+                                                                (purchase) => purchase
+                                                                    .product
+                                                                    .contains(
+                                                                        product
+                                                                            .reference),
+                                                              );
+
+                                                              return InkWell(
+                                                                onTap:
+                                                                    () async {
+                                                                  // 商品詳細ページに遷移
+                                                                  context
+                                                                      .pushNamed(
+                                                                    'ProductScreen',
+                                                                    queryParameters:
+                                                                        {
+                                                                      'productInfo':
+                                                                          serializeParam(
+                                                                        product
+                                                                            .reference,
+                                                                        ParamType
+                                                                            .DocumentReference,
+                                                                      ),
+                                                                    }.withoutNulls,
+                                                                  );
+                                                                },
+                                                                child: Stack(
+                                                                  children: [
+                                                                    Container(
                                                                       width:
-                                                                          50.0,
-                                                                      height:
-                                                                          50.0,
+                                                                          200.0,
+                                                                      margin: const EdgeInsetsDirectional
+                                                                          .fromSTEB(
+                                                                          4,
+                                                                          12,
+                                                                          4,
+                                                                          0),
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(12.0),
+                                                                      ),
                                                                       child:
-                                                                          CircularProgressIndicator(
-                                                                        valueColor:
-                                                                            AlwaysStoppedAnimation<Color>(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .primary,
+                                                                          ClipRRect(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(2.0),
+                                                                        child: Image
+                                                                            .network(
+                                                                          imageUrl,
+                                                                          fit: BoxFit
+                                                                              .fitWidth,
                                                                         ),
                                                                       ),
+                                                                    ).animateOnPageLoad(
+                                                                      animationsMap[
+                                                                          'containerOnPageLoadAnimation1']!,
                                                                     ),
-                                                                  );
-                                                                }
-
-                                                                final card10RatingUsersRecord =
-                                                                    snapshot
-                                                                        .data!;
-
-                                                                return Container(
-                                                                  width: double
-                                                                      .infinity,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                      width:
-                                                                          2.0,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .all(
-                                                                            4.0),
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .max,
-                                                                      children: [
-                                                                        Padding(
-                                                                          padding: const EdgeInsetsDirectional
-                                                                              .fromSTEB(
-                                                                              12.0,
-                                                                              8.0,
-                                                                              12.0,
-                                                                              8.0),
+                                                                    if (isSold)
+                                                                      Positioned(
+                                                                        top: 12,
+                                                                        right:
+                                                                            4,
+                                                                        child:
+                                                                            Container(
+                                                                          padding:
+                                                                              const EdgeInsets.symmetric(
+                                                                            horizontal:
+                                                                                6,
+                                                                            vertical:
+                                                                                2,
+                                                                          ),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                Colors.red,
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(0),
+                                                                          ),
                                                                           child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            mainAxisAlignment:
-                                                                                MainAxisAlignment.spaceBetween,
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.center,
-                                                                            children: [
-                                                                              Row(
-                                                                                mainAxisSize: MainAxisSize.max,
-                                                                                children: [
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsets.all(2.0),
-                                                                                    child: Container(
-                                                                                      width: 44.0,
-                                                                                      height: 44.0,
-                                                                                      decoration: BoxDecoration(
-                                                                                        color: FlutterFlowTheme.of(context).accent1,
-                                                                                        borderRadius: BorderRadius.circular(24.0),
-                                                                                        shape: BoxShape.rectangle,
-                                                                                        border: Border.all(
-                                                                                          color: FlutterFlowTheme.of(context).primary,
-                                                                                        ),
-                                                                                      ),
-                                                                                      child: Padding(
-                                                                                        padding: const EdgeInsets.all(2.0),
-                                                                                        child: ClipRRect(
-                                                                                          borderRadius: BorderRadius.circular(24.0),
-                                                                                          child: Image.network(
-                                                                                            valueOrDefault<String>(
-                                                                                              card10RatingUsersRecord.image,
-                                                                                              'https://firebasestorage.googleapis.com/v0/b/furugi-with-template-40pf0j.appspot.com/o/users%2Fdefault_image%2Fuser_no_image.png?alt=media&token=624ae0c5-c31b-4908-82e8-c79e0e996d7a',
-                                                                                            ),
-                                                                                            width: 70.0,
-                                                                                            height: 70.0,
-                                                                                            fit: BoxFit.cover,
-                                                                                          ),
-                                                                                        ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ),
-                                                                                  Padding(
-                                                                                    padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                                                                                    child: Column(
-                                                                                      mainAxisSize: MainAxisSize.max,
-                                                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                      children: [
-                                                                                        Text(
-                                                                                          card10RatingUsersRecord.displayName,
-                                                                                          style: FlutterFlowTheme.of(context).bodyLarge.override(
-                                                                                                fontFamily: 'Inter',
-                                                                                                letterSpacing: 0.0,
-                                                                                              ),
-                                                                                        ),
-                                                                                        Padding(
-                                                                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                                                                          child: Text(
-                                                                                            card10RatingUsersRecord.email,
-                                                                                            style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                                  fontFamily: 'Inter',
-                                                                                                  letterSpacing: 0.0,
-                                                                                                ),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
-                                                                                  ),
-                                                                                ],
-                                                                              ),
-                                                                              Text(
-                                                                                listViewReviewsRecord.evaluation.toString(),
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      fontFamily: 'Inter',
-                                                                                      letterSpacing: 0.0,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
+                                                                              const Text(
+                                                                            'sold',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.white,
+                                                                              fontWeight: FontWeight.bold,
+                                                                            ),
                                                                           ),
                                                                         ),
-                                                                        Padding(
-                                                                          padding: const EdgeInsetsDirectional
-                                                                              .fromSTEB(
-                                                                              12.0,
-                                                                              0.0,
-                                                                              12.0,
-                                                                              8.0),
-                                                                          child:
-                                                                              Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Expanded(
-                                                                                child: AutoSizeText(
-                                                                                  listViewReviewsRecord.review,
-                                                                                  style: FlutterFlowTheme.of(context).labelMedium.override(
-                                                                                        fontFamily: 'Inter',
-                                                                                        letterSpacing: 0.0,
-                                                                                      ),
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                );
-                                                              },
-                                                            ),
+                                                                      ),
+                                                                  ],
+                                                                ),
+                                                              );
+                                                            },
                                                           );
                                                         },
                                                       );
                                                     },
                                                   ),
-                                                ),
-                                              ],
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 12.0,
+                                                            0.0, 0.0),
+                                                    child: StreamBuilder<
+                                                        List<ReviewsRecord>>(
+                                                      stream:
+                                                          queryReviewsRecord(
+                                                        queryBuilder:
+                                                            (reviewsRecord) =>
+                                                                reviewsRecord
+                                                                    .where(
+                                                          'product_user',
+                                                          isEqualTo:
+                                                              userProfileUsersRecord
+                                                                  .reference,
+                                                        ),
+                                                      ),
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        List<ReviewsRecord>
+                                                            listViewReviewsRecordList =
+                                                            snapshot.data!;
+
+                                                        if (listViewReviewsRecordList
+                                                            .isEmpty) {
+                                                          return const Center(
+                                                            child: Text(
+                                                                'まだレビューはありません。'),
+                                                          );
+                                                        }
+
+                                                        return ListView.builder(
+                                                          padding:
+                                                              EdgeInsets.zero,
+                                                          scrollDirection:
+                                                              Axis.vertical,
+                                                          itemCount:
+                                                              listViewReviewsRecordList
+                                                                  .length,
+                                                          itemBuilder: (context,
+                                                              listViewIndex) {
+                                                            final listViewReviewsRecord =
+                                                                listViewReviewsRecordList[
+                                                                    listViewIndex];
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      12.0),
+                                                              child: StreamBuilder<
+                                                                  UsersRecord>(
+                                                                stream: UsersRecord
+                                                                    .getDocument(
+                                                                        listViewReviewsRecord
+                                                                            .user!),
+                                                                builder: (context,
+                                                                    snapshot) {
+                                                                  // Customize what your widget looks like when it's loading.
+                                                                  if (!snapshot
+                                                                      .hasData) {
+                                                                    return Center(
+                                                                      child:
+                                                                          SizedBox(
+                                                                        width:
+                                                                            50.0,
+                                                                        height:
+                                                                            50.0,
+                                                                        child:
+                                                                            CircularProgressIndicator(
+                                                                          valueColor:
+                                                                              AlwaysStoppedAnimation<Color>(
+                                                                            FlutterFlowTheme.of(context).primary,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  }
+                                                                  final card10RatingUsersRecord =
+                                                                      snapshot
+                                                                          .data!;
+
+                                                                  return Container(
+                                                                    width: double
+                                                                        .infinity,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              8.0),
+                                                                      border:
+                                                                          Border
+                                                                              .all(
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .alternate,
+                                                                        width:
+                                                                            2.0,
+                                                                      ),
+                                                                    ),
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .all(
+                                                                          4.0),
+                                                                      child:
+                                                                          Column(
+                                                                        mainAxisSize:
+                                                                            MainAxisSize.max,
+                                                                        children: [
+                                                                          Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                12.0,
+                                                                                8.0,
+                                                                                12.0,
+                                                                                8.0),
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              children: [
+                                                                                Row(
+                                                                                  mainAxisSize: MainAxisSize.max,
+                                                                                  children: [
+                                                                                    Padding(
+                                                                                      padding: const EdgeInsets.all(2.0),
+                                                                                      child: Container(
+                                                                                        width: 44.0,
+                                                                                        height: 44.0,
+                                                                                        decoration: BoxDecoration(
+                                                                                          color: FlutterFlowTheme.of(context).accent1,
+                                                                                          borderRadius: BorderRadius.circular(24.0),
+                                                                                          shape: BoxShape.rectangle,
+                                                                                          border: Border.all(
+                                                                                            color: FlutterFlowTheme.of(context).primary,
+                                                                                          ),
+                                                                                        ),
+                                                                                        child: Padding(
+                                                                                          padding: const EdgeInsets.all(2.0),
+                                                                                          child: ClipRRect(
+                                                                                            borderRadius: BorderRadius.circular(24.0),
+                                                                                            child: Image.network(
+                                                                                              valueOrDefault<String>(
+                                                                                                card10RatingUsersRecord.image,
+                                                                                                'https://firebasestorage.googleapis.com/v0/b/furugi-with-template-40pf0j.appspot.com/o/users%2Fdefault_image%2Fuser_no_image.png?alt=media&token=624ae0c5-c31b-4908-82e8-c79e0e996d7a',
+                                                                                              ),
+                                                                                              width: 70.0,
+                                                                                              height: 70.0,
+                                                                                              fit: BoxFit.cover,
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                    Padding(
+                                                                                      padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                                                                                      child: Column(
+                                                                                        mainAxisSize: MainAxisSize.max,
+                                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                        children: [
+                                                                                          Text(
+                                                                                            card10RatingUsersRecord.displayName,
+                                                                                            style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                                                                  fontFamily: 'Inter',
+                                                                                                  letterSpacing: 0.0,
+                                                                                                ),
+                                                                                          ),
+                                                                                          Padding(
+                                                                                            padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                                                                            child: Text(
+                                                                                              card10RatingUsersRecord.email,
+                                                                                              style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                                    fontFamily: 'Inter',
+                                                                                                    letterSpacing: 0.0,
+                                                                                                  ),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ],
+                                                                                      ),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
+                                                                                Text(
+                                                                                  listViewReviewsRecord.evaluation.toString(),
+                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                        fontFamily: 'Inter',
+                                                                                        letterSpacing: 0.0,
+                                                                                      ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                          Padding(
+                                                                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                                                                12.0,
+                                                                                0.0,
+                                                                                12.0,
+                                                                                8.0),
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                Expanded(
+                                                                                  child: AutoSizeText(
+                                                                                    listViewReviewsRecord.review,
+                                                                                    style: FlutterFlowTheme.of(context).labelMedium.override(
+                                                                                          fontFamily: 'Inter',
+                                                                                          letterSpacing: 0.0,
+                                                                                        ),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
                                         ],
                                       ),
                                     ),

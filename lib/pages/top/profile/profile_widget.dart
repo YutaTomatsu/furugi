@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -190,6 +191,11 @@ class _ProfileWidgetState extends State<ProfileWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
         body: SafeArea(
           child: Stack(
             children: [
@@ -784,17 +790,6 @@ class _ProfileWidgetState extends State<ProfileWidget>
                   ),
                 ],
               ).animateOnPageLoad(animationsMap['columnOnPageLoadAnimation']!),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: Container(
-                  decoration: const BoxDecoration(),
-                  child: wrapWithModel(
-                    model: _model.navBar12Model,
-                    updateCallback: () => setState(() {}),
-                    child: const NavBar12Widget(),
-                  ),
-                ),
-              ),
             ],
           ),
         ),

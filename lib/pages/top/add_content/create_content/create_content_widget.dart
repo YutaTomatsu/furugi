@@ -1,3 +1,4 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
 import 'package:provider/provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'create_content_model.dart';
 export 'create_content_model.dart';
 import '../product_register_confirm/product_register_confirm_widget.dart';
-import '../../../../components/header_default_widget';
 
 class CreateContentWidget extends StatefulWidget {
   const CreateContentWidget({super.key});
@@ -373,9 +373,11 @@ class _CreateContentWidgetState extends State<CreateContentWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: const HeaderDefaultWidget(
+        appBar: DefaultAppBarWidget(
           title: '商品の情報を入力',
           showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
         ),
         body: SafeArea(
           top: true,
@@ -674,7 +676,7 @@ class _CreateContentWidgetState extends State<CreateContentWidget> {
         ),
         bottomSheet: Container(
           color: FlutterFlowTheme.of(context).primaryBackground,
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 30),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -767,9 +769,9 @@ class _CategorySelectionPageState extends State<CategorySelectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('カテゴリーを選択'),
-        backgroundColor: FlutterFlowTheme.of(context).primary,
+      appBar: DefaultAppBarWidget(
+        title: 'カテゴリーを選択',
+        showBackButton: true,
       ),
       body: StreamBuilder<List<CategoriesRecord>>(
         stream: queryCategoriesRecord(
@@ -907,7 +909,7 @@ class ConditionSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HeaderDefaultWidget(
+      appBar: DefaultAppBarWidget(
         title: '商品の状態',
         showBackButton: true,
       ),
@@ -965,7 +967,7 @@ class SizeSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HeaderDefaultWidget(
+      appBar: DefaultAppBarWidget(
         title: 'サイズ',
         showBackButton: true,
       ),
@@ -997,7 +999,7 @@ class ShippingDaysSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HeaderDefaultWidget(
+      appBar: DefaultAppBarWidget(
         title: '発送までの日数',
         showBackButton: true,
       ),
@@ -1023,7 +1025,7 @@ class PrefectureSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HeaderDefaultWidget(
+      appBar: DefaultAppBarWidget(
         title: '発送元地域',
         showBackButton: true,
       ),
@@ -1072,7 +1074,7 @@ class ShippingCostSelectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const HeaderDefaultWidget(
+      appBar: DefaultAppBarWidget(
         title: '発送料の負担',
         showBackButton: true,
       ),

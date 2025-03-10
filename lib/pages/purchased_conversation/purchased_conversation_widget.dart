@@ -1,3 +1,6 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:furugi_with_template/components/nav_bar12_model.dart';
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
 import 'package:provider/provider.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
@@ -116,26 +119,16 @@ class _PurchasedConversationWidgetState
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          leading: FlutterFlowIconButton(
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () => context.pop(),
-          ),
-          title: Text(
-            'コメント',
-            style: FlutterFlowTheme.of(context).headlineMedium.override(
-                  fontFamily: 'Readex Pro',
-                  color: FlutterFlowTheme.of(context).primaryText,
-                  fontSize: 22.0,
-                ),
-          ),
-          elevation: 2.0,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: DefaultAppBarWidget(
+          title: 'コメント',
+          showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
         ),
         body: SafeArea(
           top: true,

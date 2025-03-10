@@ -1,4 +1,6 @@
 import 'package:furugi_with_template/backend/firebase_storage/storage.dart';
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:provider/provider.dart';
 
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -103,6 +105,17 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: const Color(0xFFF8F8F8),
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: DefaultAppBarWidget(
+          title: 'ユーザー情報',
+          showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
+        ),
         body: Stack(
           children: [
             Container(
@@ -121,42 +134,6 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
-                            width: MediaQuery.sizeOf(context).width * 0.9,
-                            decoration: const BoxDecoration(),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('HomePage');
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_back,
-                                    size: 34.0,
-                                  ),
-                                ),
-                                const SizedBox(width: 16.0),
-                                Text(
-                                  '詳細一覧',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ),
                           const SizedBox(height: 15.0),
                           SvgPicture.asset('assets/bottom_bar/home.svg',
                               width: 30.0, height: 30.0),
@@ -1123,14 +1100,6 @@ class _MyaccountWidgetState extends State<MyaccountWidget>
                       .divide(const SizedBox(height: 15.0))
                       .addToEnd(const SizedBox(height: 100.0)),
                 ),
-              ),
-            ),
-            Align(
-              alignment: const AlignmentDirectional(0.0, 1.0),
-              child: wrapWithModel(
-                model: _model.navBar12Model,
-                updateCallback: () => safeSetState(() {}),
-                child: const NavBar12Widget(),
               ),
             ),
           ],

@@ -1,3 +1,7 @@
+import 'package:furugi_with_template/components/nav_bar12_model.dart';
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -23,7 +27,7 @@ class ShopsWidget extends StatefulWidget {
     this.parking,
   });
 
-  /// 店名キーワード
+  /// 店名キーワード（初期値）
   final String? keyword;
 
   /// 都道府県絞り込み (例: ["東京都", "大阪府"] など)
@@ -53,26 +57,88 @@ class _ShopsWidgetState extends State<ShopsWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
+  /// 検索バーに対応するTextController
+  final TextEditingController _searchController = TextEditingController();
+
+  /// サジェスト用の検索結果候補（入力中に表示）
+  List<ShopsRecord> _searchResults = [];
+
+  /// Firestoreから取得した全ショップをキャッシュ
+  List<ShopsRecord> _allShops = [];
+
+  /// 最終的にEnter押下で確定した検索キーワード
+  String _finalSearchKeyword = '';
+
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => ShopsModel());
 
-    // ショップ一覧画面に検索バーがあるなら使う
+    // FlutterFlowで生成された検索バー用のコントローラ
     _model.searchFieldTextController ??= TextEditingController();
     _model.searchFieldFocusNode ??= FocusNode();
 
-    // 例えば、SearchShopWidget で入力された keyword をこちらにセットしておく
-    _model.searchFieldTextController?.text = widget.keyword ?? '';
+    // 初期キーワードがあればセット
+    if (widget.keyword != null && widget.keyword!.isNotEmpty) {
+      _searchController.text = widget.keyword!;
+    }
+
+    // 入力中はサジェストだけ更新 → _onSearchChanged()
+    // (Enter押下で本検索を実行)
+    _searchController.addListener(_onSearchChanged);
   }
 
   @override
   void dispose() {
     _model.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
-  /// allShops を受け取り、SearchShopWidget からのフィルタ内容で手動絞り込み
+  /// 入力中に呼ばれ、サジェスト候補だけ更新
+  void _onSearchChanged() {
+    final query = _searchController.text.trim().toLowerCase();
+
+    // 空ならサジェストクリア
+    if (query.isEmpty) {
+      setState(() => _searchResults.clear());
+      return;
+    }
+    // まだ_allShopsが未取得なら何もしない
+    if (_allShops.isEmpty) return;
+
+    // 部分一致で候補を絞る
+    final filtered = _allShops.where((shop) {
+      final name = (shop.name ?? '').toLowerCase();
+      return name.contains(query);
+    }).toList();
+
+    // ヒット位置が先頭に近い順にソート
+    filtered.sort((a, b) {
+      final aName = (a.name ?? '').toLowerCase();
+      final bName = (b.name ?? '').toLowerCase();
+      final indexA = aName.indexOf(query);
+      final indexB = bName.indexOf(query);
+      return indexA.compareTo(indexB);
+    });
+
+    setState(() {
+      _searchResults = filtered;
+    });
+  }
+
+  /// Enter押下で呼ばれる → メインリストを絞り込み
+  /// サジェストを消して、_finalSearchKeyword を確定
+  void _onSearchSubmitted(String submittedText) {
+    setState(() {
+      _finalSearchKeyword = submittedText.trim().toLowerCase();
+      // Enterを押したらサジェストは消す
+      _searchResults.clear();
+    });
+    FocusScope.of(context).unfocus();
+  }
+
+  /// メインの絞り込みロジック
   List<ShopsRecord> _applyAllFilters(
     List<ShopsRecord> allShops,
     String? keyword,
@@ -83,12 +149,11 @@ class _ShopsWidgetState extends State<ShopsWidget> {
     List<String>? genders,
     List<String>? parking,
   ) {
-    return allShops.where((shop) {
+    final filtered = allShops.where((shop) {
       // (1) 店名キーワード
       if (keyword != null && keyword.isNotEmpty) {
         final lowerName = shop.name.toLowerCase();
-        final lowerKey = keyword.toLowerCase();
-        if (!lowerName.contains(lowerKey)) {
+        if (!lowerName.contains(keyword)) {
           return false;
         }
       }
@@ -135,11 +200,26 @@ class _ShopsWidgetState extends State<ShopsWidget> {
       }
       return true;
     }).toList();
+
+    // ソート: キーワード一致が先頭に近い順
+    if (keyword != null && keyword.isNotEmpty) {
+      filtered.sort((a, b) {
+        final aName = a.name.toLowerCase();
+        final bName = b.name.toLowerCase();
+        final indexA = aName.indexOf(keyword);
+        final indexB = bName.indexOf(keyword);
+        return indexA.compareTo(indexB);
+      });
+    }
+
+    return filtered;
   }
 
   @override
   Widget build(BuildContext context) {
-    final keyword = widget.keyword ?? '';
+    // ここでは、Enter押下済みの _finalSearchKeyword を使って絞り込む
+    final keyword = _finalSearchKeyword;
+
     final prefList = widget.prefectures ?? [];
     final priceList = widget.priceRanges ?? [];
     final payList = widget.payments ?? [];
@@ -152,17 +232,81 @@ class _ShopsWidgetState extends State<ShopsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          child: Column(
-            children: [
-              // もしこの画面にも検索バーを置きたい場合はここに追加
-              wrapWithModel(
-                model: _model.headerModel,
-                updateCallback: () => setState(() {}),
-                child: const HeaderWidget(),
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          foregroundColor: Colors.black,
+          elevation: 0,
+          title: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 200),
+            child: Container(
+              height: 36, // 検索バーの高さ
+              decoration: BoxDecoration(
+                color: Colors.grey[150],
+                borderRadius: BorderRadius.circular(8),
               ),
+              child: TextField(
+                controller: _searchController,
+                // ★ Enterを押したら絞り込み実行 & サジェストクリア
+                onSubmitted: _onSearchSubmitted,
+                decoration: InputDecoration(
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                  hintText: 'ショップ検索（Enterで決定）',
+                  border: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  filled: true,
+                  fillColor: Colors.grey[150],
 
-              // 全件読み込み → 手動絞り込み
+                  // クリアボタン
+                  suffixIcon: _searchController.text.isNotEmpty
+                      ? IconButton(
+                          icon: Icon(
+                            Icons.clear,
+                            color: FlutterFlowTheme.of(context).furugiMainColor,
+                          ),
+                          onPressed: () {
+                            _searchController.clear();
+                            _onSearchChanged(); // クリアで候補も再更新
+                          },
+                        )
+                      : null,
+                ),
+                style: const TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
+          centerTitle: false,
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Cart');
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Notification');
+              },
+            ),
+          ],
+        ),
+        body: SafeArea(
+          child: Stack(
+            children: [
+              // メインのリスト
               Expanded(
                 child: StreamBuilder<List<ShopsRecord>>(
                   stream: queryShopsRecord(
@@ -179,9 +323,11 @@ class _ShopsWidgetState extends State<ShopsWidget> {
                         ),
                       );
                     }
-                    // 全データ取得
                     final allShops = snapshot.data!;
-                    // 手動フィルタ
+                    // 取得した全ショップをキャッシュ
+                    _allShops = allShops;
+
+                    // Enter押下済みのkeywordでフィルタ
                     final filteredShops = _applyAllFilters(
                       allShops,
                       keyword,
@@ -196,7 +342,7 @@ class _ShopsWidgetState extends State<ShopsWidget> {
                     if (filteredShops.isEmpty) {
                       return const Center(child: Text('該当するショップがありません'));
                     }
-                    // 絞り込み結果を表示
+
                     return ListView.builder(
                       itemCount: filteredShops.length,
                       itemBuilder: (context, index) {
@@ -207,6 +353,32 @@ class _ShopsWidgetState extends State<ShopsWidget> {
                   },
                 ),
               ),
+              // ★ サジェスト候補を検索バー直下に表示
+              if (_searchResults.isNotEmpty)
+                Container(
+                  color: Colors.white,
+                  constraints: const BoxConstraints(maxHeight: 200),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _searchResults.length,
+                    itemBuilder: (context, index) {
+                      final shop = _searchResults[index];
+                      return ListTile(
+                        title: Text(shop.name ?? ''),
+                        subtitle: Text(
+                          shop.address ?? '',
+                          style: const TextStyle(fontSize: 12.0),
+                        ),
+                        onTap: () {
+                          // 候補をタップ → 検索フィールドに反映
+                          _searchController.text = shop.name ?? '';
+                          _onSearchChanged();
+                          FocusScope.of(context).unfocus();
+                        },
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
         ),
@@ -214,9 +386,11 @@ class _ShopsWidgetState extends State<ShopsWidget> {
     );
   }
 
+  /// ショップ1件分のUI
   Widget _buildShopItem(BuildContext context, ShopsRecord shopRecord) {
     return InkWell(
       onTap: () {
+        // ショップ詳細へ遷移
         context.pushNamed(
           'ShopScreen',
           queryParameters: {
@@ -225,6 +399,12 @@ class _ShopsWidgetState extends State<ShopsWidget> {
               ParamType.DocumentReference,
             ),
           }.withoutNulls,
+          extra: <String, dynamic>{
+            kTransitionInfoKey: const TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.rightToLeft,
+            ),
+          },
         );
       },
       child: Container(
@@ -268,24 +448,30 @@ class _ShopsWidgetState extends State<ShopsWidget> {
                       shopRecord.prefecture,
                       style: FlutterFlowTheme.of(context).bodyMedium,
                     ),
-                    // お気に入りボタン
+                    // いいねボタン
                     Align(
                       alignment: Alignment.centerRight,
                       child: ToggleIcon(
                         onPressed: () async {
-                          final likeElement = currentUserReference;
-                          final likeUpdate =
-                              shopRecord.like.contains(likeElement)
-                                  ? FieldValue.arrayRemove([likeElement])
-                                  : FieldValue.arrayUnion([likeElement]);
-                          await shopRecord.reference.update({
-                            ...mapToFirestore({'like': likeUpdate}),
-                          });
+                          try {
+                            // toppage_widget.dart での実装を参考に
+                            final likeElement = currentUserReference;
+                            final likeUpdate =
+                                shopRecord.like.contains(likeElement)
+                                    ? FieldValue.arrayRemove([likeElement])
+                                    : FieldValue.arrayUnion([likeElement]);
+                            await shopRecord.reference.update({
+                              ...mapToFirestore({'like': likeUpdate}),
+                            });
+                          } catch (e) {
+                            print('Error toggling like: $e');
+                          }
                         },
+                        // toppage_widget.dart では like.contains(...) 前提
                         value: shopRecord.like.contains(currentUserReference),
                         onIcon: Icon(
                           Icons.favorite,
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: FlutterFlowTheme.of(context).like,
                           size: 22.0,
                         ),
                         offIcon: Icon(

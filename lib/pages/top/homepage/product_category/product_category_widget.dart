@@ -1,3 +1,6 @@
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -63,32 +66,46 @@ class _ProductCategoryWidgetState extends State<ProductCategoryWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
+          backgroundColor: Colors.white, // ← ヘッダー背景色
+          foregroundColor: Colors.black, // ← ヘッダーテキスト色
+          elevation: 0,
           title: Text(
             'カテゴリーから探す',
-            style: FlutterFlowTheme.of(context).displaySmall.override(
-                  fontFamily: 'Readex Pro',
-                  fontSize: 20.0,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Inter',
+                  fontSize: 16.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
                 ),
           ),
-          centerTitle: false,
-          elevation: 2.0,
+          centerTitle: true,
+          actions: [
+            // ← 右側にアイコンを配置
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Cart'); // ← カート画面に遷移
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Notification'); // ← お知らせ画面に遷移
+              },
+            ),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(

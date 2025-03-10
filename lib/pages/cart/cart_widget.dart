@@ -1,3 +1,5 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -29,7 +31,6 @@ class _CartWidgetState extends State<CartWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CartModel());
-    _navBar12Model = createModel(context, () => NavBar12Model());
   }
 
   @override
@@ -48,6 +49,16 @@ class _CartWidgetState extends State<CartWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: DefaultAppBarWidget(
+          title: 'カート',
+          showBackButton: true,
+          showNotificationIcon: true,
+        ),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -58,191 +69,169 @@ class _CartWidgetState extends State<CartWidget> {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    wrapWithModel(
-                      model: _model.headerModel,
-                      updateCallback: () => setState(() {}),
-                      child: const HeaderWidget(),
-                    ),
                     Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
                       alignment: const AlignmentDirectional(0.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              // タイトル部分
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 10.0),
-                                child: Container(
-                                  height: 38.0,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5.0),
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: InkWell(
-                                          onTap: () async {
-                                            context.pop();
-                                          },
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.asset(
-                                              'assets/images/Action_Icon.png',
-                                              width: 34.0,
-                                              height: 34.0,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          'カート',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Inter',
-                                                fontSize: 16.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              // カート一覧表示部分（既存商品一覧など）
-                              Builder(
-                                builder: (context) {
-                                  final cartProductItems =
-                                      FFAppState().cartItems.toList();
-                                  return ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    shrinkWrap: true,
-                                    itemCount: cartProductItems.length,
-                                    itemBuilder:
-                                        (context, cartProductItemsIndex) {
-                                      final cartProductItemsItem =
-                                          cartProductItems[
-                                              cartProductItemsIndex];
-                                      return Padding(
-                                        padding: const EdgeInsetsDirectional
-                                            .fromSTEB(10.0, 10.0, 10.0, 10.0),
-                                        child: StreamBuilder<ProductsRecord>(
-                                          stream: ProductsRecord.getDocument(
-                                              cartProductItemsItem),
-                                          builder: (context, snapshot) {
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    valueColor:
-                                                        AlwaysStoppedAnimation<
-                                                            Color>(
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                    ),
+                          Column(mainAxisSize: MainAxisSize.max, children: [
+                            // カート一覧表示部分（既存商品一覧など）
+                            Builder(
+                              builder: (context) {
+                                final cartProductItems =
+                                    FFAppState().cartItems.toList();
+                                return ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  itemCount: cartProductItems.length,
+                                  itemBuilder:
+                                      (context, cartProductItemsIndex) {
+                                    final cartProductItemsItem =
+                                        cartProductItems[cartProductItemsIndex];
+                                    return Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              10.0, 10.0, 10.0, 10.0),
+                                      child: StreamBuilder<ProductsRecord>(
+                                        stream: ProductsRecord.getDocument(
+                                            cartProductItemsItem),
+                                        builder: (context, snapshot) {
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
                                                   ),
                                                 ),
-                                              );
-                                            }
-                                            final containerProductsRecord =
-                                                snapshot.data!;
-                                            return Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
                                               ),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Container(
-                                                    width: MediaQuery.sizeOf(
-                                                                context)
-                                                            .width *
-                                                        1.0,
-                                                    decoration:
-                                                        const BoxDecoration(),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            containerProductsRecord
-                                                                .images.first,
-                                                            width: 90.0,
-                                                            height: 90.0,
-                                                            fit: BoxFit.cover,
-                                                          ),
+                                            );
+                                          }
+                                          final containerProductsRecord =
+                                              snapshot.data!;
+                                          return Container(
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Container(
+                                                  width:
+                                                      MediaQuery.sizeOf(context)
+                                                              .width *
+                                                          1.0,
+                                                  decoration:
+                                                      const BoxDecoration(),
+                                                  child: Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                        child: Image.network(
+                                                          containerProductsRecord
+                                                              .images.first,
+                                                          width: 90.0,
+                                                          height: 90.0,
+                                                          fit: BoxFit.cover,
                                                         ),
-                                                        Container(
-                                                          width: 220.0,
-                                                          decoration:
-                                                              const BoxDecoration(),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                    10.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
+                                                      ),
+                                                      Container(
+                                                        width: 220.0,
+                                                        decoration:
+                                                            const BoxDecoration(),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                  10.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                containerProductsRecord
+                                                                    .name,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                        0.0,
+                                                                        10.0,
+                                                                        0.0,
+                                                                        10.0),
+                                                                child: Text(
                                                                   containerProductsRecord
-                                                                      .name,
+                                                                      .shippingDays,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
                                                                         fontFamily:
                                                                             'Inter',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
+                                                                        color: const Color(
+                                                                            0xFF666666),
                                                                         fontSize:
-                                                                            14.0,
+                                                                            12.0,
                                                                         letterSpacing:
                                                                             0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
                                                                       ),
                                                                 ),
-                                                                Padding(
-                                                                  padding:
-                                                                      const EdgeInsetsDirectional
-                                                                          .fromSTEB(
-                                                                          0.0,
-                                                                          10.0,
-                                                                          0.0,
-                                                                          10.0),
-                                                                  child: Text(
+                                                              ),
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  Text(
+                                                                    'サイズ: ',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium,
+                                                                  ),
+                                                                  Text(
                                                                     containerProductsRecord
-                                                                        .shippingDays,
+                                                                        .size,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -250,172 +239,86 @@ class _CartWidgetState extends State<CartWidget> {
                                                                           fontFamily:
                                                                               'Inter',
                                                                           color:
-                                                                              const Color(0xFF666666),
-                                                                          fontSize:
-                                                                              12.0,
+                                                                              Colors.black,
                                                                           letterSpacing:
                                                                               0.0,
                                                                         ),
                                                                   ),
-                                                                ),
-                                                                Row(
-                                                                  mainAxisSize:
-                                                                      MainAxisSize
-                                                                          .max,
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    Text(
-                                                                      'サイズ: ',
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium,
-                                                                    ),
-                                                                    Text(
+                                                                  Align(
+                                                                    alignment:
+                                                                        Alignment
+                                                                            .center,
+                                                                    child: Text(
                                                                       containerProductsRecord
-                                                                          .size,
+                                                                          .price
+                                                                          .toString(),
                                                                       style: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodyMedium
                                                                           .override(
                                                                             fontFamily:
-                                                                                'Inter',
+                                                                                'Plus Jakarta Sans',
                                                                             color:
                                                                                 Colors.black,
+                                                                            fontSize:
+                                                                                16.0,
                                                                             letterSpacing:
                                                                                 0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.normal,
                                                                           ),
                                                                     ),
-                                                                    Align(
-                                                                      alignment:
-                                                                          Alignment
-                                                                              .center,
-                                                                      child:
-                                                                          Text(
+                                                                  ),
+                                                                  InkWell(
+                                                                    onTap:
+                                                                        () async {
+                                                                      FFAppState()
+                                                                          .removeFromCartItems(
                                                                         containerProductsRecord
-                                                                            .price
-                                                                            .toString(),
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              fontFamily: 'Plus Jakarta Sans',
-                                                                              color: Colors.black,
-                                                                              fontSize: 16.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
+                                                                            .reference,
+                                                                      );
+                                                                      FFAppState()
+                                                                          .cartSum = FFAppState()
+                                                                              .cartSum +
+                                                                          functions
+                                                                              .newCustomFunction(FFAppState().cartSum)!;
+                                                                      setState(
+                                                                          () {});
+                                                                    },
+                                                                    child: Icon(
+                                                                      Icons
+                                                                          .delete,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                      size:
+                                                                          24.0,
                                                                     ),
-                                                                    InkWell(
-                                                                      onTap:
-                                                                          () async {
-                                                                        FFAppState()
-                                                                            .removeFromCartItems(
-                                                                          containerProductsRecord
-                                                                              .reference,
-                                                                        );
-                                                                        FFAppState()
-                                                                            .cartSum = FFAppState()
-                                                                                .cartSum +
-                                                                            functions.newCustomFunction(FFAppState().cartSum)!;
-                                                                        setState(
-                                                                            () {});
-                                                                      },
-                                                                      child:
-                                                                          Icon(
-                                                                        Icons
-                                                                            .delete,
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .primaryText,
-                                                                        size:
-                                                                            24.0,
-                                                                      ),
-                                                                    ),
-                                                                  ].divide(
-                                                                      const SizedBox(
-                                                                          width:
-                                                                              5.0)),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                      ],
-                                                    ),
+                                                      ),
+                                                    ],
                                                   ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      );
-                                    },
-                                  );
-                                },
-                              ),
-                            ]
-                                .divide(const SizedBox(height: 10.0))
-                                .addToEnd(const SizedBox(height: 10.0)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Divider(thickness: 10.0, color: Color(0xFFF1F1F1)),
-                    // 金額詳細
-                    Container(
-                      width: MediaQuery.sizeOf(context).width * 0.9,
-                      decoration: const BoxDecoration(),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '金額詳細',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Inter',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 16.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                        ].divide(const SizedBox(height: 10.0)),
-                      ),
-                    ),
-                    Container(
-                      height: 43.0,
-                      color: const Color(0xFFEFF4FF),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                20.0, 0.0, 0.0, 0.0),
-                            child: Text('合計金額'),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Text(
-                              FFAppState().cartSum.toString(),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Plus Jakarta Sans',
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
                             ),
-                          ),
+                          ]),
                         ],
                       ),
                     ),
-                    const Divider(thickness: 10.0, color: Color(0xFFF1F1F1)),
+                    const Divider(thickness: 10.0, color: Colors.white),
                     // 配送先表示部分：デフォルト配送先として設定されている住所情報を表示
                     Container(
                       width: MediaQuery.sizeOf(context).width * 0.9,
@@ -445,7 +348,7 @@ class _CartWidgetState extends State<CartWidget> {
                                 child: Row(
                                   children: [
                                     Text(
-                                      'Edit',
+                                      '配送先を変更する',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -454,7 +357,7 @@ class _CartWidgetState extends State<CartWidget> {
                                           ),
                                     ),
                                     const Icon(Icons.edit),
-                                  ].divide(const SizedBox(width: 5.0)),
+                                  ],
                                 ),
                               ),
                             ],
@@ -526,6 +429,60 @@ class _CartWidgetState extends State<CartWidget> {
                         ].divide(const SizedBox(height: 10.0)),
                       ),
                     ),
+                    const Divider(thickness: 10.0, color: Colors.white),
+                    // 金額詳細
+                    Container(
+                      width: MediaQuery.sizeOf(context).width * 0.9,
+                      decoration: const BoxDecoration(),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '金額詳細',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Inter',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 16.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                          ),
+                        ].divide(const SizedBox(height: 10.0)),
+                      ),
+                    ),
+                    Container(
+                      height: 43.0,
+                      color: const Color(0xFFEFF4FF),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            child: Text('合計金額'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 10.0, 0.0),
+                            child: Text(
+                              '${FFAppState().cartSum.toString()}円',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Plus Jakarta Sans',
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ].addToEnd(const SizedBox(height: 20.0)),
                 ),
               ),
@@ -587,11 +544,6 @@ class _CartWidgetState extends State<CartWidget> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
-                      ),
-                      wrapWithModel(
-                        model: _navBar12Model,
-                        updateCallback: () => setState(() {}),
-                        child: const NavBar12Widget(),
                       ),
                     ],
                   ),

@@ -1,3 +1,6 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/components/nav_bar12_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -64,6 +67,17 @@ class _AddContentsWidgetState extends State<AddContentsWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: DefaultAppBarWidget(
+          title: '古着の出品・古着屋の登録',
+          showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
+        ),
         body: SafeArea(
           top: true,
           child: Stack(
@@ -180,14 +194,6 @@ class _AddContentsWidgetState extends State<AddContentsWidget>
                 ),
               ).animateOnPageLoad(
                   animationsMap['containerOnPageLoadAnimation']!),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: wrapWithModel(
-                  model: _model.navBar12Model,
-                  updateCallback: () => safeSetState(() {}),
-                  child: const NavBar12Widget(),
-                ),
-              ),
             ],
           ),
         ),

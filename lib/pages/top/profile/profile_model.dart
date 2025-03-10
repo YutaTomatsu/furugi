@@ -1,4 +1,3 @@
-import '/components/nav_bar12_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'profile_widget.dart' show ProfileWidget;
 import 'package:flutter/material.dart';
@@ -15,17 +14,11 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
 
-  // Model for NavBar12 component.
-  late NavBar12Model navBar12Model;
-
   @override
-  void initState(BuildContext context) {
-    navBar12Model = createModel(context, () => NavBar12Model());
-  }
+  void initState(BuildContext context) {}
 
   @override
   void dispose() {
     tabBarController?.dispose();
-    navBar12Model.dispose();
   }
 }
