@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -13,6 +15,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'product_screen_model.dart';
 export 'product_screen_model.dart';
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
 
 class ProductScreenWidget extends StatefulWidget {
   const ProductScreenWidget({
@@ -58,6 +61,17 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
           // ローディング中の表示
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            bottomNavigationBar: Consumer<NavBar12Model>(
+              builder: (context, model, child) {
+                return NavBar12Widget();
+              },
+            ),
+            appBar: DefaultAppBarWidget(
+              title: '商品詳細',
+              showBackButton: true,
+              showCartIcon: true,
+              showNotificationIcon: true,
+            ),
             body: Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
@@ -74,55 +88,51 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Stack(
-              children: [
-                // ===== コンテンツ部分 =====
-                SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // ヘッダー
-                      wrapWithModel(
-                        model: _model.headerModel,
-                        updateCallback: () => setState(() {}),
-                        child: const HeaderWidget(),
-                      ),
-                      // 戻るボタン & カルーセル画像
-                      Container(
-                        width: MediaQuery.sizeOf(context).width,
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        child: _buildTopSection(productRecord),
-                      ),
-                      // 商品説明
-                      _buildDescriptionSection(productRecord),
-                      // サイズ・配送情報
-                      _buildDetailAttributes(productRecord),
-                      // 出品者情報
-                      _buildUserSection(productRecord),
-                      // コメント一覧とコメントボタン
-                      _buildCommentsSection(productRecord),
-                      const SizedBox(height: 150), // 最下部の余白
-                    ],
+            bottomNavigationBar: Consumer<NavBar12Model>(
+              builder: (context, model, child) {
+                return NavBar12Widget();
+              },
+            ),
+            appBar: DefaultAppBarWidget(
+              title: '商品詳細',
+              showBackButton: true,
+              showCartIcon: true,
+              showNotificationIcon: true,
+            ),
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  // ===== コンテンツ部分 =====
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        // 戻るボタン & カルーセル画像
+                        Container(
+                          width: MediaQuery.sizeOf(context).width,
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          child: _buildTopSection(productRecord),
+                        ),
+                        // 商品説明
+                        _buildDescriptionSection(productRecord),
+                        // サイズ・配送情報
+                        _buildDetailAttributes(productRecord),
+                        // 出品者情報
+                        _buildUserSection(productRecord),
+                        // コメント一覧とコメントボタン
+                        _buildCommentsSection(productRecord),
+                        const SizedBox(height: 150), // 最下部の余白
+                      ],
+                    ),
                   ),
-                ),
-                // ===== 画面下部のアクションボタン =====
-                Align(
-                  alignment: const AlignmentDirectional(0, 1),
-                  child: Padding(
-                    // ナビゲーションバーと重ならないようにマージン
-                    padding: const EdgeInsets.only(bottom: 75),
+                  // ===== 画面下部のアクションボタン =====
+                  Align(
+                    alignment: const AlignmentDirectional(0, 1),
                     child: _buildBottomActionBar(context, productRecord),
                   ),
-                ),
-                // ===== 共通ナビゲーションバー =====
-                Align(
-                  alignment: const AlignmentDirectional(0, 1),
-                  child: wrapWithModel(
-                    model: _model.navBar12Model,
-                    updateCallback: () => setState(() {}),
-                    child: const NavBar12Widget(),
-                  ),
-                ),
-              ],
+                  // ===== 共通ナビゲーションバー =====
+                ],
+              ),
             ),
           ),
         );
@@ -139,27 +149,6 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
         children: [
-          // 戻るボタン
-          Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                InkWell(
-                  onTap: () => context.pop(),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      'assets/images/Action_Icon.png',
-                      width: 34,
-                      height: 34,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           // 画像表示: 1枚 or 2枚以上
           if (imagesCount == 1)
             // ▼ 画像が1枚の場合（カルーセルは表示しない）
@@ -373,7 +362,15 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
           onTap: () {
             // 出品者ならProfile、他人ならUserProfileへ遷移
             if (userRecord.reference == currentUserReference) {
-              context.pushNamed('Profile');
+              context.pushNamed(
+                'Profile',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
+              );
             } else {
               context.pushNamed(
                 'UserProfile',
@@ -383,6 +380,12 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
                     ParamType.DocumentReference,
                   ),
                 }.withoutNulls,
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
               );
             }
           },
@@ -420,18 +423,13 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
                 ),
                 // 右: 矢印アイコン
                 FlutterFlowIconButton(
-                  borderColor: Colors.transparent,
                   borderRadius: 8,
                   buttonSize: 40,
-                  fillColor: FlutterFlowTheme.of(context).primary,
                   icon: Icon(
                     Icons.arrow_forward_ios,
-                    color: FlutterFlowTheme.of(context).info,
+                    color: Colors.black,
                     size: 20,
                   ),
-                  onPressed: () {
-                    // 必要に応じて遷移等の動作を設定
-                  },
                 ),
               ],
             ),
@@ -490,6 +488,12 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
             onPressed: () {
               context.pushNamed(
                 'Comment',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: const TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.rightToLeft,
+                  ),
+                },
                 queryParameters: {
                   'productInfo': serializeParam(
                     widget.productInfo,
@@ -505,14 +509,10 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
               color: FlutterFlowTheme.of(context).primary,
               textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                     fontFamily: 'Inter',
-                    color: const Color(0xFF507583),
-                    fontWeight: FontWeight.w500,
+                    color: FlutterFlowTheme.of(context).furugiMainColor,
+                    fontWeight: FontWeight.w600,
                   ),
               elevation: 0,
-              borderSide: const BorderSide(
-                color: Color(0xFF507583),
-                width: 1,
-              ),
               borderRadius: BorderRadius.circular(8),
             ),
           ),
@@ -715,7 +715,15 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
                 FFAppState().cartSum = FFAppState().cartSum + product.price;
                 FFAppState().productUser = product.parentReference;
                 setState(() {});
-                context.pushNamed('Cart');
+                context.pushNamed(
+                  'Cart',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.rightToLeft,
+                    ),
+                  },
+                );
               },
               text: 'カートに入れる',
               options: FFButtonOptions(
@@ -725,6 +733,7 @@ class _ProductScreenWidgetState extends State<ProductScreenWidget> {
                       fontFamily: 'Inter',
                       color: Colors.white,
                       letterSpacing: 0,
+                      fontWeight: FontWeight.w600,
                     ),
                 elevation: 3,
                 borderSide: const BorderSide(

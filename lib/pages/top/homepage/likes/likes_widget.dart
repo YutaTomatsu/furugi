@@ -1,3 +1,5 @@
+import 'package:provider/provider.dart';
+
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/header_widget.dart';
@@ -68,6 +70,48 @@ class _LikesWidgetState extends State<LikesWidget>
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white, // ← ヘッダー背景色
+          foregroundColor: Colors.black, // ← ヘッダーテキスト色
+          elevation: 0,
+          title: Text(
+            'お気に入り',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Inter',
+                  fontSize: 16.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+          centerTitle: true,
+          automaticallyImplyLeading: false,
+          actions: [
+            // ← 右側にアイコンを配置
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Cart'); // ← カート画面に遷移
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Notification'); // ← お知らせ画面に遷移
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           child: Stack(
             children: [
@@ -83,11 +127,6 @@ class _LikesWidgetState extends State<LikesWidget>
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      wrapWithModel(
-                        model: _model.headerModel,
-                        updateCallback: () => safeSetState(() {}),
-                        child: const HeaderWidget(),
-                      ),
                       StreamBuilder<List<ProductsRecord>>(
                         stream: queryProductsRecord(
                           queryBuilder: (productsRecord) =>
@@ -113,51 +152,9 @@ class _LikesWidgetState extends State<LikesWidget>
                           }
                           List<ProductsRecord> listViewProductsRecordList =
                               snapshot.data!;
-                          Container(
-                            height: 38.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('HomePage');
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      'assets/images/Action_Icon.png',
-                                      width: 34.0,
-                                      height: 34.0,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'My Wishlist',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Inter',
-                                        color: Colors.black,
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                ),
-                              ].divide(const SizedBox(width: 90.0)),
-                            ),
-                          );
-
                           return ListView.builder(
-                            padding: EdgeInsets.zero,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 20.0),
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: listViewProductsRecordList.length,
@@ -167,7 +164,7 @@ class _LikesWidgetState extends State<LikesWidget>
                               return Container(
                                 width: MediaQuery.sizeOf(context).width * 0.9,
                                 decoration: const BoxDecoration(),
-                                alignment: const AlignmentDirectional(0.0, 0.0),
+                                alignment: const AlignmentDirectional(.0, 0.0),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -194,9 +191,9 @@ class _LikesWidgetState extends State<LikesWidget>
                                                 child: Image.network(
                                                   listViewProductsRecord
                                                       .images.first,
-                                                  width: 120.0,
-                                                  height: 125.0,
-                                                  fit: BoxFit.cover,
+                                                  width: 100.0,
+                                                  height: 100.0,
+                                                  fit: BoxFit.contain,
                                                 ),
                                               ),
                                               Container(
@@ -226,115 +223,139 @@ class _LikesWidgetState extends State<LikesWidget>
                                                                 FontWeight.w600,
                                                           ),
                                                     ),
+                                                    Text(
+                                                      'Size:${listViewProductsRecord.size}',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
                                                     Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
                                                       children: [
                                                         Text(
-                                                          'Size: ',
+                                                          listViewProductsRecord
+                                                              .price
+                                                              .toString(),
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
                                                               .override(
                                                                 fontFamily:
-                                                                    'Inter',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                        ),
-                                                        Container(
-                                                          width: 20.0,
-                                                          height: 20.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primaryText,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          child: Align(
-                                                            alignment:
-                                                                const AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: Text(
-                                                              'S',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyLarge
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .secondaryBackground,
-                                                                    fontSize:
-                                                                        12.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          'Small',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Inter',
+                                                                    'Plus Jakarta Sans',
                                                                 color: Colors
                                                                     .black,
+                                                                fontSize: 18.0,
                                                                 letterSpacing:
                                                                     0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                               ),
                                                         ),
-                                                        Align(
-                                                          alignment:
-                                                              const AlignmentDirectional(
-                                                                  0.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                    50.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                            child: Text(
-                                                              listViewProductsRecord
-                                                                  .price
-                                                                  .toString(),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Plus Jakarta Sans',
-                                                                    color: Colors
-                                                                        .black,
-                                                                    fontSize:
-                                                                        16.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                  ),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .end,
+                                                          children: [
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                FFAppState().addToCartItems(
+                                                                    listViewProductsRecord
+                                                                        .reference);
+                                                                FFAppState()
+                                                                    .cartSum = FFAppState()
+                                                                        .cartSum +
+                                                                    listViewProductsRecord
+                                                                        .price;
+                                                                safeSetState(
+                                                                    () {});
+
+                                                                context
+                                                                    .pushNamed(
+                                                                        'Cart');
+                                                              },
+                                                              child: const Icon(
+                                                                Icons
+                                                                    .add_shopping_cart,
+                                                                color: Color(
+                                                                    0xFF333333),
+                                                                size: 24.0,
+                                                              ),
                                                             ),
-                                                          ),
+                                                            Align(
+                                                              alignment:
+                                                                  const AlignmentDirectional(
+                                                                      1.0, 0.0),
+                                                              child: ToggleIcon(
+                                                                onPressed:
+                                                                    () async {
+                                                                  final likeElement =
+                                                                      currentUserReference;
+                                                                  final likeUpdate = listViewProductsRecord
+                                                                          .like
+                                                                          .contains(
+                                                                              likeElement)
+                                                                      ? FieldValue
+                                                                          .arrayRemove([
+                                                                          likeElement
+                                                                        ])
+                                                                      : FieldValue
+                                                                          .arrayUnion([
+                                                                          likeElement
+                                                                        ]);
+                                                                  await listViewProductsRecord
+                                                                      .reference
+                                                                      .update({
+                                                                    ...mapToFirestore(
+                                                                      {
+                                                                        'like':
+                                                                            likeUpdate,
+                                                                      },
+                                                                    ),
+                                                                  });
+                                                                },
+                                                                value: listViewProductsRecord
+                                                                    .like
+                                                                    .contains(
+                                                                        currentUserReference),
+                                                                onIcon: Icon(
+                                                                  Icons
+                                                                      .favorite,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .like,
+                                                                  size: 22.0,
+                                                                ),
+                                                                offIcon: Icon(
+                                                                  Icons
+                                                                      .favorite_border,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 22.0,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ].divide(const SizedBox(
-                                                          width: 5.0)),
+                                                      ],
                                                     ),
                                                   ]
                                                       .divide(const SizedBox(
@@ -346,87 +367,6 @@ class _LikesWidgetState extends State<LikesWidget>
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              hoverColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              onTap: () async {
-                                                FFAppState().addToCartItems(
-                                                    listViewProductsRecord
-                                                        .reference);
-                                                FFAppState().cartSum =
-                                                    FFAppState().cartSum +
-                                                        listViewProductsRecord
-                                                            .price;
-                                                safeSetState(() {});
-
-                                                context.pushNamed('Cart');
-                                              },
-                                              child: const Icon(
-                                                Icons.add_shopping_cart,
-                                                color: Color(0xFF333333),
-                                                size: 24.0,
-                                              ),
-                                            ),
-                                            Align(
-                                              alignment:
-                                                  const AlignmentDirectional(
-                                                      1.0, 0.0),
-                                              child: ToggleIcon(
-                                                onPressed: () async {
-                                                  final likeElement =
-                                                      currentUserReference;
-                                                  final likeUpdate =
-                                                      listViewProductsRecord
-                                                              .like
-                                                              .contains(
-                                                                  likeElement)
-                                                          ? FieldValue
-                                                              .arrayRemove(
-                                                                  [likeElement])
-                                                          : FieldValue
-                                                              .arrayUnion([
-                                                              likeElement
-                                                            ]);
-                                                  await listViewProductsRecord
-                                                      .reference
-                                                      .update({
-                                                    ...mapToFirestore(
-                                                      {
-                                                        'like': likeUpdate,
-                                                      },
-                                                    ),
-                                                  });
-                                                },
-                                                value: listViewProductsRecord
-                                                    .like
-                                                    .contains(
-                                                        currentUserReference),
-                                                onIcon: Icon(
-                                                  Icons.favorite,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  size: 22.0,
-                                                ),
-                                                offIcon: Icon(
-                                                  Icons.favorite_border,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
-                                                  size: 22.0,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
                                         ),
                                       ]
                                           .divide(const SizedBox(height: 20.0))
@@ -443,14 +383,6 @@ class _LikesWidgetState extends State<LikesWidget>
                       ),
                     ].addToEnd(const SizedBox(height: 10.0)),
                   ),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0.0, 1.0),
-                child: wrapWithModel(
-                  model: _model.navBar12Model,
-                  updateCallback: () => safeSetState(() {}),
-                  child: const NavBar12Widget(),
                 ),
               ),
             ],

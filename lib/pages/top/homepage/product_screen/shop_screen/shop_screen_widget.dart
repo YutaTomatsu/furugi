@@ -1,3 +1,5 @@
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
@@ -49,7 +51,12 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
+            bottomNavigationBar: Consumer<NavBar12Model>(
+              builder: (context, model, child) {
+                return NavBar12Widget();
+              },
+            ),
+            body: SafeArea(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
                   FlutterFlowTheme.of(context).primary,
@@ -66,19 +73,53 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
           key: scaffoldKey,
           resizeToAvoidBottomInset: false,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          bottomNavigationBar: Consumer<NavBar12Model>(
+            builder: (context, model, child) {
+              return NavBar12Widget();
+            },
+          ),
+          appBar: AppBar(
+            backgroundColor: Colors.white, // ← ヘッダー背景色
+            foregroundColor: Colors.black, // ← ヘッダーテキスト色
+            elevation: 0,
+            title: Text(
+              'ショップ詳細',
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Inter',
+                    fontSize: 16.0,
+                    letterSpacing: 0.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
+            centerTitle: true,
+            actions: [
+              // ← 右側にアイコンを配置
+              IconButton(
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+                onPressed: () {
+                  context.pushNamed('Cart'); // ← カート画面に遷移
+                },
+              ),
+              IconButton(
+                icon: Icon(
+                  Icons.notifications_none,
+                  color: FlutterFlowTheme.of(context).primaryText,
+                ),
+                onPressed: () {
+                  context.pushNamed('Notification'); // ← お知らせ画面に遷移
+                },
+              ),
+            ],
+          ),
           body: Stack(
             children: [
               // ===== メインコンテンツ部分 =====
               SingleChildScrollView(
                 child: Column(
                   children: [
-                    // ヘッダー
-                    wrapWithModel(
-                      model: _model.headerModel,
-                      updateCallback: () => setState(() {}),
-                      child: const HeaderWidget(),
-                    ),
-
                     // 本文
                     _buildShopContent(shopRecord),
                   ],
@@ -87,18 +128,14 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
 
               // ===== いいね(ToggleIcon)などアクションバー =====
               Positioned(
-                bottom: 0,
-                left: 0,
+                bottom: 10,
+                left: 10,
                 right: 0,
-                child: Container(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      _buildLikeToggle(shopRecord),
-                    ],
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _buildLikeToggle(shopRecord),
+                  ],
                 ),
               ),
             ],
@@ -115,24 +152,6 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 戻るボタン
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              InkWell(
-                onTap: () => context.pop(),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    'assets/images/Action_Icon.png',
-                    width: 34,
-                    height: 34,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ],
-          ),
           const SizedBox(height: 16),
 
           // カルーセル画像
@@ -224,7 +243,7 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
           shopRecord.name,
           style: FlutterFlowTheme.of(context).bodyMedium.override(
                 fontFamily: 'Inter',
-                color: const Color(0xFF4E97A7),
+                color: FlutterFlowTheme.of(context).furugiMainColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -236,7 +255,7 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
             shopRecord.features,
             style: FlutterFlowTheme.of(context).bodyMedium.override(
                   fontFamily: 'Inter',
-                  color: const Color(0xFF666666),
+                  color: Colors.black,
                   fontSize: 12,
                 ),
           ),
@@ -262,7 +281,6 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFFF5F7FA), // 薄い背景色を付けて区切る例
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -378,41 +396,28 @@ class _ShopScreenWidgetState extends State<ShopScreenWidget> {
 
   /// いいね(ToggleIcon) 表示
   Widget _buildLikeToggle(ShopsRecord shopRecord) {
-    return Container(
-      width: 48,
-      height: 42,
-      decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          color: FlutterFlowTheme.of(context).primaryText,
-        ),
-      ),
-      child: Center(
-        child: ToggleIcon(
-          onPressed: () async {
-            final likeElement = currentUserReference;
-            final likeUpdate = shopRecord.like.contains(likeElement)
-                ? FieldValue.arrayRemove([likeElement])
-                : FieldValue.arrayUnion([likeElement]);
+    return ToggleIcon(
+      onPressed: () async {
+        final likeElement = currentUserReference;
+        final likeUpdate = shopRecord.like.contains(likeElement)
+            ? FieldValue.arrayRemove([likeElement])
+            : FieldValue.arrayUnion([likeElement]);
 
-            await shopRecord.reference.update(
-              mapToFirestore({'like': likeUpdate}),
-            );
-            setState(() {});
-          },
-          value: shopRecord.like.contains(currentUserReference),
-          onIcon: Icon(
-            Icons.favorite_border,
-            color: FlutterFlowTheme.of(context).error,
-            size: 25,
-          ),
-          offIcon: Icon(
-            Icons.favorite,
-            color: FlutterFlowTheme.of(context).error,
-            size: 25,
-          ),
-        ),
+        await shopRecord.reference.update(
+          mapToFirestore({'like': likeUpdate}),
+        );
+        setState(() {});
+      },
+      value: shopRecord.like.contains(currentUserReference),
+      onIcon: Icon(
+        Icons.favorite_border,
+        color: FlutterFlowTheme.of(context).error,
+        size: 25,
+      ),
+      offIcon: Icon(
+        Icons.favorite,
+        color: FlutterFlowTheme.of(context).error,
+        size: 25,
       ),
     );
   }

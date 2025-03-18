@@ -1,3 +1,6 @@
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/components/nav_menu_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -52,6 +55,47 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: AppBar(
+          backgroundColor: Colors.white, // ← ヘッダー背景色
+          foregroundColor: Colors.black, // ← ヘッダーテキスト色
+          elevation: 0,
+          title: Text(
+            '購入履歴',
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Inter',
+                  fontSize: 16.0,
+                  letterSpacing: 0.0,
+                  fontWeight: FontWeight.w500,
+                ),
+          ),
+          centerTitle: true,
+          actions: [
+            // ← 右側にアイコンを配置
+            IconButton(
+              icon: Icon(
+                Icons.shopping_cart,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Cart'); // ← カート画面に遷移
+              },
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.notifications_none,
+                color: FlutterFlowTheme.of(context).primaryText,
+              ),
+              onPressed: () {
+                context.pushNamed('Notification'); // ← お知らせ画面に遷移
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           top: true,
           child: Align(
@@ -114,8 +158,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                             ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(16.0, 12.0, 16.0, 12.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -162,9 +206,8 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 0.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(20.0, 0.0, 0.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -208,19 +251,22 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                               .w500,
                                                                     ),
                                                               ),
-                                                            ].divide(const SizedBox(
-                                                                width: 20.0)),
+                                                            ].divide(
+                                                                const SizedBox(
+                                                                    width:
+                                                                        20.0)),
                                                           ),
                                                         ].divide(const SizedBox(
                                                             height: 30.0)),
                                                       ),
-                                                    ].divide(
-                                                        const SizedBox(width: 56.0)),
+                                                    ].divide(const SizedBox(
+                                                        width: 56.0)),
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           0.0, 0.0, 20.0, 0.0),
                                                   child: Container(
                                                     width: double.infinity,
@@ -249,19 +295,20 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 16.0)),
+                                              ].divide(
+                                                  const SizedBox(height: 16.0)),
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 0.0, 20.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(20.0, 0.0, 20.0, 0.0),
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsetsDirectional
-                                                      .fromSTEB(
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .fromSTEB(
                                                           1.0, 5.0, 0.0, 0.0),
                                                   child: Row(
                                                     mainAxisSize:
@@ -291,13 +338,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                     ],
                                                   ),
                                                 ),
-                                              ].divide(const SizedBox(height: 15.0)),
+                                              ].divide(
+                                                  const SizedBox(height: 15.0)),
                                             ),
                                           ),
                                           Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 14.0, 20.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(
+                                                20.0, 14.0, 20.0, 0.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -317,18 +365,15 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                           BorderRadius.circular(
                                                               16.0),
                                                       border: Border.all(
-                                                        color:
-                                                            const Color(0xFFDBDBDB),
+                                                        color: const Color(
+                                                            0xFFDBDBDB),
                                                       ),
                                                     ),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  24.0,
-                                                                  24.0,
-                                                                  24.0,
-                                                                  24.0),
+                                                              .fromSTEB(24.0,
+                                                              24.0, 24.0, 24.0),
                                                       child:
                                                           SingleChildScrollView(
                                                         child: Column(
@@ -597,9 +642,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                       .asValidator(
                                                                           context),
                                                                 ),
-                                                              ].divide(const SizedBox(
-                                                                  height:
-                                                                      11.0)),
+                                                              ].divide(
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          11.0)),
                                                             ),
                                                             Column(
                                                               mainAxisSize:
@@ -734,9 +780,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                       .asValidator(
                                                                           context),
                                                                 ),
-                                                              ].divide(const SizedBox(
-                                                                  height:
-                                                                      11.0)),
+                                                              ].divide(
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          11.0)),
                                                             ),
                                                             Align(
                                                               alignment:
@@ -744,8 +791,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                       -1.0,
                                                                       0.0),
                                                               child: Padding(
-                                                                padding: const EdgeInsetsDirectional
-                                                                    .fromSTEB(
+                                                                padding:
+                                                                    const EdgeInsetsDirectional
+                                                                        .fromSTEB(
                                                                         0.0,
                                                                         24.0,
                                                                         0.0,
@@ -766,12 +814,13 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                                         42.0,
                                                                     padding: const EdgeInsetsDirectional
                                                                         .fromSTEB(
-                                                                            24.0,
-                                                                            0.0,
-                                                                            24.0,
-                                                                            0.0),
+                                                                        24.0,
+                                                                        0.0,
+                                                                        24.0,
+                                                                        0.0),
                                                                     iconPadding:
-                                                                        const EdgeInsetsDirectional.fromSTEB(
+                                                                        const EdgeInsetsDirectional
+                                                                            .fromSTEB(
                                                                             0.0,
                                                                             0.0,
                                                                             0.0,
@@ -810,8 +859,10 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                                               ),
                                                             ),
                                                           ]
-                                                              .divide(const SizedBox(
-                                                                  height: 11.0))
+                                                              .divide(
+                                                                  const SizedBox(
+                                                                      height:
+                                                                          11.0))
                                                               .addToStart(
                                                                   const SizedBox(
                                                                       height:

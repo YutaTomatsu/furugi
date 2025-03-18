@@ -57,7 +57,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                   child: const HeaderWidget(),
                 ),
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 1.0,
                     decoration: const BoxDecoration(),
@@ -90,9 +91,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                       children: [
                                         Flexible(
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    11.0, 0.0, 0.0, 0.0),
+                                            padding: const EdgeInsetsDirectional
+                                                .fromSTEB(11.0, 0.0, 0.0, 0.0),
                                             child: SizedBox(
                                               width: 311.0,
                                               child: TextFormField(
@@ -104,15 +104,16 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                 obscureText: false,
                                                 decoration: InputDecoration(
                                                   hintText: 'Search products ',
-                                                  hintStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            const Color(0xFFA7A5A5),
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                                  hintStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .override(
+                                                            fontFamily: 'Inter',
+                                                            color: const Color(
+                                                                0xFFA7A5A5),
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                   enabledBorder:
                                                       InputBorder.none,
                                                   focusedBorder:
@@ -122,8 +123,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                       InputBorder.none,
                                                   contentPadding:
                                                       const EdgeInsetsDirectional
-                                                          .fromSTEB(0.0, 0.0,
-                                                              0.0, 11.0),
+                                                          .fromSTEB(
+                                                          0.0, 0.0, 0.0, 11.0),
                                                 ),
                                                 style:
                                                     FlutterFlowTheme.of(context)
@@ -143,9 +144,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                           ),
                                         ),
                                         Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 11.0, 0.0),
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0.0, 0.0, 11.0, 0.0),
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
@@ -199,10 +199,12 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(1.0, -1.0),
+                                                const AlignmentDirectional(
+                                                    1.0, -1.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
                                                       0.0, 7.0, 15.0, 0.0),
                                               child: Icon(
                                                 Icons.favorite_border,
@@ -216,8 +218,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                         ],
                                       ),
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            -1.0, 0.0),
                                         child: Text(
                                           'Reversible angora ',
                                           style: FlutterFlowTheme.of(context)
@@ -262,7 +264,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(
+                                                    0.0, 0.0),
                                             child: Container(
                                               width: 20.0,
                                               height: 20.0,
@@ -279,8 +282,9 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         0.0, 2.0, 0.0, 0.0),
                                                 child: Text(
                                                   'S',
@@ -305,19 +309,21 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                             children: [
                                               Text(
                                                 '£200',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color: const Color(0xFFBDB5AC),
-                                                      fontSize: 10.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                    ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: const Color(
+                                                              0xFFBDB5AC),
+                                                          fontSize: 10.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                        ),
                                               ),
                                               Text(
                                                 '£120',
@@ -329,7 +335,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(
+                                                const SizedBox(width: 10.0)),
                                           ),
                                         ],
                                       ),
@@ -360,10 +367,12 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                           ),
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(1.0, -1.0),
+                                                const AlignmentDirectional(
+                                                    1.0, -1.0),
                                             child: Padding(
-                                              padding: const EdgeInsetsDirectional
-                                                  .fromSTEB(
+                                              padding:
+                                                  const EdgeInsetsDirectional
+                                                      .fromSTEB(
                                                       0.0, 7.0, 15.0, 0.0),
                                               child: Icon(
                                                 Icons.favorite_border,
@@ -377,8 +386,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                         ],
                                       ),
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            -1.0, 0.0),
                                         child: Text(
                                           'Onltahoe Jacket ',
                                           style: FlutterFlowTheme.of(context)
@@ -423,7 +432,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                         children: [
                                           Align(
                                             alignment:
-                                                const AlignmentDirectional(0.0, 0.0),
+                                                const AlignmentDirectional(
+                                                    0.0, 0.0),
                                             child: Container(
                                               width: 20.0,
                                               height: 20.0,
@@ -440,8 +450,9 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsetsDirectional
-                                                    .fromSTEB(
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(
                                                         0.0, 2.0, 0.0, 0.0),
                                                 child: Text(
                                                   'S',
@@ -466,19 +477,21 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                             children: [
                                               Text(
                                                 '£200',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Inter',
-                                                      color: const Color(0xFFBDB5AC),
-                                                      fontSize: 10.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      decoration: TextDecoration
-                                                          .lineThrough,
-                                                    ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Inter',
+                                                          color: const Color(
+                                                              0xFFBDB5AC),
+                                                          fontSize: 10.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          decoration:
+                                                              TextDecoration
+                                                                  .lineThrough,
+                                                        ),
                                               ),
                                               Text(
                                                 '£120',
@@ -490,7 +503,8 @@ class _ProductpageWidgetState extends State<ProductpageWidget> {
                                                           letterSpacing: 0.0,
                                                         ),
                                               ),
-                                            ].divide(const SizedBox(width: 10.0)),
+                                            ].divide(
+                                                const SizedBox(width: 10.0)),
                                           ),
                                         ],
                                       ),

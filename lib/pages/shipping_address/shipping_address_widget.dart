@@ -1,5 +1,7 @@
 import 'package:furugi_with_template/backend/api_requests/api_calls.dart';
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
 import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -327,28 +329,16 @@ class _ShippingAddressWidgetState extends State<ShippingAddressWidget>
   Widget build(BuildContext context) {
     // アプリバーの色などは AppBar のプロパティで変更可能
     return Scaffold(
-      bottomNavigationBar: wrapWithModel(
-        model: _model.navBar12Model,
-        updateCallback: () => setState(() {}),
-        child: const NavBar12Widget(),
+      bottomNavigationBar: Consumer<NavBar12Model>(
+        builder: (context, model, child) {
+          return NavBar12Widget();
+        },
       ),
-      appBar: AppBar(
-        title: Text(
-          '配送先の変更',
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: 'Inter',
-                fontSize: 16.0,
-                letterSpacing: 0.0,
-                fontWeight: FontWeight.w500,
-              ),
-        ),
-        backgroundColor: Colors.white, // ←ヘッダー背景色
-        foregroundColor: Colors.black, // ←ヘッダーテキスト色
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back)),
+      appBar: DefaultAppBarWidget(
+        title: '配送先の変更',
+        showBackButton: true,
+        showCartIcon: true,
+        showNotificationIcon: true,
       ),
       body: Stack(
         children: [

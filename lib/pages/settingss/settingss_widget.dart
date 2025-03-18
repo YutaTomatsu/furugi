@@ -1,3 +1,7 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+import 'package:furugi_with_template/components/nav_bar12_widget.dart';
+import 'package:provider/provider.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -46,6 +50,17 @@ class _SettingssWidgetState extends State<SettingssWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        bottomNavigationBar: Consumer<NavBar12Model>(
+          builder: (context, model, child) {
+            return NavBar12Widget();
+          },
+        ),
+        appBar: DefaultAppBarWidget(
+          title: '設定',
+          showBackButton: true,
+          showCartIcon: true,
+          showNotificationIcon: true,
+        ),
         body: Container(
           width: double.infinity,
           height: 850.0,
@@ -58,7 +73,8 @@ class _SettingssWidgetState extends State<SettingssWidget> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                   child: Container(
                     width: MediaQuery.sizeOf(context).width * 0.9,
                     decoration: const BoxDecoration(),
@@ -79,42 +95,6 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pop();
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          child: Image.asset(
-                                            'assets/images/Action_Icon.png',
-                                            width: 34.0,
-                                            height: 34.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Settings',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Inter',
-                                              color: Colors.black,
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                      ),
-                                    ].divide(const SizedBox(width: 100.0)),
-                                  ),
                                   Container(
                                     decoration: const BoxDecoration(),
                                     child: Column(
@@ -126,17 +106,18 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Align(
-                                              alignment: const AlignmentDirectional(
-                                                  -1.0, 0.0),
+                                              alignment:
+                                                  const AlignmentDirectional(
+                                                      -1.0, 0.0),
                                               child: Text(
-                                                'Enter new password',
+                                                '新しいパスワードを入力',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily: 'Inter',
-                                                          color:
-                                                              const Color(0xFF111010),
+                                                          color: const Color(
+                                                              0xFF111010),
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                           fontWeight:
@@ -153,7 +134,7 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                               obscureText:
                                                   !_model.passwordVisibility,
                                               decoration: InputDecoration(
-                                                hintText: 'Enter new password',
+                                                hintText: '新しいパスワードを入力',
                                                 hintStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -223,7 +204,8 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                                             .visibility_outlined
                                                         : Icons
                                                             .visibility_off_outlined,
-                                                    color: const Color(0xFF757575),
+                                                    color:
+                                                        const Color(0xFF757575),
                                                     size: 0.0,
                                                   ),
                                                 ),
@@ -250,11 +232,13 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                                   .passwordTextControllerValidator
                                                   .asValidator(context),
                                             ),
-                                          ].divide(const SizedBox(height: 11.0)),
+                                          ].divide(
+                                              const SizedBox(height: 11.0)),
                                         ),
                                       ]
                                           .divide(const SizedBox(height: 5.0))
-                                          .addToStart(const SizedBox(height: 10.0)),
+                                          .addToStart(
+                                              const SizedBox(height: 10.0)),
                                     ),
                                   ),
                                   Container(
@@ -263,15 +247,16 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         Align(
-                                          alignment:
-                                              const AlignmentDirectional(-1.0, 0.0),
+                                          alignment: const AlignmentDirectional(
+                                              -1.0, 0.0),
                                           child: Text(
-                                            'Confirm Password',
+                                            'パスワードの確認',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Inter',
-                                                  color: const Color(0xFF111010),
+                                                  color:
+                                                      const Color(0xFF111010),
                                                   fontSize: 16.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w500,
@@ -287,7 +272,7 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                           obscureText:
                                               !_model.confirmpasswordVisibility,
                                           decoration: InputDecoration(
-                                            hintText: 'Confirm new password',
+                                            hintText: 'パスワードの確認',
                                             hintStyle:
                                                 FlutterFlowTheme.of(context)
                                                     .labelMedium
@@ -383,8 +368,8 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Align(
-                                        alignment:
-                                            const AlignmentDirectional(-1.0, 0.0),
+                                        alignment: const AlignmentDirectional(
+                                            -1.0, 0.0),
                                         child: Text(
                                           'ダークモード',
                                           style: FlutterFlowTheme.of(context)
@@ -435,13 +420,14 @@ class _SettingssWidgetState extends State<SettingssWidget> {
                                 onPressed: () async {
                                   context.pushNamed('Myaccount');
                                 },
-                                text: 'Reset password',
+                                text: 'パスワードをリセットする',
                                 options: FFButtonOptions(
                                   height: 40.0,
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       24.0, 0.0, 24.0, 0.0),
-                                  iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
+                                  iconPadding:
+                                      const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
                                   color: const Color(0xFF333333),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall

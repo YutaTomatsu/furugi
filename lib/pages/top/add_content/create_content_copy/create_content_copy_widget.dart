@@ -1,3 +1,5 @@
+import 'package:furugi_with_template/components/default_app_bar_widget.dart';
+
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
@@ -112,6 +114,10 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      appBar: DefaultAppBarWidget(
+        title: 'ショップ登録',
+        showBackButton: true,
+      ),
       body: SafeArea(
         top: true,
         child: SingleChildScrollView(
@@ -348,29 +354,33 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
   }) {
     return Column(
       children: [
-        Text(label, style: FlutterFlowTheme.of(context).bodyMedium),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Text(label, style: FlutterFlowTheme.of(context).bodyMedium),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: TextFormField(
             key: formKey,
             controller: controller,
             decoration: InputDecoration(
-              labelText: '$labelを入力',
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).alternate,
-                  width: 2,
+                labelText: '$labelを入力',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).alternate,
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).primary,
-                  width: 2,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).primary,
+                    width: 2,
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12)),
+            style: TextStyle(fontSize: 14),
             validator: validator ??
                 (val) {
                   if (required && (val == null || val.isEmpty)) {
@@ -388,7 +398,10 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
   Widget _buildPostalCodeInput() {
     return Column(
       children: [
-        const Text('郵便番号'),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: const Text('郵便番号'),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
@@ -398,22 +411,24 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
                 key: _postalCodeKey,
                 controller: _model.postTextController,
                 decoration: InputDecoration(
-                  labelText: '郵便番号を入力（7桁）',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).alternate,
-                      width: 2,
+                    labelText: '郵便番号を入力（7桁）',
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).alternate,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: FlutterFlowTheme.of(context).primary,
-                      width: 2,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: FlutterFlowTheme.of(context).primary,
+                        width: 2,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 8, horizontal: 12)),
+                style: TextStyle(fontSize: 14),
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.digitsOnly,
@@ -438,54 +453,57 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
             ],
           ),
         ),
-        FFButtonWidget(
-          onPressed: () async {
-            String? validationError =
-                _validatePostalCode(_model.postTextController.text);
-            if (validationError != null) {
-              setState(() => _postalCodeError = validationError);
-              return;
-            } else {
-              setState(() => _postalCodeError = null);
-            }
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: FFButtonWidget(
+            onPressed: () async {
+              String? validationError =
+                  _validatePostalCode(_model.postTextController.text);
+              if (validationError != null) {
+                setState(() => _postalCodeError = validationError);
+                return;
+              } else {
+                setState(() => _postalCodeError = null);
+              }
 
-            _model.apiResultac6 = await ZipcodeAPICall.call(
-              zipcode: _model.postTextController.text,
-            );
+              _model.apiResultac6 = await ZipcodeAPICall.call(
+                zipcode: _model.postTextController.text,
+              );
 
-            if ((_model.apiResultac6?.succeeded ?? false) &&
-                getJsonField((_model.apiResultac6?.jsonBody ?? ''),
-                        r'''$.results''') !=
-                    null) {
-              final address1 = getJsonField(
-                      (_model.apiResultac6?.jsonBody ?? ''),
-                      r'''$.results[0].address1''')
-                  .toString();
-              final address2 = getJsonField(
-                      (_model.apiResultac6?.jsonBody ?? ''),
-                      r'''$.results[0].address2''')
-                  .toString();
-              final address3 = getJsonField(
-                      (_model.apiResultac6?.jsonBody ?? ''),
-                      r'''$.results[0].address3''')
-                  .toString();
+              if ((_model.apiResultac6?.succeeded ?? false) &&
+                  getJsonField((_model.apiResultac6?.jsonBody ?? ''),
+                          r'''$.results''') !=
+                      null) {
+                final address1 = getJsonField(
+                        (_model.apiResultac6?.jsonBody ?? ''),
+                        r'''$.results[0].address1''')
+                    .toString();
+                final address2 = getJsonField(
+                        (_model.apiResultac6?.jsonBody ?? ''),
+                        r'''$.results[0].address2''')
+                    .toString();
+                final address3 = getJsonField(
+                        (_model.apiResultac6?.jsonBody ?? ''),
+                        r'''$.results[0].address3''')
+                    .toString();
 
-              _prefectureTextController.text = address1;
-              _model.address4TextController.text = '$address2$address3';
-              setState(() => _postalCodeError = null);
-            } else {
-              setState(() => _postalCodeError = '正しい郵便番号を入力してください');
-            }
-          },
-          text: '検索',
-          options: FFButtonOptions(
-            height: 40,
-            color: FlutterFlowTheme.of(context).primary,
-            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                  fontFamily: 'Inter',
-                  color: Colors.black,
-                ),
-            borderRadius: BorderRadius.circular(8),
+                _prefectureTextController.text = address1;
+                _model.address4TextController.text = '$address2$address3';
+                setState(() => _postalCodeError = null);
+              } else {
+                setState(() => _postalCodeError = '正しい郵便番号を入力してください');
+              }
+            },
+            text: '検索',
+            options: FFButtonOptions(
+              height: 40,
+              color: FlutterFlowTheme.of(context).primary,
+              textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                    fontFamily: 'Inter',
+                    color: Colors.black,
+                  ),
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
         ),
       ],
@@ -496,7 +514,10 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
   Widget _buildPrefectureInput() {
     return Column(
       children: [
-        const Text('都道府県'),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: const Text('都道府県'),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: TextFormField(
@@ -504,21 +525,21 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
             controller: _prefectureTextController,
             decoration: InputDecoration(
               labelText: '都道府県がここに表示されます',
-              enabledBorder: UnderlineInputBorder(
+              enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(
                   color: FlutterFlowTheme.of(context).alternate,
                   width: 2,
                 ),
                 borderRadius: BorderRadius.circular(8),
               ),
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).primary,
-                  width: 2,
-                ),
+                    color: FlutterFlowTheme.of(context).primary, width: 2),
                 borderRadius: BorderRadius.circular(8),
               ),
+              contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
             ),
+            style: const TextStyle(fontSize: 14),
             validator: (val) {
               if (val == null || val.isEmpty) {
                 return '都道府県を入力してください';
@@ -685,109 +706,112 @@ class _CreateContentCopyWidgetState extends State<CreateContentCopyWidget> {
   Widget _buildBottomButtons(BuildContext context) {
     return Column(
       children: [
-        Row(
-          children: [
-            // 下書き保存
-            FFButtonWidget(
-              onPressed: () {
-                debugPrint('下書きを保存しました。');
-              },
-              text: '下書きを保存',
-              options: FFButtonOptions(
-                height: 40,
-                color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Inter',
-                      color: Colors.black,
-                    ),
-                borderRadius: BorderRadius.circular(8),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // 下書き保存
+              FFButtonWidget(
+                onPressed: () {
+                  debugPrint('下書きを保存しました。');
+                },
+                text: '下書きを保存',
+                options: FFButtonOptions(
+                  height: 40,
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Inter',
+                        color: Colors.black,
+                      ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-            ),
-            const SizedBox(width: 8),
-            // 確認画面へ
-            FFButtonWidget(
-              onPressed: () {
-                bool isValid = _formKey.currentState!.validate();
-                if (_postalCodeError != null) {
-                  isValid = false;
-                }
-                // 画像チェック
-                if (_uploadedFileUrls.isEmpty) {
-                  setState(() => _imageError = '画像を選択してください');
-                  isValid = false;
-                } else {
-                  setState(() => _imageError = null);
-                }
+              // 確認画面へ
+              FFButtonWidget(
+                onPressed: () {
+                  bool isValid = _formKey.currentState!.validate();
+                  if (_postalCodeError != null) {
+                    isValid = false;
+                  }
+                  // 画像チェック
+                  if (_uploadedFileUrls.isEmpty) {
+                    setState(() => _imageError = '画像を選択してください');
+                    isValid = false;
+                  } else {
+                    setState(() => _imageError = null);
+                  }
 
-                List<String> errorMessages = [];
-                if (_shopNameKey.currentState?.errorText != null) {
-                  errorMessages.add(_shopNameKey.currentState!.errorText!);
-                }
-                if (_postalCodeKey.currentState?.errorText != null) {
-                  errorMessages.add(_postalCodeKey.currentState!.errorText!);
-                }
-                if (_postalCodeError != null) {
-                  errorMessages.add(_postalCodeError!);
-                }
-                if (_prefectureKey.currentState?.errorText != null) {
-                  errorMessages.add(_prefectureKey.currentState!.errorText!);
-                }
-                if (_addressKey.currentState?.errorText != null) {
-                  errorMessages.add(_addressKey.currentState!.errorText!);
-                }
-                if (_tellKey.currentState?.errorText != null) {
-                  errorMessages.add(_tellKey.currentState!.errorText!);
-                }
-                if (_hpKey.currentState?.errorText != null) {
-                  errorMessages.add(_hpKey.currentState!.errorText!);
-                }
-                if (_imageError != null) {
-                  errorMessages.add(_imageError!);
-                }
+                  List<String> errorMessages = [];
+                  if (_shopNameKey.currentState?.errorText != null) {
+                    errorMessages.add(_shopNameKey.currentState!.errorText!);
+                  }
+                  if (_postalCodeKey.currentState?.errorText != null) {
+                    errorMessages.add(_postalCodeKey.currentState!.errorText!);
+                  }
+                  if (_postalCodeError != null) {
+                    errorMessages.add(_postalCodeError!);
+                  }
+                  if (_prefectureKey.currentState?.errorText != null) {
+                    errorMessages.add(_prefectureKey.currentState!.errorText!);
+                  }
+                  if (_addressKey.currentState?.errorText != null) {
+                    errorMessages.add(_addressKey.currentState!.errorText!);
+                  }
+                  if (_tellKey.currentState?.errorText != null) {
+                    errorMessages.add(_tellKey.currentState!.errorText!);
+                  }
+                  if (_hpKey.currentState?.errorText != null) {
+                    errorMessages.add(_hpKey.currentState!.errorText!);
+                  }
+                  if (_imageError != null) {
+                    errorMessages.add(_imageError!);
+                  }
 
-                setState(() => _errorMessages = errorMessages);
+                  setState(() => _errorMessages = errorMessages);
 
-                if (!isValid) return;
+                  if (!isValid) return;
 
-                // shop_register_confirm_widget.dart に渡すデータ
-                final shopData = {
-                  'shopName': _model.shopNameTextController?.text,
-                  'postalCode': _model.postTextController?.text,
-                  'prefecture': _prefectureTextController.text,
-                  'address': _model.address4TextController?.text,
-                  'tel': _model.tellTextController?.text,
-                  'hp': _model.hpTextController?.text,
-                  // priceRange は複数選択
-                  'priceRange': _model.priceRangeValues,
-                  'features': _model.featuresTextController?.text,
-                  'imageUrls': _uploadedFileUrls,
-                  'payment': _model.paymentValues,
-                  'closedDays': _model.closedDaysValues,
-                  'genders': _model.gendersValues,
-                  'parking': _model.parkingValues,
-                };
+                  // shop_register_confirm_widget.dart に渡すデータ
+                  final shopData = {
+                    'shopName': _model.shopNameTextController?.text,
+                    'postalCode': _model.postTextController?.text,
+                    'prefecture': _prefectureTextController.text,
+                    'address': _model.address4TextController?.text,
+                    'tel': _model.tellTextController?.text,
+                    'hp': _model.hpTextController?.text,
+                    // priceRange は複数選択
+                    'priceRange': _model.priceRangeValues,
+                    'features': _model.featuresTextController?.text,
+                    'imageUrls': _uploadedFileUrls,
+                    'payment': _model.paymentValues,
+                    'closedDays': _model.closedDaysValues,
+                    'genders': _model.gendersValues,
+                    'parking': _model.parkingValues,
+                  };
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ShopRegisterConfirmWidget(
-                      shopData: shopData,
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ShopRegisterConfirmWidget(
+                        shopData: shopData,
+                      ),
                     ),
-                  ),
-                );
-              },
-              text: '古着屋を確認する',
-              options: FFButtonOptions(
-                height: 40,
-                color: FlutterFlowTheme.of(context).primary,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Inter',
-                      color: Colors.black,
-                    ),
-                borderRadius: BorderRadius.circular(8),
+                  );
+                },
+                text: '古着屋を確認する',
+                options: FFButtonOptions(
+                  height: 40,
+                  color: FlutterFlowTheme.of(context).primary,
+                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                        fontFamily: 'Inter',
+                        color: Colors.black,
+                      ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         if (_errorMessages.isNotEmpty)
           Padding(
